@@ -1,0 +1,5304 @@
+[
+ {
+  "id": "prog-1rm-testing",
+  "name": "1RM / Max Testing",
+  "description": "Baseline block to establish strength 1RMs (squat / hinge / press / pull families), optional run time-trial PRs (100 m → 5 km), and classic benchmark WODs (Fran, Cindy, Murph…). Warm-up ladders and attempt rules only — no hypertrophy accessories. Log results under Maxes → Strength / Running / Benchmarks. Curated / peer-informed — not a competition meet protocol.",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic",
+   "Rugby",
+   "CrossFit"
+  ],
+  "weeks": 1,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-30T00:00:00.000Z",
+  "adaptations": [
+   "testing",
+   "baseline"
+  ],
+  "audience": "Anyone starting a strength block without current 1RMs, re-baselining mid-season, or filling gaps across squat / hinge / press / pull families",
+  "coachNotes": "Strength days: warm-up ladder (≈40×5 → 60×3 → 75×2 → 85×1 → 92×1 → 97×1 → 100×1). Full 3–5 min rest above 90%. Miss or form break = end that lift. Optional secondary maxes use a shorter ladder — skip if the primary was grinding. Run / benchmark days are optional — pick one primary test per session. Log under Workout → Maxes (Strength · Running · Benchmarks tabs). Every set stays editable after import.",
+  "days": [
+   {
+    "id": "pd-1rm-squat",
+    "name": "Day 1 — Squats",
+    "weekday": 1,
+    "focus": "Testing",
+    "sessionPad": "Establishes: Back Squat 1RM (primary) · Front Squat 1RM (optional secondary). Skip front squat if back-squat top single was a grinder. Warm-up only — no accessory volume.",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0,
+      "notes": "Prep hips + T-spine before loading"
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 210,
+      "targetPercent1RM": 100,
+      "notes": "Back squat 1RM — full ladder. Brace hard, controlled eccentric. Spotter / safety pins near top singles. Log to Maxes.",
+      "schemes": [
+       {
+        "id": "sch-bsq-40",
+        "sets": 1,
+        "reps": "5",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-bsq-60",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-bsq-75",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-bsq-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-bsq-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-bsq-97",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 97
+       },
+       {
+        "id": "sch-bsq-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 240,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-fsquat",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL secondary: front squat 1RM — shorter ladder. Conservative opener. Elbows high. Skip if fatigued.",
+      "schemes": [
+       {
+        "id": "sch-fsq-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-fsq-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-fsq-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-fsq-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-fsq-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-fsq-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-bench-row",
+    "name": "Day 2 — Bench + Row",
+    "weekday": 2,
+    "focus": "Testing",
+    "sessionPad": "Establishes: Bench Press 1RM (primary) · Barbell Row 1RM (optional secondary). Row is antagonistic — take it only if bench left you fresh enough.",
+    "exercises": [
+     {
+      "exerciseId": "ex-tspine",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0,
+      "notes": "Open T-spine before pressing"
+     },
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 210,
+      "targetPercent1RM": 100,
+      "notes": "Bench 1RM — full ladder. Spotter recommended near top singles. Touch-and-press, feet planted. Log to Maxes.",
+      "schemes": [
+       {
+        "id": "sch-bp-40",
+        "sets": 1,
+        "reps": "5",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-bp-60",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-bp-75",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-bp-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-bp-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-bp-97",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 97
+       },
+       {
+        "id": "sch-bp-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 240,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-row",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL secondary: barbell bent-over row 1RM — shorter ladder. Strict torso; no bounce. Log best clean single.",
+      "schemes": [
+       {
+        "id": "sch-row-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-row-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-row-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-row-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-row-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-row-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-deadlift",
+    "name": "Day 3 — Deadlift",
+    "weekday": 3,
+    "focus": "Testing",
+    "sessionPad": "Establishes: Conventional Deadlift 1RM only. One heavy hinge today — do not stack trap-bar the same session. Longer rest above 90%.",
+    "exercises": [
+     {
+      "exerciseId": "ex-catcow",
+      "setType": "reps_load",
+      "sets": 2,
+      "reps": "10",
+      "restSec": 0,
+      "notes": "Wake up the spine — no load"
+     },
+     {
+      "exerciseId": "ex-dl",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 210,
+      "targetPercent1RM": 100,
+      "notes": "Conventional deadlift 1RM — full ladder. Reset each single (no bounce). Prefer competition stance. Log best clean single to Maxes.",
+      "schemes": [
+       {
+        "id": "sch-dl-40",
+        "sets": 1,
+        "reps": "5",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-dl-60",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-dl-75",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-dl-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-dl-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-dl-97",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 97
+       },
+       {
+        "id": "sch-dl-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 240,
+        "targetPercent1RM": 100
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-press-pull",
+    "name": "Day 4 — Strict Press + Pull-Up",
+    "weekday": 4,
+    "focus": "Testing",
+    "sessionPad": "Establishes: Strict Overhead Press 1RM · Weighted Pull-Up or Chin-Up 1RM. Strict press only (no leg drive). For pull-ups: add belt/DB load once bodyweight singles are easy; log total external load + BW context in notes.",
+    "exercises": [
+     {
+      "exerciseId": "ex-tspine",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "6/side",
+      "restSec": 0,
+      "notes": "Light scap + T-spine prep"
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 210,
+      "targetPercent1RM": 100,
+      "notes": "Strict press 1RM (no push-press / no leg drive). Full ladder. Glutes squeezed, lockout tall. Shorter ladder OK if shoulders taxed.",
+      "schemes": [
+       {
+        "id": "sch-ohp-40",
+        "sets": 1,
+        "reps": "5",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-ohp-60",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-ohp-75",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-ohp-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-ohp-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-ohp-97",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 97
+       },
+       {
+        "id": "sch-ohp-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 240,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "Weighted pull-up 1RM — shorter ladder on added load (or work up in kg on belt/DB). Full hang, chest to bar. If BW AMRAP <5, establish a hard bodyweight single / max-reps baseline instead. Log to Maxes.",
+      "schemes": [
+       {
+        "id": "sch-wpu-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-wpu-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-wpu-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-wpu-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-wpu-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-wpu-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-chinup",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL alternate grip: weighted chin-up 1RM. Pick pull-up OR chin — not both at true max. Skip if pull-up already emptied you.",
+      "schemes": [
+       {
+        "id": "sch-wchin-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-wchin-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-wchin-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-wchin-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-wchin-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-wchin-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-trap-hip",
+    "name": "Day 5 — Trap Bar + Hip Thrust",
+    "weekday": 5,
+    "focus": "Testing",
+    "sessionPad": "Establishes: Trap Bar Deadlift 1RM (primary) · Hip Thrust 1RM (optional secondary). Trap bar is a separate family from conventional — useful athletic baseline. Skip if still sore from Day 3.",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0,
+      "notes": "Open hips before hinge / thrust"
+     },
+     {
+      "exerciseId": "ex-trapbar",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 210,
+      "targetPercent1RM": 100,
+      "notes": "Trap-bar deadlift 1RM — full ladder. High or low handles — note which in Maxes notes. Drive floor away; lockout tall.",
+      "schemes": [
+       {
+        "id": "sch-tbar-40",
+        "sets": 1,
+        "reps": "5",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-tbar-60",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-tbar-75",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-tbar-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-tbar-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-tbar-97",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 97
+       },
+       {
+        "id": "sch-tbar-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 240,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-hipthrust",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL secondary: barbell hip thrust 1RM — shorter ladder. Pause at top, posterior tilt. Pad the bar. Skip if trap-bar took everything.",
+      "schemes": [
+       {
+        "id": "sch-ht-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-ht-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-ht-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-ht-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-ht-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-ht-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-variants",
+    "name": "Day 6 — Bench variants + Clean (optional)",
+    "weekday": 6,
+    "focus": "Testing",
+    "sessionPad": "Establishes (pick what you need): Incline BB Bench and/or Close-Grip Bench · optional Power Clean. Fully optional day — skip any lift you do not program. Technique quality over absolute load on the clean.",
+    "exercises": [
+     {
+      "exerciseId": "ex-tspine",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "6/side",
+      "restSec": 0,
+      "notes": "Light prep — optional day"
+     },
+     {
+      "exerciseId": "ex-incline-bb-press",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL: incline barbell bench 1RM — shorter ladder. Separate family from flat bench. Spotter recommended.",
+      "schemes": [
+       {
+        "id": "sch-ibp-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-ibp-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-ibp-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-ibp-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-ibp-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-ibp-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-cgbp",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL: close-grip bench 1RM — shorter ladder. Pick incline OR close-grip as the hard single if both feel fresh; do not redline both.",
+      "schemes": [
+       {
+        "id": "sch-cgbp-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-cgbp-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-cgbp-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-cgbp-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-cgbp-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-cgbp-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     },
+     {
+      "exerciseId": "ex-pclean",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "1",
+      "restSec": 180,
+      "targetPercent1RM": 100,
+      "notes": "OPTIONAL: power clean 1RM — shorter ladder. Receive quality over load; a heavy single with a poor catch does not count. Skip if you do not pull from the floor.",
+      "schemes": [
+       {
+        "id": "sch-pc-40",
+        "sets": 1,
+        "reps": "3",
+        "restSec": 90,
+        "targetPercent1RM": 40
+       },
+       {
+        "id": "sch-pc-60",
+        "sets": 1,
+        "reps": "2",
+        "restSec": 120,
+        "targetPercent1RM": 60
+       },
+       {
+        "id": "sch-pc-75",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 150,
+        "targetPercent1RM": 75
+       },
+       {
+        "id": "sch-pc-85",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 85
+       },
+       {
+        "id": "sch-pc-92",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 180,
+        "targetPercent1RM": 92
+       },
+       {
+        "id": "sch-pc-100",
+        "sets": 1,
+        "reps": "1",
+        "restSec": 210,
+        "targetPercent1RM": 100
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-run",
+    "name": "Optional — Run PR",
+    "weekday": -1,
+    "focus": "Testing",
+    "sessionPad": "Establishes: one running distance PR (pick primary). Do not stack a hard 5k with a true 400 m max the same day. Warm up thoroughly; log time under Maxes → Running.",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0,
+      "notes": "Easy mobility before strides"
+     },
+     {
+      "exerciseId": "ex-buildup",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "60-80m",
+      "restSec": 90,
+      "notes": "Build-up strides only — technique, not a sprint PR"
+     },
+     {
+      "exerciseId": "ex-run-100m",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "100m TT",
+      "distanceM": 100,
+      "restSec": 300,
+      "notes": "OPTIONAL primary: 100 m TT. Full recovery. Log best time → Maxes → Running."
+     },
+     {
+      "exerciseId": "ex-run-400m",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "400m TT",
+      "distanceM": 400,
+      "restSec": 600,
+      "notes": "OPTIONAL alternate primary: 400 m. Skip if you already ran 100 m all-out."
+     },
+     {
+      "exerciseId": "ex-run-1k",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "1km TT",
+      "distanceM": 1000,
+      "restSec": 0,
+      "notes": "OPTIONAL endurance PR: 1 km. Prefer this OR mile/2k/5k — one hard distance effort."
+     },
+     {
+      "exerciseId": "ex-run-mile",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "1 mile TT",
+      "distanceM": 1609,
+      "restSec": 0,
+      "notes": "OPTIONAL: 1 mile TT. Log → Maxes → Running."
+     },
+     {
+      "exerciseId": "ex-run-2k",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "2km TT",
+      "distanceM": 2000,
+      "restSec": 0,
+      "notes": "OPTIONAL: 2 km TT."
+     },
+     {
+      "exerciseId": "ex-run-5k",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "5km TT",
+      "distanceM": 5000,
+      "restSec": 0,
+      "notes": "OPTIONAL: 5 km TT. Fresh legs only — not after another hard PR today."
+     }
+    ]
+   },
+   {
+    "id": "pd-1rm-benchmark",
+    "name": "Optional — Benchmark WOD",
+    "weekday": -1,
+    "focus": "Testing",
+    "sessionPad": "Establishes: one classic benchmark (Fran / Cindy / Murph / Helen / DT / Row 2k). Pick a single test — do not redline two WODs. Log under Maxes → Benchmarks.",
+    "exercises": [
+     {
+      "exerciseId": "ex-tspine",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "6/side",
+      "restSec": 0,
+      "notes": "Light prep — then one benchmark only"
+     },
+     {
+      "exerciseId": "ex-wod-fran",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "for time",
+      "restSec": 0,
+      "notes": "OPTIONAL: Fran 21-15-9 thrusters + pull-ups. RX or note scaled loads. Log time → Maxes → Benchmarks."
+     },
+     {
+      "exerciseId": "ex-wod-cindy",
+      "setType": "amrap",
+      "sets": 1,
+      "reps": "AMRAP 20",
+      "restSec": 0,
+      "timeCapSec": 1200,
+      "notes": "OPTIONAL alternate: Cindy AMRAP 20. Log rounds+reps → Maxes → Benchmarks."
+     },
+     {
+      "exerciseId": "ex-wod-helen",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "for time",
+      "restSec": 0,
+      "notes": "OPTIONAL: Helen 3 RFT. Skip if Fran/Cindy already done."
+     },
+     {
+      "exerciseId": "ex-row-2k-tt",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "2000m TT",
+      "restSec": 0,
+      "distanceM": 2000,
+      "notes": "OPTIONAL engine: Row 2k TT. Log time → Maxes → Benchmarks."
+     },
+     {
+      "exerciseId": "ex-wod-murph",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "for time",
+      "restSec": 0,
+      "notes": "OPTIONAL hero: Murph. Partitioning OK — note vest / partition in Maxes notes."
+     },
+     {
+      "exerciseId": "ex-wod-dt",
+      "setType": "for_time",
+      "sets": 1,
+      "reps": "for time",
+      "restSec": 0,
+      "notes": "OPTIONAL: DT 5 RFT. Barbell cycling quality over ego load."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-strength-base",
+  "name": "4-Week Strength Base",
+  "description": "Foundational strength for general athletic development. Three lifting days focusing on squat, hinge, press, and pull patterns. Sources: curated / peer-informed S&C practice.",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic",
+   "Rugby",
+   "AFL"
+  ],
+  "weeks": 4,
+  "progression": {
+   "percentPerWeek": 3.5,
+   "deloadEvery": 4
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-01T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-sb-a",
+    "name": "Day A — Squat Focus",
+    "weekday": 1,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0,
+      "notes": "Open hips and T-spine before loading"
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 74.5,
+      "targetLoadKg": 100,
+      "notes": "Brace hard · controlled eccentric"
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120,
+      "targetPercent1RM": 67.5,
+      "targetLoadKg": 80,
+      "notes": "Soft knees · feel hamstrings"
+     },
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 74.5,
+      "targetLoadKg": 70,
+      "notes": "Touch and press · feet planted"
+     },
+     {
+      "exerciseId": "ex-row",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 90,
+      "targetPercent1RM": 67.5,
+      "targetLoadKg": 60,
+      "notes": "Pause at chest · squeeze lats"
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 45,
+      "notes": "Ribs down · glutes on"
+     }
+    ]
+   },
+   {
+    "id": "pd-sb-b",
+    "name": "Day B — Hinge Focus",
+    "weekday": 3,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-catcow",
+      "setType": "reps_load",
+      "sets": 2,
+      "reps": "10",
+      "restSec": 0,
+      "notes": "Wake up the spine"
+     },
+     {
+      "exerciseId": "ex-dl",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 74.5,
+      "targetLoadKg": 120,
+      "notes": "Bar close · drive floor away"
+     },
+     {
+      "exerciseId": "ex-fsquat",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 74.5,
+      "targetLoadKg": 70,
+      "notes": "Elbows high · upright torso"
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 72,
+      "targetLoadKg": 45,
+      "notes": "Glutes squeezed · lockout tall"
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 72,
+      "notes": "Full hang · chest to bar"
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30,
+      "notes": "Low back pinned"
+     }
+    ]
+   },
+   {
+    "id": "pd-sb-c",
+    "name": "Day C — Unilateral + Accessories",
+    "weekday": 5,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-90_90",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-split",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 90,
+      "targetLoadKg": 24,
+      "notes": "DB each hand · knee tracks toe"
+     },
+     {
+      "exerciseId": "ex-hipthrust",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 90,
+      "targetPercent1RM": 64,
+      "targetLoadKg": 100,
+      "notes": "Pause at top · posterior tilt"
+     },
+     {
+      "exerciseId": "ex-dbpress",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75,
+      "targetLoadKg": 28,
+      "notes": "Neutral grip · soft lockout"
+     },
+     {
+      "exerciseId": "ex-rdbrow",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "10/arm",
+      "restSec": 60,
+      "targetLoadKg": 22
+     },
+     {
+      "exerciseId": "ex-farmer",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "40m",
+      "restSec": 75,
+      "targetLoadKg": 32,
+      "notes": "Tall posture · quiet steps"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-rugby-power",
+  "name": "Rugby Preseason Power",
+  "description": "Four-week preseason block blending Olympic derivatives, jumps, and strength. Peer-informed for contact-sport prep — not a medical protocol.",
+  "theme": "Power",
+  "sports": [
+   "Rugby"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-08-15T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-rp-1",
+    "name": "Power + Lower",
+    "weekday": 2,
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-pclean",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "3",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-sled",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "20m",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-rp-2",
+    "name": "Power + Upper",
+    "weekday": 4,
+    "exercises": [
+     {
+      "exerciseId": "ex-tspine",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-mbslam",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-pushpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-copenh",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "6/side",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-rp-3",
+    "name": "Speed Cond + Strength",
+    "weekday": 6,
+    "exercises": [
+     {
+      "exerciseId": "ex-ankle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "10/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-broad",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-dl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 180
+     },
+     {
+      "exerciseId": "ex-shuttle",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "40m",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-farmer",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "40m",
+      "restSec": 75
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-r2r",
+  "name": "Return-to-Run Strength",
+  "description": "Strength and capacity support around a graded return-to-run. Curated / peer-informed — consult a clinician for injury-specific advice.",
+  "theme": "Strength",
+  "sports": [
+   "Running"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-08-20T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-r2r-1",
+    "name": "Strength A",
+    "weekday": 1,
+    "exercises": [
+     {
+      "exerciseId": "ex-couch",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s/side",
+      "perSide": true,
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-glutebridge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "10/leg",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     }
+    ]
+   },
+   {
+    "id": "pd-r2r-2",
+    "name": "Strength B + Easy Cond",
+    "weekday": 4,
+    "exercises": [
+     {
+      "exerciseId": "ex-ankle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "10/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-stepup",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-split",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-runtempo",
+      "setType": "time",
+      "sets": 1,
+      "reps": "20 min easy",
+      "restSec": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-hypertrophy",
+  "name": "Athletic Hypertrophy 3×/Week",
+  "description": "Muscle-building volume while keeping athletic movement quality. Curated / peer-informed.",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic",
+   "Basketball"
+  ],
+  "weeks": 6,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-05T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-ah-1",
+    "name": "Push",
+    "weekday": 1,
+    "exercises": [
+     {
+      "exerciseId": "ex-dbpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-lateral",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-triceps",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-ah-2",
+    "name": "Pull",
+    "weekday": 3,
+    "exercises": [
+     {
+      "exerciseId": "ex-chinup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-rdbrow",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "10/arm",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-latpd",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-curl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-ah-3",
+    "name": "Legs",
+    "weekday": 5,
+    "exercises": [
+     {
+      "exerciseId": "ex-legpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "12",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-lunge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "10/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-hipthrust",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-wallsit",
+      "setType": "time",
+      "sets": 2,
+      "reps": "45s",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-crossfit-engine",
+  "name": "CrossFit Engine Builder",
+  "description": "Mixed modal conditioning with strength anchors. Curated / peer-informed template for general fitness athletes.",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-10T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-cf-1",
+    "name": "Strength + Bike",
+    "weekday": 2,
+    "exercises": [
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 180
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "max",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-biker",
+      "setType": "time",
+      "sets": 8,
+      "reps": "20s on",
+      "restSec": 40
+     }
+    ]
+   },
+   {
+    "id": "pd-cf-2",
+    "name": "Olympic + Row",
+    "weekday": 5,
+    "exercises": [
+     {
+      "exerciseId": "ex-pclean",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "3",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-pushpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-rowerg",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "500m",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-burpee",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-sprint",
+  "name": "Sprint Training Block",
+  "description": "Evidence-informed sprint development template: acceleration, max-velocity flies, and supporting strength/power. Principles drawn from NSCA speed & periodisation literature and common track S&C practice — curated / peer-informed, not a race plan or medical protocol.",
+  "theme": "Power",
+  "sports": [
+   "Running",
+   "AFL",
+   "Rugby"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-20T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-sp-1",
+    "name": "Accel + Strength",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-wicket",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-accel",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "15m",
+      "restSec": 90,
+      "distanceM": 15
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 180,
+      "targetLoadKg": 90
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     }
+    ]
+   },
+   {
+    "id": "pd-sp-2",
+    "name": "Max-V + Elastic",
+    "weekday": 4,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-ankle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "10/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-wicket",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-fly10",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "10m fly",
+      "restSec": 180,
+      "distanceM": 10
+     },
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 120,
+      "targetLoadKg": 80
+     }
+    ]
+   },
+   {
+    "id": "pd-sp-3",
+    "name": "Speed Endurance Lite",
+    "weekday": 6,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-shuttle",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "40m",
+      "restSec": 75,
+      "distanceM": 40
+     },
+     {
+      "exerciseId": "ex-sled",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "40s",
+      "restSec": 45,
+      "timeCapSec": 40
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-pilates-mat",
+  "name": "Pilates Mat Foundations",
+  "description": "Mat-based body-control and core sequencing in a Pilates style. Curated / peer-informed from common mat curricula and motor-control principles — not clinical Pilates or physiotherapy.",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-20T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-pil-1",
+    "name": "Mat A — Centring",
+    "weekday": 1,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-catcow",
+      "setType": "reps_load",
+      "sets": 2,
+      "reps": "8",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-hundred",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "100 pumps",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-rollup",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-slegstretch",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 30
+     }
+    ]
+   },
+   {
+    "id": "pd-pil-2",
+    "name": "Mat B — Extension + Side",
+    "weekday": 4,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-birddog",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-swimming",
+      "setType": "time",
+      "sets": 3,
+      "reps": "20s",
+      "restSec": 45,
+      "timeCapSec": 20
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 30,
+      "timeCapSec": 30
+     },
+     {
+      "exerciseId": "ex-glutebridge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 2,
+      "reps": "40s",
+      "restSec": 45,
+      "timeCapSec": 40
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-mobility",
+  "name": "Athletic Mobility Block",
+  "description": "Joint-by-joint mobility and soft tissue prep for athletes. Framing follows common NSCA / periodisation warm-up principles (mobilise → activate → move) — curated / peer-informed, not medical treatment.",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic",
+   "Running",
+   "AFL",
+   "Rugby"
+  ],
+  "weeks": 3,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-21T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-mob-1",
+    "name": "Hips + Ankles",
+    "weekday": 2,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-90_90",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-couch",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s/side",
+      "perSide": true,
+      "restSec": 0,
+      "timeCapSec": 60
+     },
+     {
+      "exerciseId": "ex-ankle",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "10/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-mob-2",
+    "name": "T-Spine + Core",
+    "weekday": 5,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-catcow",
+      "setType": "reps_load",
+      "sets": 2,
+      "reps": "10",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-tspine",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-birddog",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 2,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 30,
+      "timeCapSec": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-aerobic",
+  "name": "Aerobic Capacity Builder",
+  "description": "Mixed aerobic base: Zone-2 volume, tempo intervals, and light strength anchors. Principles from periodised conditioning / NSCA endurance chapters — curated / evidence-informed style, not a clinical cardio prescription.",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "CrossFit",
+   "General Athletic",
+   "AFL"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-ae-1",
+    "name": "Zone-2 Base",
+    "weekday": 1,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-bikezone2",
+      "setType": "time",
+      "sets": 1,
+      "reps": "25 min",
+      "restSec": 0,
+      "timeCapSec": 1500,
+      "notes": "Easy conversational effort"
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 45,
+      "timeCapSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-ae-2",
+    "name": "Tempo Intervals",
+    "weekday": 3,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-tempo200",
+      "setType": "time",
+      "sets": 6,
+      "reps": "2 min",
+      "restSec": 60,
+      "timeCapSec": 120,
+      "notes": "Steady hard — not a sprint"
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 30
+     }
+    ]
+   },
+   {
+    "id": "pd-ae-3",
+    "name": "Mixed Engine + Strength",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75,
+      "targetLoadKg": 24
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 90,
+      "targetLoadKg": 70
+     },
+     {
+      "exerciseId": "ex-rowerg",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "500m",
+      "restSec": 90,
+      "distanceM": 500
+     },
+     {
+      "exerciseId": "ex-farmer",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "40m",
+      "restSec": 75,
+      "targetLoadKg": 28,
+      "distanceM": 40
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-aerobic-hill",
+  "name": "Aerobic Capacity — Hill & Tempo",
+  "description": "Hill repeats + tempo for aerobic power without all-out sprinting. Curated / evidence-informed template (NSCA-style conditioning).",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "AFL"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-aerobic-hill-1",
+    "name": "Hill Repeats",
+    "weekday": 2,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-hillrun",
+      "setType": "time",
+      "sets": 6,
+      "reps": "45s",
+      "restSec": 90,
+      "timeCapSec": 45
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "40s",
+      "restSec": 45,
+      "timeCapSec": 40
+     }
+    ]
+   },
+   {
+    "id": "pd-aerobic-hill-2",
+    "name": "Tempo + Strength",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-tempo200",
+      "setType": "time",
+      "sets": 5,
+      "reps": "2 min",
+      "restSec": 60,
+      "timeCapSec": 120
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-afl-inseason",
+  "name": "AFL In-Season Maintain",
+  "description": "Short midweek power/strength and freshness for AFL in-season. Curated / evidence-informed template (NSCA-style S&C).",
+  "theme": "Power",
+  "sports": [
+   "AFL"
+  ],
+  "weeks": 4,
+  "progression": {
+   "percentPerWeek": 0,
+   "deloadEvery": 0
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-afl-inseason-1",
+    "name": "Power Maintain",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "4",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-hangclean",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "2",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-trapbar",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "3",
+      "restSec": 150
+     }
+    ]
+   },
+   {
+    "id": "pd-afl-inseason-2",
+    "name": "Freshness + Core",
+    "weekday": 4,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-accel",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "15m",
+      "restSec": 90,
+      "distanceM": 15
+     },
+     {
+      "exerciseId": "ex-copenh",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "6/side",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 2,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-afl-preseason",
+  "name": "AFL Preseason Prep",
+  "description": "Running volume, COD, and strength for AFL preseason. Curated / evidence-informed template (NSCA-style S&C).",
+  "theme": "Endurance",
+  "sports": [
+   "AFL"
+  ],
+  "weeks": 5,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-afl-preseason-1",
+    "name": "COD + Power",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-amarch",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "20m",
+      "restSec": 45,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-cod",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "1",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-latbound",
+      "setType": "each_side",
+      "sets": 4,
+      "reps": "4/side",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180
+     }
+    ]
+   },
+   {
+    "id": "pd-afl-preseason-2",
+    "name": "Aerobic + Posterior",
+    "weekday": 4,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-easyrun",
+      "setType": "time",
+      "sets": 1,
+      "reps": "25 min",
+      "restSec": 0,
+      "timeCapSec": 1500
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     }
+    ]
+   },
+   {
+    "id": "pd-afl-preseason-3",
+    "name": "Strength + Shuttle",
+    "weekday": 6,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-trapbar",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-shuttle",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "40m",
+      "restSec": 60,
+      "distanceM": 40
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-athletic-power",
+  "name": "Athletic Power Development",
+  "description": "Jumps, throws, and Olympic derivatives for rate-of-force development. Curated / evidence-informed template.",
+  "theme": "Power",
+  "sports": [
+   "General Athletic",
+   "Rugby"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-athletic-power-1",
+    "name": "Jump + Olympic",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-pogo",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-hangclean",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "3",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-mbslam",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-athletic-power-2",
+    "name": "Bound + Strength",
+    "weekday": 5,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-bound",
+      "setType": "per_leg",
+      "sets": 4,
+      "reps": "4/leg",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-pushjerk",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "3",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 180
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-bball-inseason",
+  "name": "Basketball In-Season Maintain",
+  "description": "Low-dose jump and strength maintenance in-season. Curated / evidence-informed template (NSCA-style S&C).",
+  "theme": "Power",
+  "sports": [
+   "Basketball"
+  ],
+  "weeks": 3,
+  "progression": {
+   "percentPerWeek": 0,
+   "deloadEvery": 0
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-bball-inseason-1",
+    "name": "Jump Maintain",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-ankle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "10/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "3",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-chinup",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 120
+     }
+    ]
+   },
+   {
+    "id": "pd-bball-inseason-2",
+    "name": "Strength Maintain",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-dbpress",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-bball-offseason",
+  "name": "Basketball Off-Season Athletic",
+  "description": "Jump, COD, and hypertrophy for basketball off-season. Curated / evidence-informed template (NSCA-style S&C).",
+  "theme": "Power",
+  "sports": [
+   "Basketball"
+  ],
+  "weeks": 5,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-bball-offseason-1",
+    "name": "Jump + COD",
+    "weekday": 1,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-depthjump",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "3",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-latbound",
+      "setType": "each_side",
+      "sets": 4,
+      "reps": "4/side",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-cod",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "1",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180
+     }
+    ]
+   },
+   {
+    "id": "pd-bball-offseason-2",
+    "name": "Upper Hypertrophy",
+    "weekday": 3,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-incline",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-sealrow",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-lateral",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-bball-offseason-3",
+    "name": "Lower + Cond",
+    "weekday": 5,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-revlunge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-hipthrust",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-jumprope",
+      "setType": "time",
+      "sets": 5,
+      "reps": "60s",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-cod",
+  "name": "COD & Deceleration Block",
+  "description": "Change-of-direction, braking, and lateral power for court/field sports. Curated / evidence-informed template.",
+  "theme": "Power",
+  "sports": [
+   "Basketball",
+   "AFL"
+  ],
+  "weeks": 3,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-cod-1",
+    "name": "Decel Focus",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-decel",
+      "setType": "reps_load",
+      "sets": 6,
+      "reps": "3",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-cod",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "1",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-latbound",
+      "setType": "each_side",
+      "sets": 4,
+      "reps": "4/side",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-copenh",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "6/side",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-cod-2",
+    "name": "Lateral Power + Strength",
+    "weekday": 5,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-amarch",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "20m",
+      "restSec": 45,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-split",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "6/leg",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-sled",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-cf-mixed",
+  "name": "CrossFit Engine — Mixed Modal",
+  "description": "Strength anchors + gymnastics + monostructural conditioning. Curated / evidence-informed template.",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-cf-mixed-1",
+    "name": "Strength + Gymnastics",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 180
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "max",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-hollow",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s",
+      "restSec": 45,
+      "timeCapSec": 30
+     },
+     {
+      "exerciseId": "ex-ringrow",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-cf-mixed-2",
+    "name": "Olympic + Mono",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-hangclean",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "3",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-mthruster",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-rowerg",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "500m",
+      "restSec": 90,
+      "distanceM": 500
+     },
+     {
+      "exerciseId": "ex-burpee",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-cf-gym",
+  "name": "CrossFit Gymnastics Strength",
+  "description": "Pulling, dipping, hollow/arch, and handstand holds for gymnastics capacity. Curated / evidence-informed.",
+  "theme": "Strength",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-cf-gym-1",
+    "name": "Pull + Core",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-invrow",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-hollow",
+      "setType": "time",
+      "sets": 4,
+      "reps": "25s",
+      "restSec": 40
+     },
+     {
+      "exerciseId": "ex-arch",
+      "setType": "time",
+      "sets": 4,
+      "reps": "25s",
+      "restSec": 40
+     }
+    ]
+   },
+   {
+    "id": "pd-cf-gym-2",
+    "name": "Push + HS",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-dip",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-hsphold",
+      "setType": "time",
+      "sets": 4,
+      "reps": "20-40s",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-plankpike",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-cycling",
+  "name": "Cycling Base + Strength",
+  "description": "Zone-2 and tempo bike with lower-body strength anchors. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Endurance",
+  "sports": [
+   "Cycling",
+   "General Athletic"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-cycling-1",
+    "name": "Zone-2 Bike",
+    "weekday": 1,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-bikezone2",
+      "setType": "time",
+      "sets": 1,
+      "reps": "30 min",
+      "restSec": 0,
+      "timeCapSec": 1800
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-cycling-2",
+    "name": "Tempo Bike",
+    "weekday": 3,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-bikezone3",
+      "setType": "time",
+      "sets": 4,
+      "reps": "6 min",
+      "restSec": 120,
+      "timeCapSec": 360
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     }
+    ]
+   },
+   {
+    "id": "pd-cycling-3",
+    "name": "Lower Strength",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-bikehill",
+      "setType": "time",
+      "sets": 6,
+      "reps": "60s",
+      "restSec": 90
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-rebuild",
+  "name": "General Rebuild / Rehab-Adjacent",
+  "description": "Low-load control, isometrics, and graded capacity — general template, not injury-specific rehab. Curated / peer-informed.",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic",
+   "Running"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-rebuild-1",
+    "name": "Control A",
+    "weekday": 2,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-catcow",
+      "setType": "reps_load",
+      "sets": 2,
+      "reps": "10",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-glutebridge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "10/leg",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 75
+     }
+    ]
+   },
+   {
+    "id": "pd-rebuild-2",
+    "name": "Control B",
+    "weekday": 5,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-birddog",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-stepup",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "25s/side",
+      "perSide": true,
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-easyrun",
+      "setType": "time",
+      "sets": 1,
+      "reps": "15 min",
+      "restSec": 0,
+      "timeCapSec": 900,
+      "notes": "Optional easy walk/jog"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-hiit",
+  "name": "HIIT Conditioning Block",
+  "description": "Short high-intensity intervals (bike/row/bodyweight) with full recoveries. Curated / evidence-informed template.",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "weeks": 3,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-hiit-1",
+    "name": "Bike HIIT",
+    "weekday": 2,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-biker",
+      "setType": "time",
+      "sets": 10,
+      "reps": "20s on",
+      "restSec": 40
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 2,
+      "reps": "40s",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-hiit-2",
+    "name": "Mixed HIIT",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-rowerg",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "250m",
+      "restSec": 75,
+      "distanceM": 250
+     },
+     {
+      "exerciseId": "ex-burpee",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "8",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-bwcircuit",
+      "setType": "time",
+      "sets": 4,
+      "reps": "40s",
+      "restSec": 50
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-speed-inseason",
+  "name": "In-Season Speed Maintenance",
+  "description": "Low-dose acceleration and max-V exposure for in-season athletes. Curated / evidence-informed template.",
+  "theme": "Power",
+  "sports": [
+   "AFL",
+   "Rugby"
+  ],
+  "weeks": 3,
+  "progression": {
+   "percentPerWeek": 0,
+   "deloadEvery": 0
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-speed-inseason-1",
+    "name": "Accel Dose",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-walldrill",
+      "setType": "time",
+      "sets": 3,
+      "reps": "10s",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-accel",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "15m",
+      "restSec": 90,
+      "distanceM": 15
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "4",
+      "restSec": 120
+     }
+    ]
+   },
+   {
+    "id": "pd-speed-inseason-2",
+    "name": "Fly Dose",
+    "weekday": 4,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-wicket",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-fly10",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "10m fly",
+      "restSec": 180,
+      "distanceM": 10
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-kb-cond",
+  "name": "Kettlebell Athletic Conditioner",
+  "description": "Swings, get-ups, and carries for general athletic conditioning. Curated / evidence-informed template.",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic",
+   "CrossFit"
+  ],
+  "weeks": 3,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-kb-cond-1",
+    "name": "Swing Focus",
+    "weekday": 2,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-kbswing",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "15",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-suit",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "30m/side",
+      "restSec": 60,
+      "distanceM": 30
+     }
+    ]
+   },
+   {
+    "id": "pd-kb-cond-2",
+    "name": "Get-Up + Carry",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-turkish",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "3/side",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-kbwindmill",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "5/side",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-farmer",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "40m",
+      "restSec": 75,
+      "distanceM": 40
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-linear-5x5",
+  "name": "Linear Strength 5×5",
+  "description": "Classic bilateral strength progression (squat / press / hinge). Curated / evidence-informed template (NSCA-style).",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic",
+   "Rugby"
+  ],
+  "weeks": 6,
+  "progression": {
+   "percentPerWeek": 2,
+   "deloadEvery": 4
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-linear-5x5-1",
+    "name": "Squat Day",
+    "weekday": 1,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-row",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 90,
+      "targetPercent1RM": 66.5
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-linear-5x5-2",
+    "name": "Hinge Day",
+    "weekday": 3,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-dl",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 120,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 71
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     }
+    ]
+   },
+   {
+    "id": "pd-linear-5x5-3",
+    "name": "Volume Day",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-fsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120,
+      "targetPercent1RM": 66.5
+     },
+     {
+      "exerciseId": "ex-dip",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-masters-mob",
+  "name": "Masters Mobility & Strength",
+  "description": "Mobility-first sessions with light strength for masters athletes. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic",
+   "Yoga"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-masters-mob-1",
+    "name": "Mobility Flow",
+    "weekday": 2,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-catcow",
+      "setType": "reps_load",
+      "sets": 2,
+      "reps": "10",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-downdog",
+      "setType": "time",
+      "sets": 2,
+      "reps": "45s",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-pigeon",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s/side",
+      "perSide": true,
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 75
+     }
+    ]
+   },
+   {
+    "id": "pd-masters-mob-2",
+    "name": "Light Strength",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-trapbar",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-incline",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-hipcar",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-masters-str",
+  "name": "Masters Strength & Capacity",
+  "description": "Joint-friendly strength for masters athletes: trap bar, goblet, tempo, and mobility. Curated / evidence-informed.",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic",
+   "Running"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-masters-str-1",
+    "name": "Lower Friendly",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-worldsgreatest",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-trapbar",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-masters-str-2",
+    "name": "Upper + Tempo",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-landmine",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-sealrow",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-bikezone2",
+      "setType": "time",
+      "sets": 1,
+      "reps": "20 min",
+      "restSec": 0,
+      "timeCapSec": 1200
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-offseason-hyp",
+  "name": "Off-Season Athletic Hypertrophy",
+  "description": "Higher-volume off-season muscle & work-capacity block for field/court athletes. Curated / evidence-informed.",
+  "theme": "Hypertrophy",
+  "sports": [
+   "Rugby",
+   "AFL"
+  ],
+  "weeks": 6,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-offseason-hyp-1",
+    "name": "Lower Volume",
+    "weekday": 1,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-hack",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "10",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-lunge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "10/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-legcurl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-offseason-hyp-2",
+    "name": "Upper Volume",
+    "weekday": 3,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-incline",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-pendlay",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-lateral",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-curl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-triceps",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-offseason-hyp-3",
+    "name": "Athletic Cond",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-sled",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-farmer",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "40m",
+      "restSec": 75,
+      "distanceM": 40
+     },
+     {
+      "exerciseId": "ex-mbslam",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 60
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-oly-intro",
+  "name": "Olympic Lift Intro",
+  "description": "Technique-first Olympic derivatives (hang / power positions) with supporting strength. Curated / evidence-informed.",
+  "theme": "Power",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-oly-intro-1",
+    "name": "Clean Focus",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-cleanpull",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "3",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-hangclean",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "3",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-fsquat",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-pushpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 120
+     }
+    ]
+   },
+   {
+    "id": "pd-oly-intro-2",
+    "name": "Snatch Focus",
+    "weekday": 5,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-snatchpull",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "3",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-hangsnatch",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "2",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-ohsquat",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 120
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-pilates-int",
+  "name": "Pilates Mat Flow Intermediate",
+  "description": "Progressed mat series (teaser, side kick, saw). Curated Pilates patterning — not clinical. Curated / evidence-informed.",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic",
+   "Yoga"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-pilates-int-1",
+    "name": "Flow A",
+    "weekday": 1,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-hundred",
+      "setType": "reps_load",
+      "sets": 1,
+      "reps": "100 pumps",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-teaser",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-saw",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "6/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-shoulderbridge",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-pilates-int-2",
+    "name": "Flow B",
+    "weekday": 4,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-sidekick",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-legcircles",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-mermaid",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "5/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-rollinglike",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-pause-str",
+  "name": "Positional Strength (Pauses)",
+  "description": "Paused squats and controlled eccentrics for positional strength. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Strength",
+  "sports": [
+   "Rugby",
+   "CrossFit"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-pause-str-1",
+    "name": "Pause Squat",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-pause-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "3",
+      "restSec": 180
+     },
+     {
+      "exerciseId": "ex-goodmorning",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-pause-str-2",
+    "name": "Eccentric Focus",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "4",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 120,
+      "notes": "3s eccentric"
+     },
+     {
+      "exerciseId": "ex-floorpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-ppl",
+  "name": "Push / Pull / Legs Hypertrophy",
+  "description": "Classic PPL muscle-building volume with athletic movement quality. Curated / evidence-informed template.",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic",
+   "Basketball"
+  ],
+  "weeks": 6,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-ppl-1",
+    "name": "Push",
+    "weekday": 1,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-incline",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-lateral",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-triceps",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-ppl-2",
+    "name": "Pull",
+    "weekday": 3,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-pendlay",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-latpd",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-curl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-ppl-3",
+    "name": "Legs",
+    "weekday": 5,
+    "focus": "Hypertrophy",
+    "exercises": [
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-legpress",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-legext",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-r2r-prog",
+  "name": "Return-to-Run Progressed",
+  "description": "Progressed strength + graded run exposure after base R2R. Consult a clinician for injury-specific advice.",
+  "theme": "Strength",
+  "sports": [
+   "Running"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-r2r-prog-1",
+    "name": "Strength Progressed",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-trapbar",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-split",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-r2r-prog-2",
+    "name": "Run + Support",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-ankle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "10/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-buildup",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "60m",
+      "restSec": 90,
+      "distanceM": 60
+     },
+     {
+      "exerciseId": "ex-easyrun",
+      "setType": "time",
+      "sets": 1,
+      "reps": "20 min",
+      "restSec": 0,
+      "timeCapSec": 1200
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-rugby-inseason",
+  "name": "Rugby In-Season Maintain",
+  "description": "Low-volume strength/power maintenance around match play. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Power",
+  "sports": [
+   "Rugby"
+  ],
+  "weeks": 4,
+  "progression": {
+   "percentPerWeek": 0,
+   "deloadEvery": 0
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-rugby-inseason-1",
+    "name": "Power Maintain",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "4",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-hangclean",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "2",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "3",
+      "restSec": 180
+     },
+     {
+      "exerciseId": "ex-copenh",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "5/side",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-rugby-inseason-2",
+    "name": "Upper + Fresh",
+    "weekday": 4,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 150
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-farmer",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "30m",
+      "restSec": 75,
+      "distanceM": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-rugby-offseason",
+  "name": "Rugby Off-Season Strength",
+  "description": "Higher-volume strength and hypertrophy for rugby off-season. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Strength",
+  "sports": [
+   "Rugby"
+  ],
+  "weeks": 6,
+  "progression": {
+   "percentPerWeek": 2,
+   "deloadEvery": 4
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-rugby-offseason-1",
+    "name": "Lower Heavy",
+    "weekday": 1,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 150,
+      "targetPercent1RM": 71
+     },
+     {
+      "exerciseId": "ex-split",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-sled",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "20m",
+      "restSec": 60,
+      "distanceM": 20
+     }
+    ]
+   },
+   {
+    "id": "pd-rugby-offseason-2",
+    "name": "Upper Heavy",
+    "weekday": 3,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-row",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 90,
+      "targetPercent1RM": 71
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 71
+     },
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 71
+     }
+    ]
+   },
+   {
+    "id": "pd-rugby-offseason-3",
+    "name": "Power + Cond",
+    "weekday": 5,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-pclean",
+      "setType": "reps_load",
+      "sets": 5,
+      "reps": "3",
+      "restSec": 150,
+      "targetPercent1RM": 78.5
+     },
+     {
+      "exerciseId": "ex-pushpress",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 120,
+      "targetPercent1RM": 73.5
+     },
+     {
+      "exerciseId": "ex-shuttle",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "40m",
+      "restSec": 60,
+      "distanceM": 40
+     },
+     {
+      "exerciseId": "ex-oddclean",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 90
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-swim-tech",
+  "name": "Swim Technique + Aerobic",
+  "description": "Pool freestyle intervals and kick work for aerobic capacity. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Endurance",
+  "sports": [
+   "Swimming",
+   "General Athletic"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-swim-tech-1",
+    "name": "Freestyle Aerobic",
+    "weekday": 2,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-swimdrill",
+      "setType": "distance",
+      "sets": 4,
+      "reps": "50m",
+      "restSec": 30,
+      "distanceM": 50
+     },
+     {
+      "exerciseId": "ex-swimfree",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "100m",
+      "restSec": 45,
+      "distanceM": 100
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "40s",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-swim-tech-2",
+    "name": "Kick + Pull",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-swimkick",
+      "setType": "distance",
+      "sets": 6,
+      "reps": "50m",
+      "restSec": 40,
+      "distanceM": 50
+     },
+     {
+      "exerciseId": "ex-swimfree",
+      "setType": "distance",
+      "sets": 5,
+      "reps": "75m",
+      "restSec": 50,
+      "distanceM": 75
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-swim-dryland",
+  "name": "Swimming Dryland Strength",
+  "description": "Pulling, core, and shoulder-care dryland for swimmers. Curated / evidence-informed template (NSCA-style S&C).",
+  "theme": "Strength",
+  "sports": [
+   "Swimming",
+   "General Athletic"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-swim-dryland-1",
+    "name": "Pull + Shoulder",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-sealrow",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-pullapart",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "20",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-sleeper",
+      "setType": "time",
+      "sets": 2,
+      "reps": "45s/side",
+      "perSide": true,
+      "restSec": 0
+     }
+    ]
+   },
+   {
+    "id": "pd-swim-dryland-2",
+    "name": "Core + Hinge",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120
+     },
+     {
+      "exerciseId": "ex-hollow",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-sideplank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-scapca",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-tempo-run",
+  "name": "Tempo Run Builder",
+  "description": "Steady “comfortably hard” tempo intervals for running economy. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "AFL"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-tempo-run-1",
+    "name": "Tempo Intervals",
+    "weekday": 2,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-hipsircle",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "8/side",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-tempo200",
+      "setType": "time",
+      "sets": 6,
+      "reps": "2 min",
+      "restSec": 60,
+      "timeCapSec": 120
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-tempo-run-2",
+    "name": "Easy + Strength",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-easyrun",
+      "setType": "time",
+      "sets": 1,
+      "reps": "25 min",
+      "restSec": 0,
+      "timeCapSec": 1500
+     },
+     {
+      "exerciseId": "ex-stepup",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-glutebridge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "10/leg",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-upper-lower",
+  "name": "Upper / Lower Strength Split",
+  "description": "Four-day upper/lower strength with recovery spacing. Curated / evidence-informed template (NSCA-style S&C).",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic",
+   "Basketball"
+  ],
+  "weeks": 5,
+  "progression": {
+   "percentPerWeek": 2.5,
+   "deloadEvery": 5
+  },
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-upper-lower-1",
+    "name": "Lower A",
+    "weekday": 1,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bsquat",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 74
+     },
+     {
+      "exerciseId": "ex-rdl",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 120,
+      "targetPercent1RM": 67
+     },
+     {
+      "exerciseId": "ex-lunge",
+      "setType": "per_leg",
+      "sets": 3,
+      "reps": "8/leg",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-upper-lower-2",
+    "name": "Upper A",
+    "weekday": 2,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-bp",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 74
+     },
+     {
+      "exerciseId": "ex-row",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "8",
+      "restSec": 90,
+      "targetPercent1RM": 67
+     },
+     {
+      "exerciseId": "ex-ohp",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 71.5
+     },
+     {
+      "exerciseId": "ex-facepull",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-upper-lower-3",
+    "name": "Lower B",
+    "weekday": 4,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-dl",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "5",
+      "restSec": 180,
+      "targetPercent1RM": 74
+     },
+     {
+      "exerciseId": "ex-fsquat",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 150,
+      "targetPercent1RM": 74
+     },
+     {
+      "exerciseId": "ex-hipthrust",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 90,
+      "targetPercent1RM": 63.5
+     },
+     {
+      "exerciseId": "ex-nordic",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 120
+     }
+    ]
+   },
+   {
+    "id": "pd-upper-lower-4",
+    "name": "Upper B",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-pullup",
+      "setType": "reps_load",
+      "sets": 4,
+      "reps": "6",
+      "restSec": 120,
+      "targetPercent1RM": 71.5
+     },
+     {
+      "exerciseId": "ex-dbpress",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-rdbrow",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "10/arm",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-lateral",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "15",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-yoga-flow",
+  "name": "Yoga Mobility Flow",
+  "description": "Standing yoga postures and restorative stretches for athletic mobility. Curated / evidence-informed template.",
+  "theme": "Mobility",
+  "sports": [
+   "Yoga",
+   "General Athletic"
+  ],
+  "weeks": 3,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-yoga-flow-1",
+    "name": "Standing Flow",
+    "weekday": 2,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-downdog",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 20
+     },
+     {
+      "exerciseId": "ex-warrior1",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 20
+     },
+     {
+      "exerciseId": "ex-warrior2",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s/side",
+      "perSide": true,
+      "restSec": 20
+     },
+     {
+      "exerciseId": "ex-pigeon",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s/side",
+      "perSide": true,
+      "restSec": 0
+     }
+    ]
+   },
+   {
+    "id": "pd-yoga-flow-2",
+    "name": "Restore",
+    "weekday": 5,
+    "focus": "Mobility",
+    "exercises": [
+     {
+      "exerciseId": "ex-child",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s",
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-cobra",
+      "setType": "time",
+      "sets": 3,
+      "reps": "30s",
+      "restSec": 20
+     },
+     {
+      "exerciseId": "ex-threadneedle",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "5/side",
+      "restSec": 20
+     },
+     {
+      "exerciseId": "ex-figure4",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s/side",
+      "perSide": true,
+      "restSec": 0
+     },
+     {
+      "exerciseId": "ex-hamstringstrap",
+      "setType": "time",
+      "sets": 2,
+      "reps": "60s/side",
+      "perSide": true,
+      "restSec": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-youth",
+  "name": "Youth Athletic Foundations",
+  "description": "General multi-skill athletic development for youth: movement quality, jumps, and bodyweight strength. Not a specialization plan.",
+  "theme": "Power",
+  "sports": [
+   "General Athletic",
+   "Basketball"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-youth-1",
+    "name": "Move + Jump",
+    "weekday": 2,
+    "focus": "Power",
+    "exercises": [
+     {
+      "exerciseId": "ex-amarch",
+      "setType": "distance",
+      "sets": 3,
+      "reps": "20m",
+      "restSec": 45,
+      "distanceM": 20
+     },
+     {
+      "exerciseId": "ex-pogo",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "10",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-boxjump",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "4",
+      "restSec": 90
+     },
+     {
+      "exerciseId": "ex-mbslam",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "6",
+      "restSec": 60
+     }
+    ]
+   },
+   {
+    "id": "pd-youth-2",
+    "name": "Bodyweight Strength",
+    "weekday": 5,
+    "focus": "Strength",
+    "exercises": [
+     {
+      "exerciseId": "ex-goblet",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 75
+     },
+     {
+      "exerciseId": "ex-invrow",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "8",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-clapush",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "5",
+      "restSec": 60
+     },
+     {
+      "exerciseId": "ex-deadbug",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "6/side",
+      "restSec": 30
+     },
+     {
+      "exerciseId": "ex-jumprope",
+      "setType": "time",
+      "sets": 4,
+      "reps": "45s",
+      "restSec": 45
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prog-zone2",
+  "name": "Zone-2 Aerobic Base",
+  "description": "Easy aerobic volume (bike/run/erg) for mitochondrial base. Curated / evidence-informed template (NSCA-style).",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "Cycling"
+  ],
+  "weeks": 4,
+  "isTemplate": true,
+  "isMine": false,
+  "createdAt": "2026-09-22T00:00:00.000Z",
+  "days": [
+   {
+    "id": "pd-zone2-1",
+    "name": "Easy Bike",
+    "weekday": 1,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-bikezone2",
+      "setType": "time",
+      "sets": 1,
+      "reps": "35 min",
+      "restSec": 0,
+      "timeCapSec": 2100,
+      "notes": "Conversational effort"
+     },
+     {
+      "exerciseId": "ex-hipcar",
+      "setType": "each_side",
+      "sets": 2,
+      "reps": "5/side",
+      "restSec": 0
+     }
+    ]
+   },
+   {
+    "id": "pd-zone2-2",
+    "name": "Easy Run",
+    "weekday": 3,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-easyrun",
+      "setType": "time",
+      "sets": 1,
+      "reps": "30 min",
+      "restSec": 0,
+      "timeCapSec": 1800
+     },
+     {
+      "exerciseId": "ex-calf",
+      "setType": "reps_load",
+      "sets": 3,
+      "reps": "12",
+      "restSec": 45
+     }
+    ]
+   },
+   {
+    "id": "pd-zone2-3",
+    "name": "Easy Erg + Core",
+    "weekday": 5,
+    "focus": "Endurance",
+    "exercises": [
+     {
+      "exerciseId": "ex-rowerg",
+      "setType": "time",
+      "sets": 1,
+      "reps": "25 min easy",
+      "restSec": 0,
+      "timeCapSec": 1500
+     },
+     {
+      "exerciseId": "ex-plank",
+      "setType": "time",
+      "sets": 3,
+      "reps": "45s",
+      "restSec": 45
+     },
+     {
+      "exerciseId": "ex-birddog",
+      "setType": "each_side",
+      "sets": 3,
+      "reps": "8/side",
+      "restSec": 30
+     }
+    ]
+   }
+  ]
+ }
+]

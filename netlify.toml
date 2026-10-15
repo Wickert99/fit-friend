@@ -1,0 +1,5 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Hash routes do not need an SPA rewrite. Netlify serves dist/index.html at /.

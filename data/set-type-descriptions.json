@@ -1,0 +1,10 @@
+{
+ "reps_load": "Sets × reps × load",
+ "time": "Hold or work duration",
+ "distance": "Metres or km",
+ "amrap": "As many rounds/reps as possible in a time cap",
+ "emom": "Every minute on the minute",
+ "each_side": "Reps each side (L+R)",
+ "per_leg": "Reps per leg",
+ "for_time": "Count-up clock, log your finish time"
+}

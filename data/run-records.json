@@ -1,0 +1,80 @@
+[
+ {
+  "id": "run_100m",
+  "name": "100 m",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-100m",
+  "members": [
+   "ex-run-100m"
+  ],
+  "distanceM": 100,
+  "blurb": "Flying or standing start — note which in Maxes notes"
+ },
+ {
+  "id": "run_400m",
+  "name": "400 m",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-400m",
+  "members": [
+   "ex-run-400m"
+  ],
+  "distanceM": 400
+ },
+ {
+  "id": "run_800m",
+  "name": "800 m",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-800m",
+  "members": [
+   "ex-run-800m"
+  ],
+  "distanceM": 800
+ },
+ {
+  "id": "run_1k",
+  "name": "1 km",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-1k",
+  "members": [
+   "ex-run-1k"
+  ],
+  "distanceM": 1000
+ },
+ {
+  "id": "run_mile",
+  "name": "1 mile",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-mile",
+  "members": [
+   "ex-run-mile"
+  ],
+  "distanceM": 1609
+ },
+ {
+  "id": "run_2k",
+  "name": "2 km",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-2k",
+  "members": [
+   "ex-run-2k"
+  ],
+  "distanceM": 2000
+ },
+ {
+  "id": "run_5k",
+  "name": "5 km",
+  "kind": "run",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-run-5k",
+  "members": [
+   "ex-run-5k"
+  ],
+  "distanceM": 5000
+ }
+]

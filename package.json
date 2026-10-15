@@ -1,0 +1,33 @@
+{
+  "name": "fit-friend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 41731 --strictPort",
+    "test": "node --experimental-strip-types --test src/app/router.test.ts src/store/store.test.ts src/lib/setTypes/setTypes.test.ts src/lib/cues/cues.test.ts src/features/session/logic.test.ts src/features/workout/search.test.ts src/features/workout/prescription.test.ts src/lib/personalize/personalize.test.ts src/features/plan/boardProgram.test.ts src/features/plan/boardOps.test.ts src/features/plan/importApply.test.ts src/features/plan/muscles/generate.test.ts src/features/programs/importDefaults.test.ts src/features/library/search.test.ts src/features/library/media.test.ts src/features/library/quickSession.test.ts src/features/coach/recommend.test.ts src/lib/maxes/maxes.test.ts src/lib/cycles/cycles.test.ts src/lib/sync/records.test.ts src/lib/supabase/authLink.test.ts src/features/friends/progressSnapshot.test.ts src/features/friends/programShare.test.ts src/lib/supabase/schema.test.ts",
+    "lint": "oxlint"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.81.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.546.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "tailwindcss": "^4.1.16",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

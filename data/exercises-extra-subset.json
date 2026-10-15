@@ -1,0 +1,8057 @@
+[
+ {
+  "id": "ex-bb-shoulder-press",
+  "name": "Barbell Shoulder Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Standing barbell vertical press — same family as overhead / military press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "6",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Strict shoulder press",
+   "Shoulder press",
+   "Standing shoulder press",
+   "BB shoulder press",
+   "Military press",
+   "Strict press",
+   "OHP"
+  ]
+ },
+ {
+  "id": "ex-strict-shoulder",
+  "name": "Strict Shoulder Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Strict vertical press with no leg drive — shoulder and trunk strength.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "5",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Strict press",
+   "No-leg press",
+   "Strict OHP",
+   "Shoulder press strict"
+  ]
+ },
+ {
+  "id": "ex-military-press",
+  "name": "Military Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Classic heels-together or narrow-stance overhead press variant.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "6",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Military OHP",
+   "Heels-together press",
+   "Classic military press"
+  ]
+ },
+ {
+  "id": "ex-seated-bb-press",
+  "name": "Seated Barbell Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell",
+   "Machine"
+  ],
+  "description": "Seated barbell vertical press reducing lower-body contribution.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "6",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Seated overhead press",
+   "Seated military press",
+   "Seated shoulder press"
+  ]
+ },
+ {
+  "id": "ex-db-shoulder-press",
+  "name": "Dumbbell Shoulder Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dumbbell vertical press for shoulder strength and stability.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "DB shoulder press",
+   "Dumbbell OHP",
+   "Seated dumbbell press",
+   "Standing dumbbell press"
+  ]
+ },
+ {
+  "id": "ex-arnold-press",
+  "name": "Arnold Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Rotating dumbbell press popularized for deltoid hypertrophy.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Arnold dumbbell press",
+   "Rotating shoulder press"
+  ]
+ },
+ {
+  "id": "ex-seated-db-press",
+  "name": "Seated Dumbbell Shoulder Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Back-supported dumbbell press for shoulder volume.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Seated DB press",
+   "Seated dumbbell OHP"
+  ]
+ },
+ {
+  "id": "ex-single-arm-ohp",
+  "name": "Single-Arm Overhead Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Kettlebell"
+  ],
+  "description": "Unilateral vertical press challenging anti-lateral flexion.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8/arm",
+  "defaultRestSec": 75,
+  "aliases": [
+   "1-arm OHP",
+   "Unilateral shoulder press",
+   "Single arm press"
+  ]
+ },
+ {
+  "id": "ex-kb-press",
+  "name": "Kettlebell Overhead Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "KB vertical press with offset load challenge.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8/arm",
+  "defaultRestSec": 75,
+  "aliases": [
+   "KB press",
+   "Kettlebell shoulder press"
+  ]
+ },
+ {
+  "id": "ex-push-press-db",
+  "name": "Dumbbell Push Press",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Quads"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dip-drive dumbbell vertical press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "6",
+  "defaultRestSec": 90,
+  "aliases": [
+   "DB push press"
+  ]
+ },
+ {
+  "id": "ex-jerk-balance",
+  "name": "Jerk Balance",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Quads"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Technique drill for split jerk receiving position.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-bradford-press",
+  "name": "Bradford Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Alternating front-to-back light press for shoulder volume — use light loads.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Behind-neck alternate press"
+  ]
+ },
+ {
+  "id": "ex-machine-shoulder-press",
+  "name": "Shoulder Press Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Guided-path commercial gym shoulder press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Machine OHP",
+   "Seated machine shoulder press",
+   "Shoulder press station"
+  ]
+ },
+ {
+  "id": "ex-smith-ohp",
+  "name": "Smith Machine Overhead Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine",
+   "Barbell"
+  ],
+  "description": "Smith-guided vertical press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Smith shoulder press",
+   "Smith military press"
+  ]
+ },
+ {
+  "id": "ex-landmine-sq-press",
+  "name": "Landmine Squat to Press",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Shoulders",
+   "Full Body"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Squat-to-press with landmine for athletic power.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Landmine thruster"
+  ]
+ },
+ {
+  "id": "ex-viking-press",
+  "name": "Viking Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Machine",
+   "Barbell"
+  ],
+  "description": "Plate-loaded standing press common on multi-stands.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Plate-loaded viking press"
+  ]
+ },
+ {
+  "id": "ex-log-press",
+  "name": "Log Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Strongman-style log overhead press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "5",
+  "defaultRestSec": 150,
+  "aliases": [
+   "Strongman log press"
+  ]
+ },
+ {
+  "id": "ex-axle-press",
+  "name": "Axle Overhead Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Thick-bar overhead press for grip and shoulder strength.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "5",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Fat bar press",
+   "Axle press"
+  ]
+ },
+ {
+  "id": "ex-chest-press-m",
+  "name": "Chest Press Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated commercial chest press machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Machine chest press",
+   "Seated chest press",
+   "Horizontal chest press"
+  ]
+ },
+ {
+  "id": "ex-incline-chest-m",
+  "name": "Incline Chest Press Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Incline machine chest press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Incline machine press"
+  ]
+ },
+ {
+  "id": "ex-decline-chest-m",
+  "name": "Decline Chest Press Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Decline machine chest press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Decline machine press"
+  ]
+ },
+ {
+  "id": "ex-pec-deck",
+  "name": "Pec Deck",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine pec deck / butterfly fly.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Pec deck fly",
+   "Butterfly machine",
+   "Machine fly"
+  ]
+ },
+ {
+  "id": "ex-cable-fly",
+  "name": "Cable Chest Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Standing or bench cable fly.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Cable flyes",
+   "Standing cable fly"
+  ]
+ },
+ {
+  "id": "ex-cable-crossover",
+  "name": "Cable Crossover",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable crossover for chest isolation.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Cable cross-over",
+   "High cable crossover"
+  ]
+ },
+ {
+  "id": "ex-low-cable-fly",
+  "name": "Low-to-High Cable Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Low-to-high cable fly.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Low cable fly",
+   "Low to high fly"
+  ]
+ },
+ {
+  "id": "ex-smith-bench",
+  "name": "Smith Machine Bench Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Smith machine flat bench press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Smith bench",
+   "Smith flat press"
+  ]
+ },
+ {
+  "id": "ex-smith-incline",
+  "name": "Smith Machine Incline Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Smith machine incline press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Smith incline"
+  ]
+ },
+ {
+  "id": "ex-hs-chest",
+  "name": "Plate-Loaded Chest Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Plate-loaded iso-lateral chest press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Hammer Strength chest press",
+   "Iso-lateral chest press"
+  ]
+ },
+ {
+  "id": "ex-push-up",
+  "name": "Push-Up",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Classic bodyweight horizontal press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Press-up",
+   "Floor push up"
+  ]
+ },
+ {
+  "id": "ex-diamond-pu",
+  "name": "Diamond Push-Up",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms",
+   "Chest"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Close-hand push-up emphasizing triceps.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Close-grip push-up",
+   "Triangle push-up"
+  ]
+ },
+ {
+  "id": "ex-decline-pu",
+  "name": "Decline Push-Up",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Feet-elevated push-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Feet-elevated push-up"
+  ]
+ },
+ {
+  "id": "ex-ring-pu",
+  "name": "Ring Push-Up",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Push-up on rings for stability demand.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Gymnastic ring push-up"
+  ]
+ },
+ {
+  "id": "ex-svend",
+  "name": "Svend Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Plate-squeeze front chest press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Plate squeeze press"
+  ]
+ },
+ {
+  "id": "ex-db-fly",
+  "name": "Dumbbell Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dumbbell fly on flat bench.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "DB fly",
+   "Bench flyes"
+  ]
+ },
+ {
+  "id": "ex-incline-bb-press",
+  "name": "Incline Barbell Bench Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Barbell incline bench press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Incline bench press",
+   "Barbell incline"
+  ]
+ },
+ {
+  "id": "ex-decline-bb-press",
+  "name": "Decline Barbell Bench Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Barbell decline bench press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Decline bench press"
+  ]
+ },
+ {
+  "id": "ex-cgbp",
+  "name": "Close-Grip Bench Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms",
+   "Chest"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Narrow-grip bench press for triceps.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "CGBP",
+   "Close grip bench"
+  ]
+ },
+ {
+  "id": "ex-spoto",
+  "name": "Spoto Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Bench press paused just above the chest.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Spoto bench"
+  ]
+ },
+ {
+  "id": "ex-db-pullover",
+  "name": "Dumbbell Pullover",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Back"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Pullover for chest/lat stretch.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "DB pullover"
+  ]
+ },
+ {
+  "id": "ex-machine-fly",
+  "name": "Machine Chest Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated machine chest fly.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Fly machine",
+   "Pec fly machine"
+  ]
+ },
+ {
+  "id": "ex-seated-row-m",
+  "name": "Seated Row Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated machine row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Machine row",
+   "Seated row"
+  ]
+ },
+ {
+  "id": "ex-cable-seated-row",
+  "name": "Cable Seated Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable seated row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Sitting cable row",
+   "Low row"
+  ]
+ },
+ {
+  "id": "ex-chest-supported-m",
+  "name": "Chest-Supported Machine Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Chest-supported machine row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Supported machine row",
+   "Hammer row"
+  ]
+ },
+ {
+  "id": "ex-tbar-row",
+  "name": "T-Bar Row",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell",
+   "Machine"
+  ],
+  "description": "T-bar or landmine bilateral row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "T bar row",
+   "Landmine row bilateral"
+  ]
+ },
+ {
+  "id": "ex-meadows-row",
+  "name": "Meadows Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Single-arm landmine row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Landmine single-arm row"
+  ]
+ },
+ {
+  "id": "ex-lat-pd-wide",
+  "name": "Wide-Grip Lat Pulldown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Cable",
+   "Machine"
+  ],
+  "description": "Wide-grip lat pulldown.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Wide lat pulldown"
+  ]
+ },
+ {
+  "id": "ex-lat-pd-neutral",
+  "name": "Neutral-Grip Lat Pulldown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Cable",
+   "Machine"
+  ],
+  "description": "Neutral-grip pulldown.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Parallel grip pulldown"
+  ]
+ },
+ {
+  "id": "ex-lat-pd-close",
+  "name": "Close-Grip Lat Pulldown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Cable",
+   "Machine"
+  ],
+  "description": "Close-grip lat pulldown.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Close grip pulldown",
+   "Mag grip pulldown"
+  ]
+ },
+ {
+  "id": "ex-straight-arm-pd",
+  "name": "Straight-Arm Pulldown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Straight-arm cable pulldown.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Straight arm lat pulldown",
+   "Pullover pulldown"
+  ]
+ },
+ {
+  "id": "ex-assisted-pu",
+  "name": "Assisted Pull-Up Machine",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine-assisted pull-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Gravitron",
+   "Assisted chin-up"
+  ]
+ },
+ {
+  "id": "ex-hs-pulldown",
+  "name": "Plate-Loaded Lat Pulldown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Plate-loaded lat pulldown.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Hammer Strength pulldown",
+   "Iso-lateral pulldown"
+  ]
+ },
+ {
+  "id": "ex-hs-row",
+  "name": "Plate-Loaded Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Plate-loaded row machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Hammer Strength row",
+   "Iso-lateral row"
+  ]
+ },
+ {
+  "id": "ex-cable-face-pull",
+  "name": "Cable Face Pull",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable face pull for rear delts / cuff.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Facepull cable"
+  ]
+ },
+ {
+  "id": "ex-reverse-pec-deck",
+  "name": "Reverse Pec Deck",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Reverse pec deck for rear delts.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Rear delt machine",
+   "Reverse fly machine"
+  ]
+ },
+ {
+  "id": "ex-straight-arm-pushdown",
+  "name": "Straight-Arm Cable Pushdown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Variation of straight-arm lat work.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": []
+ },
+ {
+  "id": "ex-barbell-row-under",
+  "name": "Underhand Barbell Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Supinated barbell row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Yates row",
+   "Supinated row"
+  ]
+ },
+ {
+  "id": "ex-helms-row",
+  "name": "Helms Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Incline chest-supported dumbbell row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Chest supported DB row incline"
+  ]
+ },
+ {
+  "id": "ex-kroc-row",
+  "name": "Kroc Row",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Heavy high-rep single-arm dumbbell row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Heavy single-arm row"
+  ]
+ },
+ {
+  "id": "ex-rack-pull",
+  "name": "Rack Pull",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Glutes",
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Partial-ROM deadlift from pins/blocks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Block pull",
+   "Partial deadlift"
+  ]
+ },
+ {
+  "id": "ex-snatch-grip-dl",
+  "name": "Snatch-Grip Deadlift",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Wide-grip deadlift for upper back.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Wide grip deadlift"
+  ]
+ },
+ {
+  "id": "ex-jefferson",
+  "name": "Jefferson Deadlift",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Quads",
+   "Back"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Straddle-stance deadlift variant.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Jefferson lift"
+  ]
+ },
+ {
+  "id": "ex-good-morning-ssb",
+  "name": "SSB Good Morning",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes",
+   "Back"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Safety-squat-bar good morning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Safety bar good morning"
+  ]
+ },
+ {
+  "id": "ex-hack-squat-m",
+  "name": "Hack Squat Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Commercial hack squat machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Hack squat",
+   "Plate-loaded hack"
+  ]
+ },
+ {
+  "id": "ex-v-squat",
+  "name": "V-Squat / Belt Squat Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Guided squat machine / belt squat family.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "V squat",
+   "Pendulum squat",
+   "Belt squat machine"
+  ]
+ },
+ {
+  "id": "ex-belt-squat",
+  "name": "Belt Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Loaded belt squat sparing the spine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Belt squat machine"
+  ]
+ },
+ {
+  "id": "ex-leg-press-45",
+  "name": "45° Leg Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Angled plate-loaded leg press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Angled leg press",
+   "Sled leg press"
+  ]
+ },
+ {
+  "id": "ex-horizontal-leg-press",
+  "name": "Horizontal Leg Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Horizontal/seated leg press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Seated leg press"
+  ]
+ },
+ {
+  "id": "ex-single-leg-press",
+  "name": "Single-Leg Leg Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "One-leg leg press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Unilateral leg press"
+  ]
+ },
+ {
+  "id": "ex-lying-leg-curl",
+  "name": "Lying Leg Curl Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Prone machine leg curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Prone hamstring curl"
+  ]
+ },
+ {
+  "id": "ex-seated-leg-curl",
+  "name": "Seated Leg Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated machine leg curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Seated hamstring curl"
+  ]
+ },
+ {
+  "id": "ex-standing-leg-curl",
+  "name": "Standing Leg Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Standing single-leg curl machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Standing ham curl"
+  ]
+ },
+ {
+  "id": "ex-leg-ext-m",
+  "name": "Leg Extension Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine leg extension.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Quad extension"
+  ]
+ },
+ {
+  "id": "ex-adductor-m",
+  "name": "Hip Adductor Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated hip adductor machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Adductor machine",
+   "Thigh adductor"
+  ]
+ },
+ {
+  "id": "ex-abductor-m",
+  "name": "Hip Abductor Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hip"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated hip abductor machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Abductor machine",
+   "Thigh abductor"
+  ]
+ },
+ {
+  "id": "ex-glute-kickback-m",
+  "name": "Glute Kickback Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine",
+   "Cable"
+  ],
+  "description": "Machine or cable glute kickback.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Donkey kick machine",
+   "Cable kickback"
+  ]
+ },
+ {
+  "id": "ex-hip-thrust-m",
+  "name": "Hip Thrust Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine hip thrust / glute drive.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Glute drive machine",
+   "Booty builder"
+  ]
+ },
+ {
+  "id": "ex-smith-squat",
+  "name": "Smith Machine Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Squat on Smith machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Smith squat"
+  ]
+ },
+ {
+  "id": "ex-smith-lunge",
+  "name": "Smith Machine Reverse Lunge",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Reverse lunge guided by Smith.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Smith lunge"
+  ]
+ },
+ {
+  "id": "ex-smith-rdl",
+  "name": "Smith Machine RDL",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "RDL on Smith machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Smith Romanian deadlift"
+  ]
+ },
+ {
+  "id": "ex-calf-raise-m",
+  "name": "Seated Calf Raise Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Calves"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated calf raise machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Seated calf machine"
+  ]
+ },
+ {
+  "id": "ex-standing-calf-m",
+  "name": "Standing Calf Raise Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Calves"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Standing or donkey calf machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Standing calf machine",
+   "Donkey calf"
+  ]
+ },
+ {
+  "id": "ex-leg-press-calf",
+  "name": "Leg Press Calf Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Calves"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Calf raise on leg press sled.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Calf press on leg press"
+  ]
+ },
+ {
+  "id": "ex-sissy-squat",
+  "name": "Sissy Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Machine"
+  ],
+  "description": "Quad-biased sissy squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Sissy squat machine"
+  ]
+ },
+ {
+  "id": "ex-spanish-squat",
+  "name": "Spanish Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Band-anchored squat for quad bias / knee rehab-informed patterning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Band-anchored squat"
+  ]
+ },
+ {
+  "id": "ex-pistol-squat",
+  "name": "Pistol Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Single-leg bodyweight squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Single-leg squat"
+  ]
+ },
+ {
+  "id": "ex-shrimp-squat",
+  "name": "Shrimp Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Advanced single-leg squat variation.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-cossack",
+  "name": "Cossack Squat",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Hip",
+   "Hip"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Kettlebell"
+  ],
+  "description": "Lateral squat for adductor/hip mobility.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Side lunge squat",
+   "Lateral squat"
+  ]
+ },
+ {
+  "id": "ex-cyclist-squat",
+  "name": "Cyclist / Heel-Elevated Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Barbell"
+  ],
+  "description": "Heel-elevated squat for quad emphasis.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Heel elevated squat",
+   "Quad squat"
+  ]
+ },
+ {
+  "id": "ex-front-foot-elevated",
+  "name": "Front-Foot Elevated Split Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Front-foot elevated split squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "FFESS"
+  ]
+ },
+ {
+  "id": "ex-rear-foot-elevated",
+  "name": "Rear-Foot Elevated Split Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Barbell"
+  ],
+  "description": "Rear-foot elevated / Bulgarian split squat alias entry.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "RFESS",
+   "Bulgarian"
+  ]
+ },
+ {
+  "id": "ex-walking-db-lunge",
+  "name": "Dumbbell Walking Lunge",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Loaded walking lunges.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "DB walking lunge"
+  ]
+ },
+ {
+  "id": "ex-lateral-lunge",
+  "name": "Lateral Lunge",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Hip"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Bodyweight"
+  ],
+  "description": "Frontal-plane lunge.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Side lunge"
+  ]
+ },
+ {
+  "id": "ex-curtsey-lunge",
+  "name": "Curtsey Lunge",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Quads"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Bodyweight"
+  ],
+  "description": "Crossing curtsey lunge for glutes.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Curtsy lunge"
+  ]
+ },
+ {
+  "id": "ex-step-down",
+  "name": "Controlled Step-Down",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Box",
+   "Bodyweight"
+  ],
+  "description": "Slow step-down for knee control.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Lateral step-down"
+  ]
+ },
+ {
+  "id": "ex-nordic-assist",
+  "name": "Assisted Nordic Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Band",
+   "Bodyweight"
+  ],
+  "description": "Band-assisted Nordic hamstring curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Band-assisted nordic"
+  ]
+ },
+ {
+  "id": "ex-slider-leg-curl",
+  "name": "Slider Leg Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Supine slider or suspension leg curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Hamstring slider",
+   "Suspension leg curl"
+  ]
+ },
+ {
+  "id": "ex-45-hyper",
+  "name": "45° Hyperextension",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes",
+   "Back"
+  ],
+  "equipment": [
+   "Machine",
+   "Bodyweight"
+  ],
+  "description": "45-degree hip extension / back extension.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Back extension 45",
+   "Roman chair"
+  ]
+ },
+ {
+  "id": "ex-reverse-hyper",
+  "name": "Reverse Hyperextension",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hamstrings",
+   "Back"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Reverse hyper machine for posterior chain.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Reverse hyper"
+  ]
+ },
+ {
+  "id": "ex-glute-ham",
+  "name": "Glute-Ham Raise",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "GHD glute-ham raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "GHR",
+   "Glute ham developer"
+  ]
+ },
+ {
+  "id": "ex-cable-pull-through",
+  "name": "Cable Pull-Through",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable pull-through hinge.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Pull through"
+  ]
+ },
+ {
+  "id": "ex-kb-goblet-lateral",
+  "name": "Goblet Lateral Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Hip"
+  ],
+  "equipment": [
+   "Kettlebell",
+   "Dumbbell"
+  ],
+  "description": "Goblet-loaded lateral squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-front-raise",
+  "name": "Dumbbell Front Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Anterior deltoid raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "DB front raise"
+  ]
+ },
+ {
+  "id": "ex-cable-lateral",
+  "name": "Cable Lateral Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable lateral raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Cable side raise"
+  ]
+ },
+ {
+  "id": "ex-machine-lateral",
+  "name": "Machine Lateral Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine lateral raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Lateral raise machine"
+  ]
+ },
+ {
+  "id": "ex-db-rear-delt",
+  "name": "Bent-Over Rear Delt Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Bent-over rear delt fly.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Rear delt fly",
+   "Reverse fly DB"
+  ]
+ },
+ {
+  "id": "ex-cable-rear-delt",
+  "name": "Cable Rear Delt Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable rear delt fly.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": []
+ },
+ {
+  "id": "ex-upright-row",
+  "name": "Upright Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell"
+  ],
+  "description": "Upright row — use comfortable grip width.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "BB upright row"
+  ]
+ },
+ {
+  "id": "ex-overhead-ext",
+  "name": "Dumbbell Overhead Triceps Extension",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Overhead triceps extension.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "DB french press",
+   "Overhead extension"
+  ]
+ },
+ {
+  "id": "ex-skull-crusher",
+  "name": "Skull Crusher",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell"
+  ],
+  "description": "Lying triceps extension.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Lying triceps extension",
+   "EZ bar skullcrusher"
+  ]
+ },
+ {
+  "id": "ex-cable-overhead-ext",
+  "name": "Cable Overhead Triceps Extension",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable overhead triceps extension.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Cable french press"
+  ]
+ },
+ {
+  "id": "ex-rope-pushdown",
+  "name": "Rope Triceps Pushdown",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Rope cable triceps pushdown.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Rope pushdown"
+  ]
+ },
+ {
+  "id": "ex-kickback",
+  "name": "Triceps Kickback",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Cable"
+  ],
+  "description": "Triceps kickback.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "DB kickback"
+  ]
+ },
+ {
+  "id": "ex-jm-press",
+  "name": "JM Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms",
+   "Chest"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Hybrid close-grip bench / skull crusher.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": []
+ },
+ {
+  "id": "ex-bb-curl",
+  "name": "Barbell Biceps Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Standing barbell curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "BB curl",
+   "Standing barbell curl"
+  ]
+ },
+ {
+  "id": "ex-ez-curl",
+  "name": "EZ-Bar Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "EZ-bar biceps curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "EZ curl"
+  ]
+ },
+ {
+  "id": "ex-hammer-curl",
+  "name": "Hammer Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Neutral-grip hammer curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Neutral curl",
+   "DB hammer"
+  ]
+ },
+ {
+  "id": "ex-incline-curl",
+  "name": "Incline Dumbbell Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Incline bench dumbbell curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Incline curl"
+  ]
+ },
+ {
+  "id": "ex-preacher-curl",
+  "name": "Preacher Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell",
+   "Machine"
+  ],
+  "description": "Preacher / Scott curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Scott curl"
+  ]
+ },
+ {
+  "id": "ex-cable-curl",
+  "name": "Cable Biceps Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable biceps curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Standing cable curl"
+  ]
+ },
+ {
+  "id": "ex-concentration-curl",
+  "name": "Concentration Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Seated concentration curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": []
+ },
+ {
+  "id": "ex-spider-curl",
+  "name": "Spider Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell"
+  ],
+  "description": "Chest-supported spider curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": []
+ },
+ {
+  "id": "ex-machine-curl",
+  "name": "Machine Biceps Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine biceps curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Curl machine"
+  ]
+ },
+ {
+  "id": "ex-machine-dip",
+  "name": "Machine Dip / Triceps Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms",
+   "Chest"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine dip or triceps press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Assisted dip machine",
+   "Triceps press machine"
+  ]
+ },
+ {
+  "id": "ex-wrist-curl",
+  "name": "Wrist Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Barbell"
+  ],
+  "description": "Wrist flexion curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Forearm curl"
+  ]
+ },
+ {
+  "id": "ex-rev-wrist-curl",
+  "name": "Reverse Wrist Curl",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Barbell"
+  ],
+  "description": "Wrist extension curl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Wrist extension"
+  ]
+ },
+ {
+  "id": "ex-farmers-hold",
+  "name": "Farmer Hold",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Kettlebell"
+  ],
+  "description": "Static loaded grip hold.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Static farmer hold"
+  ]
+ },
+ {
+  "id": "ex-plate-pinch",
+  "name": "Plate Pinch Hold",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Pinch-grip plate hold.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Pinch grip"
+  ]
+ },
+ {
+  "id": "ex-cable-crunch",
+  "name": "Cable Crunch",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Kneeling cable abdominal crunch.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Kneeling cable crunch"
+  ]
+ },
+ {
+  "id": "ex-pallof",
+  "name": "Pallof Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Cable",
+   "Band"
+  ],
+  "description": "Anti-rotation core press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Anti-rotation press"
+  ]
+ },
+ {
+  "id": "ex-cable-woodchop",
+  "name": "Cable Woodchop",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Shoulders",
+   "Hip"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Rotational cable woodchop.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Woodchopper",
+   "Cable chop"
+  ]
+ },
+ {
+  "id": "ex-cable-lift",
+  "name": "Cable Lift (Low-to-High)",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Shoulders",
+   "Hip"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Low-to-high cable rotational lift.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Reverse woodchop"
+  ]
+ },
+ {
+  "id": "ex-cable-shrug",
+  "name": "Cable Shrug",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable shrug variation.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-cable-pullapart",
+  "name": "Cable Pull-Apart",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable scapular pull-apart.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-half-kneeling-press",
+  "name": "Half-Kneeling Landmine Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Half-kneeling landmine press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Kneeling landmine press"
+  ]
+ },
+ {
+  "id": "ex-cable-stepup",
+  "name": "Cable Step-Up",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Cable",
+   "Box"
+  ],
+  "description": "Cable-resisted step-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-functional-trainer-press",
+  "name": "Functional Trainer Chest Press",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Dual-cable / functional trainer press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Dual cable press"
+  ]
+ },
+ {
+  "id": "ex-functional-trainer-row",
+  "name": "Functional Trainer Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Dual-cable row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Dual cable row"
+  ]
+ },
+ {
+  "id": "ex-pike-pushup",
+  "name": "Pike Push-Up",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Pike push-up for vertical press strength.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Pike press"
+  ]
+ },
+ {
+  "id": "ex-hspu",
+  "name": "Handstand Push-Up",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Handstand push-up (wall or freestanding).",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "HSPU",
+   "Wall handstand push-up"
+  ]
+ },
+ {
+  "id": "ex-wall-walk",
+  "name": "Wall Walk",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Wall walk to handstand position.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-muscle-up",
+  "name": "Muscle-Up",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms",
+   "Chest"
+  ],
+  "equipment": [
+   "Pull-up Bar",
+   "Bodyweight"
+  ],
+  "description": "Bar muscle-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Bar muscle-up",
+   "BMU"
+  ]
+ },
+ {
+  "id": "ex-ring-muscle-up",
+  "name": "Ring Muscle-Up",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms",
+   "Chest"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Ring muscle-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "RMU"
+  ]
+ },
+ {
+  "id": "ex-toes-to-bar",
+  "name": "Toes-to-Bar",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Hip"
+  ],
+  "equipment": [
+   "Pull-up Bar"
+  ],
+  "description": "Hanging toes-to-bar.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "TTB",
+   "T2B"
+  ]
+ },
+ {
+  "id": "ex-knees-to-elbow",
+  "name": "Knees-to-Elbows",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Pull-up Bar"
+  ],
+  "description": "Hanging knees-to-elbows.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "KTE"
+  ]
+ },
+ {
+  "id": "ex-hanging-leg-raise",
+  "name": "Hanging Leg Raise",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Hip"
+  ],
+  "equipment": [
+   "Pull-up Bar"
+  ],
+  "description": "Hanging straight-leg raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "HLR"
+  ]
+ },
+ {
+  "id": "ex-l-sit",
+  "name": "L-Sit",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Pull-up Bar"
+  ],
+  "description": "L-sit hold on parallettes or bar.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-arch-hold",
+  "name": "Arch / Superman Hold",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Prone arch hold.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Superman hold"
+  ]
+ },
+ {
+  "id": "ex-v-up",
+  "name": "V-Up",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "V-up / jackknife sit-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Jackknife"
+  ]
+ },
+ {
+  "id": "ex-russian-twist",
+  "name": "Russian Twist",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Medicine Ball"
+  ],
+  "description": "Seated rotational twist.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-mountain-climber",
+  "name": "Mountain Climber",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Full Body"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Mountain climber conditioning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-jumping-jack",
+  "name": "Jumping Jack",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Jumping jack warm-up / conditioning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Star jump"
+  ]
+ },
+ {
+  "id": "ex-high-knees",
+  "name": "High Knees",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip",
+   "Calves",
+   "Full Body"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "High-knees run in place.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-butt-kicks",
+  "name": "Butt Kicks",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Calves"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Butt-kick drill.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-bear-crawl",
+  "name": "Bear Crawl",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Shoulders",
+   "Full Body"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Quadruped bear crawl.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-crab-walk",
+  "name": "Crab Walk",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Arms",
+   "Glutes",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Supine crab walk.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-inchworm",
+  "name": "Inchworm",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Inchworm walkout.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-trx-pushup",
+  "name": "Suspension Push-Up",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Suspension trainer push-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "TRX push-up"
+  ]
+ },
+ {
+  "id": "ex-trx-lunge",
+  "name": "Suspension Reverse Lunge",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Suspension-assisted or loaded reverse lunge.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "TRX lunge"
+  ]
+ },
+ {
+  "id": "ex-pistol-assist",
+  "name": "Assisted Pistol Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Band"
+  ],
+  "description": "Assisted single-leg squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Held pistol"
+  ]
+ },
+ {
+  "id": "ex-nordic-partner",
+  "name": "Partner Nordic Hold",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Partner-anchored Nordic eccentric.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-hang-power-clean",
+  "name": "Hang Power Clean",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Hamstrings",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Power clean from hang.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "HPC"
+  ]
+ },
+ {
+  "id": "ex-block-clean",
+  "name": "Block Clean",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Clean from blocks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Clean from blocks"
+  ]
+ },
+ {
+  "id": "ex-block-snatch",
+  "name": "Block Snatch",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Snatch from blocks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-muscle-snatch",
+  "name": "Muscle Snatch",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Full Body"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Muscle snatch technique/strength drill.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-snatch-balance",
+  "name": "Snatch Balance",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Quads"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Snatch balance for receiving position.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-oh-lunge",
+  "name": "Overhead Lunge",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell"
+  ],
+  "description": "Lunge with load locked overhead.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "OH walking lunge"
+  ]
+ },
+ {
+  "id": "ex-kb-snatch",
+  "name": "Kettlebell Snatch",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "One-arm kettlebell snatch.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "KB snatch"
+  ]
+ },
+ {
+  "id": "ex-kb-clean",
+  "name": "Kettlebell Clean",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "Kettlebell clean to rack.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "KB clean"
+  ]
+ },
+ {
+  "id": "ex-kb-push-press",
+  "name": "Kettlebell Push Press",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Quads"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "KB push press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-db-snatch",
+  "name": "Dumbbell Snatch",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Single-arm dumbbell snatch.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "DB snatch",
+   "Single-arm DB snatch"
+  ]
+ },
+ {
+  "id": "ex-db-clean",
+  "name": "Dumbbell Clean",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dumbbell clean to rack or shoulder.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "DB clean"
+  ]
+ },
+ {
+  "id": "ex-medball-clean",
+  "name": "Medicine Ball Clean",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Medicine Ball"
+  ],
+  "description": "Med ball clean for teaching / conditioning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "MB clean"
+  ]
+ },
+ {
+  "id": "ex-wall-ball",
+  "name": "Wall Ball",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Shoulders",
+   "Full Body"
+  ],
+  "equipment": [
+   "Medicine Ball"
+  ],
+  "description": "Wall ball squat-to-throw.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Wallball shot"
+  ]
+ },
+ {
+  "id": "ex-mb-chest-pass",
+  "name": "Med Ball Chest Pass",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Medicine Ball"
+  ],
+  "description": "Explosive med ball chest pass.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-mb-overhead-throw",
+  "name": "Med Ball Overhead Throw",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core",
+   "Full Body"
+  ],
+  "equipment": [
+   "Medicine Ball"
+  ],
+  "description": "Overhead med ball throw.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "OH med ball throw"
+  ]
+ },
+ {
+  "id": "ex-jump-squat",
+  "name": "Jump Squat",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Dumbbell"
+  ],
+  "description": "Loaded or bodyweight jump squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Squat jump"
+  ]
+ },
+ {
+  "id": "ex-broad-bound",
+  "name": "Continuous Broad Bounds",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hamstrings",
+   "Calves"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Continuous horizontal bounds.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Bounding"
+  ]
+ },
+ {
+  "id": "ex-seated-box-jump",
+  "name": "Seated Box Jump",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Box",
+   "Bodyweight"
+  ],
+  "description": "Box jump from seated static start.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": []
+ },
+ {
+  "id": "ex-trap-bar-jump",
+  "name": "Trap Bar Jump Shrug",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Quads"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Explosive trap-bar jump shrug.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 4,
+  "defaultReps": "3",
+  "defaultRestSec": 120,
+  "aliases": [
+   "Hex bar jump"
+  ]
+ },
+ {
+  "id": "ex-treadmill-run",
+  "name": "Treadmill Run",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Treadmill running intervals or steady state.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "20 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Treadmill",
+   "TM run"
+  ]
+ },
+ {
+  "id": "ex-treadmill-walk",
+  "name": "Incline Treadmill Walk",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Calves",
+   "Full Body"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Brisk incline treadmill walk.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "20 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Incline walk",
+   "TM incline"
+  ]
+ },
+ {
+  "id": "ex-elliptical",
+  "name": "Elliptical Trainer",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Elliptical steady or intervals.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "20 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Cross trainer",
+   "Elliptical machine"
+  ]
+ },
+ {
+  "id": "ex-stairmaster",
+  "name": "Stair Climber / StepMill",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Calves"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Stair climber conditioning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "15 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Stairmaster",
+   "StepMill",
+   "Stair climber"
+  ]
+ },
+ {
+  "id": "ex-arc-trainer",
+  "name": "Arc Trainer",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Arc trainer cardio machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "20 min",
+  "defaultRestSec": 0,
+  "aliases": []
+ },
+ {
+  "id": "ex-recumbent-bike",
+  "name": "Recumbent Bike",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Full Body"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Recumbent bike aerobic work.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "25 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Recumbent cycle"
+  ]
+ },
+ {
+  "id": "ex-spin-bike",
+  "name": "Spin / Indoor Cycle",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Full Body"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Indoor cycle / spin session.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "30 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Spin bike",
+   "Indoor cycling",
+   "Wattbike"
+  ]
+ },
+ {
+  "id": "ex-rower-steady",
+  "name": "Rowing Erg Steady State",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Back"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Zone-2 rowing erg.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "20 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Steady row",
+   "Easy row"
+  ]
+ },
+ {
+  "id": "ex-ski-steady",
+  "name": "Ski Erg Steady State",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Core",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Zone-2 ski erg.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "15 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Easy ski"
+  ]
+ },
+ {
+  "id": "ex-airbike-steady",
+  "name": "Air Bike Steady State",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Easy air-bike aerobic.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "15 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Assault bike easy",
+   "Echo bike easy"
+  ]
+ },
+ {
+  "id": "ex-versa-climber",
+  "name": "VersaClimber",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "VersaClimber intervals or steady.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 6,
+  "defaultReps": "30s",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Vertical climber"
+  ]
+ },
+ {
+  "id": "ex-jacobs-ladder",
+  "name": "Jacob's Ladder",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Core"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Jacob's Ladder climbing machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "10 min",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Jacobs ladder"
+  ]
+ },
+ {
+  "id": "ex-swim-erg",
+  "name": "Swim Erg / Vasa",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back",
+   "Core"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Swim ergometer session.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 6,
+  "defaultReps": "100m",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Vasa trainer",
+   "Swimerg"
+  ]
+ },
+ {
+  "id": "ex-ab-wheel",
+  "name": "Ab Wheel Rollout",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Shoulders"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Ab wheel rollout.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Ab rollout",
+   "Wheel rollout"
+  ]
+ },
+ {
+  "id": "ex-captain-chair",
+  "name": "Captain's Chair Leg Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Hip"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Captain's chair knee/leg raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Vertical knee raise",
+   "VKR"
+  ]
+ },
+ {
+  "id": "ex-ab-crunch-m",
+  "name": "Ab Crunch Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated ab crunch machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Crunch machine"
+  ]
+ },
+ {
+  "id": "ex-rotary-torso",
+  "name": "Rotary Torso Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine torso rotation.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Seated rotation machine"
+  ]
+ },
+ {
+  "id": "ex-back-ext-m",
+  "name": "Seated Back Extension Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated lumbar extension machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Lumbar extension machine"
+  ]
+ },
+ {
+  "id": "ex-decline-situp",
+  "name": "Decline Sit-Up",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Decline bench sit-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Decline crunch"
+  ]
+ },
+ {
+  "id": "ex-hanging-windshield",
+  "name": "Hanging Windshield Wipers",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Pull-up Bar"
+  ],
+  "description": "Hanging rotational wipers.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Windshield wipers"
+  ]
+ },
+ {
+  "id": "ex-dead-bug-press",
+  "name": "Dead Bug with Press",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core"
+  ],
+  "equipment": [
+   "Band",
+   "Dumbbell"
+  ],
+  "description": "Dead bug with light press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-bird-dog-row",
+  "name": "Bird Dog Row",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Back"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Bird dog with row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-overhead-carry",
+  "name": "Overhead Carry",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Kettlebell",
+   "Barbell"
+  ],
+  "description": "Load locked out overhead while walking.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "OH carry"
+  ]
+ },
+ {
+  "id": "ex-front-rack-carry",
+  "name": "Front Rack Carry",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Kettlebell",
+   "Barbell"
+  ],
+  "description": "Front-rack loaded carry.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": []
+ },
+ {
+  "id": "ex-yoke-carry",
+  "name": "Yoke Carry",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Core",
+   "Full Body",
+   "Quads"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Strongman yoke walk.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Yoke walk"
+  ]
+ },
+ {
+  "id": "ex-sled-drag",
+  "name": "Sled Drag",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Hamstrings"
+  ],
+  "equipment": [
+   "Sled"
+  ],
+  "description": "Sled drag (forward or backward).",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Backward sled",
+   "Forward sled drag"
+  ]
+ },
+ {
+  "id": "ex-sled-pull-rope",
+  "name": "Sled Rope Pull",
+  "theme": "Endurance",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Arms",
+   "Core"
+  ],
+  "equipment": [
+   "Sled"
+  ],
+  "description": "Rope pull in sled.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Seated sled pull"
+  ]
+ },
+ {
+  "id": "ex-prowler-sprint",
+  "name": "Prowler Sprint",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Quads"
+  ],
+  "equipment": [
+   "Sled"
+  ],
+  "description": "Short prowler / sled sprints.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "10",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Prowler push sprint"
+  ]
+ },
+ {
+  "id": "ex-smith-hip-thrust",
+  "name": "Smith Machine Hip Thrust",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Hip thrust using Smith machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Smith thrust"
+  ]
+ },
+ {
+  "id": "ex-smith-shrug",
+  "name": "Smith Machine Shrug",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Shrugs on Smith machine.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-smith-calf",
+  "name": "Smith Standing Calf Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Calves"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Standing calf raise in Smith.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-smith-front-squat",
+  "name": "Smith Machine Front Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Core"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Front squat pattern in Smith.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-multipress",
+  "name": "Multi-Press Machine",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Adjustable multi-press station.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Multi angle press"
+  ]
+ },
+ {
+  "id": "ex-assisted-dip",
+  "name": "Assisted Dip Machine",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Machine-assisted parallel bar dip.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Gravitron dip"
+  ]
+ },
+ {
+  "id": "ex-cable-lat-raise-behind",
+  "name": "Cable Y-Raise",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Cable or DB Y-raise for lower traps / delts.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Y raise"
+  ]
+ },
+ {
+  "id": "ex-prone-y-t-w",
+  "name": "Prone Y-T-W Raises",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Dumbbell"
+  ],
+  "description": "Prone scapular Y-T-W series.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "YTW raises"
+  ]
+ },
+ {
+  "id": "ex-band-goodmorning",
+  "name": "Band Good Morning",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Light band good morning.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-band-squat",
+  "name": "Band Goblet / Pull-Apart Squat Warm-Up",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Band warm-up squat pattern.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-monster-walk",
+  "name": "Band Monster Walk",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hip"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Lateral band walk for glute med.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Lateral band walk",
+   "Monster band walk"
+  ]
+ },
+ {
+  "id": "ex-clam-shell",
+  "name": "Side-Lying Clamshell",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hip"
+  ],
+  "equipment": [
+   "Band",
+   "Bodyweight"
+  ],
+  "description": "Clamshell for glute med activation.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Clam shell"
+  ]
+ },
+ {
+  "id": "ex-fire-hydrant",
+  "name": "Fire Hydrant",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hip"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Quadruped hip abduction.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-donkey-kick",
+  "name": "Donkey Kick",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight",
+   "Band"
+  ],
+  "description": "Quadruped glute kickback.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Quadruped kickback"
+  ]
+ },
+ {
+  "id": "ex-glute-bridge-bb",
+  "name": "Barbell Glute Bridge",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Floor barbell glute bridge.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "BB glute bridge"
+  ]
+ },
+ {
+  "id": "ex-frog-pump",
+  "name": "Frog Pump",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Frog-position glute pump.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-cable-hip-abduction",
+  "name": "Cable Standing Hip Abduction",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Hip"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Standing cable hip abduction.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-cable-hip-adduction",
+  "name": "Cable Standing Hip Adduction",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Standing cable hip adduction.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-seated-hip-internal",
+  "name": "Seated Hip Internal Rotation",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip"
+  ],
+  "equipment": [
+   "Band",
+   "None"
+  ],
+  "description": "Seated hip IR drill.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-seated-hip-external",
+  "name": "Seated Hip External Rotation",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip"
+  ],
+  "equipment": [
+   "Band",
+   "None"
+  ],
+  "description": "Seated hip ER drill.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-tib-raise",
+  "name": "Tibialis Raise",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle",
+   "Calves"
+  ],
+  "equipment": [
+   "None",
+   "Machine"
+  ],
+  "description": "Tibialis anterior raise.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Tib raises",
+   "Shin raise"
+  ]
+ },
+ {
+  "id": "ex-ankle-inversion",
+  "name": "Ankle Inversion / Eversion Band",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Band ankle inversion/eversion.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-single-leg-rdl",
+  "name": "Single-Leg RDL",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes",
+   "Core"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Kettlebell",
+   "Barbell"
+  ],
+  "description": "Single-leg Romanian deadlift.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "SL RDL",
+   "Single leg Romanian deadlift"
+  ]
+ },
+ {
+  "id": "ex-b-stance-rdl",
+  "name": "B-Stance RDL",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Barbell"
+  ],
+  "description": "B-stance / kickstance RDL.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Kickstance RDL"
+  ]
+ },
+ {
+  "id": "ex-stiff-leg-dl",
+  "name": "Stiff-Leg Deadlift",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes",
+   "Back"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell"
+  ],
+  "description": "Stiff-leg deadlift hinge.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "SLDL",
+   "Stiff legged deadlift"
+  ]
+ },
+ {
+  "id": "ex-deficit-dl",
+  "name": "Deficit Deadlift",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Back",
+   "Glutes"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Deadlift from deficit.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Deficit pull"
+  ]
+ },
+ {
+  "id": "ex-pause-dl",
+  "name": "Pause Deadlift",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Deadlift with pause off the floor or below knee.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-tempo-bsquat",
+  "name": "Tempo Back Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Core"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Tempo-eccentric back squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Slow squat"
+  ]
+ },
+ {
+  "id": "ex-box-squat",
+  "name": "Box Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Glutes",
+   "Quads",
+   "Back"
+  ],
+  "equipment": [
+   "Barbell",
+   "Box"
+  ],
+  "description": "Box squat to a target.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-safety-bar-squat",
+  "name": "Safety Bar Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes",
+   "Core"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Safety-squat-bar squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "SSB squat",
+   "Safety squat bar"
+  ]
+ },
+ {
+  "id": "ex-zercher-squat",
+  "name": "Zercher Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Core",
+   "Back"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Zercher-hold squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-anderson-squat",
+  "name": "Anderson Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Squat starting from pins / dead stop.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Pin squat"
+  ]
+ },
+ {
+  "id": "ex-pin-press",
+  "name": "Pin Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Bench press from pins.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "Board press cousin"
+  ]
+ },
+ {
+  "id": "ex-board-press",
+  "name": "Board Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "Partial-ROM bench with boards.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-floor-db-press",
+  "name": "Dumbbell Floor Press",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest",
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dumbbell floor press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": [
+   "DB floor press"
+  ]
+ },
+ {
+  "id": "ex-seated-cable-fly",
+  "name": "Seated Cable Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Chest"
+  ],
+  "equipment": [
+   "Cable"
+  ],
+  "description": "Seated cable fly on bench or machine seat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 90,
+  "aliases": []
+ },
+ {
+  "id": "ex-kb-front-squat",
+  "name": "Kettlebell Front Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Core"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "Rack kettlebell front squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "KB front squat",
+   "Double KB front squat"
+  ]
+ },
+ {
+  "id": "ex-kb-rdl",
+  "name": "Kettlebell RDL",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "KB Romanian deadlift.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "KB Romanian deadlift"
+  ]
+ },
+ {
+  "id": "ex-kb-halo",
+  "name": "Kettlebell Halo",
+  "theme": "Mobility",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Core"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "KB halo around the head.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "KB halo"
+  ]
+ },
+ {
+  "id": "ex-kb-deadlift",
+  "name": "Kettlebell Deadlift",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes",
+   "Back"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "Sumo or conventional KB deadlift.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "KB DL"
+  ]
+ },
+ {
+  "id": "ex-kb-high-pull",
+  "name": "Kettlebell High Pull",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Full Body"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "KB high pull.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": []
+ },
+ {
+  "id": "ex-kb-thruster",
+  "name": "Kettlebell Thruster",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Kettlebell"
+  ],
+  "description": "KB front squat to press.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "KB thruster"
+  ]
+ },
+ {
+  "id": "ex-db-thruster",
+  "name": "Dumbbell Thruster",
+  "theme": "Power",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dumbbell thruster.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "DB thruster"
+  ]
+ },
+ {
+  "id": "ex-db-rdl",
+  "name": "Dumbbell RDL",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hamstrings",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Dumbbell Romanian deadlift.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "DB Romanian deadlift"
+  ]
+ },
+ {
+  "id": "ex-db-stepup",
+  "name": "Dumbbell Step-Up",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Box"
+  ],
+  "description": "DB step-up.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": []
+ },
+ {
+  "id": "ex-db-bulgarian",
+  "name": "Dumbbell Bulgarian Split Squat",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "DB rear-foot elevated split squat.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "DB BSS"
+  ]
+ },
+ {
+  "id": "ex-db-row-bench",
+  "name": "Chest-Supported Dumbbell Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Incline chest-supported DB row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Incline DB row"
+  ]
+ },
+ {
+  "id": "ex-db-seal-row",
+  "name": "Seal Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back"
+  ],
+  "equipment": [
+   "Barbell",
+   "Dumbbell"
+  ],
+  "description": "Prone seal row on elevated bench.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Prone bench row"
+  ]
+ },
+ {
+  "id": "ex-renegade-row",
+  "name": "Renegade Row",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Back",
+   "Core",
+   "Arms"
+  ],
+  "equipment": [
+   "Dumbbell"
+  ],
+  "description": "Plank renegade row.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "8",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Plank row"
+  ]
+ },
+ {
+  "id": "ex-run-100m",
+  "name": "100 m Sprint",
+  "theme": "Power",
+  "sports": [
+   "Running",
+   "AFL",
+   "Rugby",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Standing or flying 100 m time trial — log best time to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "100m TT",
+  "defaultRestSec": 300,
+  "aliases": [
+   "100m",
+   "100 metre",
+   "100 meter"
+  ]
+ },
+ {
+  "id": "ex-run-400m",
+  "name": "400 m Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "AFL",
+   "General Athletic",
+   "CrossFit"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "400 m all-out or race pace. Log best time to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "400m TT",
+  "defaultRestSec": 600,
+  "aliases": [
+   "400m",
+   "400 metre"
+  ]
+ },
+ {
+  "id": "ex-run-800m",
+  "name": "800 m Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "800 m time trial. Log to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "800m TT",
+  "defaultRestSec": 0,
+  "aliases": [
+   "800m",
+   "800 metre"
+  ]
+ },
+ {
+  "id": "ex-run-1k",
+  "name": "1 km Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "1000 m run PR. Log to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "1km TT",
+  "defaultRestSec": 0,
+  "aliases": [
+   "1k",
+   "1000m",
+   "1 kilometre"
+  ]
+ },
+ {
+  "id": "ex-run-mile",
+  "name": "1 Mile Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "General Athletic",
+   "CrossFit"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Statute mile (~1609 m) time trial. Log to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "1 mile TT",
+  "defaultRestSec": 0,
+  "aliases": [
+   "mile",
+   "1600m",
+   "1 mile run"
+  ]
+ },
+ {
+  "id": "ex-run-2k",
+  "name": "2 km Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "2000 m run PR. Log to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "2km TT",
+  "defaultRestSec": 0,
+  "aliases": [
+   "2k",
+   "2000m"
+  ]
+ },
+ {
+  "id": "ex-run-5k",
+  "name": "5 km Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "Running",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Calves"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "5 km road or track PR. Log to Maxes → Running.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "5km TT",
+  "defaultRestSec": 0,
+  "aliases": [
+   "5k",
+   "5000m",
+   "5 kilometre"
+  ]
+ },
+ {
+  "id": "ex-wod-fran",
+  "name": "Fran",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Quads",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Barbell",
+   "Pull-up Bar"
+  ],
+  "description": "21-15-9 thrusters (43/29 kg) and pull-ups for time. Log RX time to Maxes → Benchmarks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "for time",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Fran WOD",
+   "21-15-9 Fran"
+  ]
+ },
+ {
+  "id": "ex-wod-cindy",
+  "name": "Cindy",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Back",
+   "Chest"
+  ],
+  "equipment": [
+   "Pull-up Bar",
+   "Bodyweight"
+  ],
+  "description": "AMRAP 20 min: 5 pull-ups, 10 push-ups, 15 air squats. Log rounds+reps to Maxes → Benchmarks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "AMRAP 20",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Cindy AMRAP",
+   "Cindy WOD"
+  ]
+ },
+ {
+  "id": "ex-wod-murph",
+  "name": "Murph",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body"
+  ],
+  "equipment": [
+   "Pull-up Bar",
+   "Bodyweight",
+   "None"
+  ],
+  "description": "1 mile run, 100 pull-ups, 200 push-ups, 300 air squats, 1 mile run (20 lb vest optional). Log total time to Maxes → Benchmarks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "for time",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Murph WOD",
+   "Hero Murph"
+  ]
+ },
+ {
+  "id": "ex-wod-helen",
+  "name": "Helen",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Hamstrings",
+   "Back"
+  ],
+  "equipment": [
+   "Kettlebell",
+   "Pull-up Bar",
+   "None"
+  ],
+  "description": "3 rounds for time: 400 m run, 21 KB swings (24/16 kg), 12 pull-ups. Log time to Maxes → Benchmarks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "for time",
+  "defaultRestSec": 0,
+  "aliases": [
+   "Helen WOD"
+  ]
+ },
+ {
+  "id": "ex-wod-dt",
+  "name": "DT",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Back",
+   "Shoulders"
+  ],
+  "equipment": [
+   "Barbell"
+  ],
+  "description": "5 rounds for time: 12 deadlifts, 9 hang power cleans, 6 shoulder-to-overhead (70/48 kg). Log time to Maxes → Benchmarks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "for time",
+  "defaultRestSec": 0,
+  "aliases": [
+   "DT WOD",
+   "Hero DT"
+  ]
+ },
+ {
+  "id": "ex-row-2k-tt",
+  "name": "Row 2k Time Trial",
+  "theme": "Endurance",
+  "sports": [
+   "CrossFit",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Full Body",
+   "Back"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "2000 m row all-out. Log time to Maxes → Benchmarks.",
+  "cues": [
+   "Control the tempo",
+   "Use full useful ROM",
+   "Stop before form breaks"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 1,
+  "defaultReps": "2000m TT",
+  "defaultRestSec": 0,
+  "aliases": [
+   "2k row",
+   "2000m row",
+   "Row 2k"
+  ]
+ },
+ {
+  "id": "ex-neck-flexion",
+  "name": "Plate Neck Flexion",
+  "theme": "Strength",
+  "sports": [
+   "Rugby",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Neck"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Supine on a bench, head off the end, light plate on a towel on the forehead; nod chin to chest. Prehab for collision sports.",
+  "cues": [
+   "Start very light",
+   "Slow 2-up / 3-down",
+   "Chin tucks first, then curl"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "15",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Neck curl",
+   "Lying neck flexion"
+  ]
+ },
+ {
+  "id": "ex-neck-extension",
+  "name": "Prone Neck Extension",
+  "theme": "Strength",
+  "sports": [
+   "Rugby",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Neck"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Prone on a bench, head off the end, light plate / harness behind the head; extend to neutral, no further.",
+  "cues": [
+   "Neutral is the top",
+   "No jerking",
+   "Light load, high reps"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "15",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Plate neck extension",
+   "Bench neck extension"
+  ]
+ },
+ {
+  "id": "ex-neck-iso",
+  "name": "Manual Neck Isometrics",
+  "theme": "Strength",
+  "sports": [
+   "Rugby",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Neck"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Hand on forehead / back / side of head; push into the hand and hold without moving. Front, back, left, right.",
+  "cues": [
+   "Build to ~50% effort",
+   "Breathe through the hold",
+   "Keep the head still"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "15s",
+  "defaultRestSec": 30,
+  "aliases": [
+   "4-way neck hold",
+   "Neck isometric"
+  ]
+ },
+ {
+  "id": "ex-band-neck-lateral",
+  "name": "Band Neck Lateral Flexion",
+  "theme": "Strength",
+  "sports": [
+   "Rugby",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Neck"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Band anchored at head height around the side of the head; tilt ear toward shoulder against the band.",
+  "cues": [
+   "Small range",
+   "Shoulders level",
+   "Both sides equally"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "12/side",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Banded neck side bend"
+  ]
+ },
+ {
+  "id": "ex-heel-walk",
+  "name": "Heel Walk",
+  "theme": "Mobility",
+  "sports": [
+   "Running",
+   "Basketball",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Walk on heels with toes pulled up — tibialis anterior endurance for shin-splint resilience.",
+  "cues": [
+   "Toes high",
+   "Short steps",
+   "Tall posture"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "20m",
+  "defaultRestSec": 30,
+  "aliases": [
+   "Heel walks",
+   "Tib walk"
+  ]
+ },
+ {
+  "id": "ex-band-dorsiflexion",
+  "name": "Banded Ankle Dorsiflexion",
+  "theme": "Strength",
+  "sports": [
+   "Running",
+   "Basketball",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Seated, band anchored in front around the top of the foot; pull toes toward the shin.",
+  "cues": [
+   "Full range",
+   "Pause at the top",
+   "Slow return"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "15/side",
+  "defaultRestSec": 30,
+  "aliases": [
+   "Band tib raise",
+   "Seated dorsiflexion"
+  ]
+ },
+ {
+  "id": "ex-db-sumo-squat",
+  "name": "Dumbbell Sumo Squat",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip",
+   "Quads",
+   "Glutes"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Kettlebell"
+  ],
+  "description": "Wide stance, toes out, single dumbbell held between the legs — adductor-biased squat.",
+  "cues": [
+   "Knees out over toes",
+   "Sit straight down",
+   "Squeeze inner thighs up"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 75,
+  "aliases": [
+   "Plie squat",
+   "Goblet sumo squat",
+   "Wide-stance DB squat"
+  ]
+ },
+ {
+  "id": "ex-side-lying-adduction",
+  "name": "Side-Lying Adductor Raise",
+  "theme": "Strength",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Hip"
+  ],
+  "equipment": [
+   "Bodyweight"
+  ],
+  "description": "Lie on your side, top leg crossed in front; raise the bottom leg with the inner thigh.",
+  "cues": [
+   "Bottom leg straight",
+   "Lift from the inner thigh",
+   "Hips stacked"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "15/side",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Side-lying adduction",
+   "Inner thigh raise"
+  ]
+ },
+ {
+  "id": "ex-rear-delt-row",
+  "name": "Rear Delt Row",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders",
+   "Back"
+  ],
+  "equipment": [
+   "Dumbbell",
+   "Cable"
+  ],
+  "description": "Chest-supported or bent-over row with elbows flared ~70°, pulling toward the upper chest.",
+  "cues": [
+   "Elbows wide",
+   "Lead with the elbows",
+   "Pause, squeeze rear delts"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Wide-elbow row",
+   "Rear delt DB row"
+  ]
+ },
+ {
+  "id": "ex-neck-harness-ext",
+  "name": "Neck Harness Extension",
+  "theme": "Strength",
+  "sports": [
+   "Rugby",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Neck"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated or standing hinged slightly forward, light plate on a head harness; extend the neck from a slight nod back to neutral.",
+  "cues": [
+   "Start with 2.5–5 kg",
+   "Move only the neck, not the torso",
+   "Stop at neutral, never crank back"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 2,
+  "defaultReps": "15",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Head harness extension",
+   "Neck harness"
+  ]
+ },
+ {
+  "id": "ex-chin-tuck",
+  "name": "Chin Tuck Hold",
+  "theme": "Mobility",
+  "sports": [
+   "Rugby",
+   "AFL",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Neck"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Lying on your back, nod the chin and lift the head a finger-width off the floor; hold. Trains the deep neck flexors.",
+  "cues": [
+   "Nod first, then lift",
+   "Tongue on the roof of the mouth",
+   "Stop if the chin pokes forward"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "20s",
+  "defaultRestSec": 30,
+  "aliases": [
+   "Deep neck flexor hold",
+   "Supine chin tuck"
+  ]
+ },
+ {
+  "id": "ex-tib-bar-raise",
+  "name": "Tib Bar Raise",
+  "theme": "Strength",
+  "sports": [
+   "Running",
+   "Basketball",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle"
+  ],
+  "equipment": [
+   "Machine"
+  ],
+  "description": "Seated on a box with a tib bar (or loaded strap) over the forefoot; pull the toes up toward the shins, lower slowly.",
+  "cues": [
+   "Heel stays down",
+   "Full range up",
+   "3 s lowering"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12",
+  "defaultRestSec": 60,
+  "aliases": [
+   "Tib bar",
+   "Loaded tibialis raise"
+  ]
+ },
+ {
+  "id": "ex-seated-kb-tib-raise",
+  "name": "Seated Kettlebell Tib Raise",
+  "theme": "Strength",
+  "sports": [
+   "Running",
+   "Basketball",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle"
+  ],
+  "equipment": [
+   "Kettlebell",
+   "Dumbbell"
+  ],
+  "description": "Sit on a bench edge, kettlebell handle (or plate) hooked over the toes of one foot; raise the toes, lower under control.",
+  "cues": [
+   "Hook the load securely",
+   "Only the ankle moves",
+   "Slow on the way down"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "12/side",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Seated plate tib raise",
+   "KB toe raise"
+  ]
+ },
+ {
+  "id": "ex-tib-iso-hold",
+  "name": "Wall Tib Iso Hold",
+  "theme": "Strength",
+  "sports": [
+   "Running",
+   "Basketball",
+   "General Athletic"
+  ],
+  "muscles": [
+   "Ankle"
+  ],
+  "equipment": [
+   "None"
+  ],
+  "description": "Back against a wall, feet out in front; pull the toes up as high as possible and hold.",
+  "cues": [
+   "Lean into the wall",
+   "Toes to the sky",
+   "Breathe, keep the hold steady"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "30s",
+  "defaultRestSec": 30,
+  "aliases": [
+   "Anterior shin wall hold",
+   "Dorsiflexion iso"
+  ]
+ },
+ {
+  "id": "ex-band-rear-delt-fly",
+  "name": "Band Rear Delt Fly",
+  "theme": "Hypertrophy",
+  "sports": [
+   "General Athletic"
+  ],
+  "muscles": [
+   "Shoulders"
+  ],
+  "equipment": [
+   "Band"
+  ],
+  "description": "Band anchored at chest height; straight-arm reverse fly to a T.",
+  "cues": [
+   "Soft elbows",
+   "Shoulders down",
+   "Slow return"
+  ],
+  "source": "curated / peer-informed",
+  "defaultSets": 3,
+  "defaultReps": "15",
+  "defaultRestSec": 45,
+  "aliases": [
+   "Band reverse fly"
+  ]
+ }
+]

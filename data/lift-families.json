@@ -1,0 +1,201 @@
+[
+ {
+  "id": "back_squat",
+  "name": "Back Squat",
+  "primaryExerciseId": "ex-bsquat",
+  "members": [
+   "ex-bsquat",
+   "ex-pause-bsquat"
+  ]
+ },
+ {
+  "id": "front_squat",
+  "name": "Front Squat",
+  "primaryExerciseId": "ex-fsquat",
+  "members": [
+   "ex-fsquat"
+  ]
+ },
+ {
+  "id": "oh_squat",
+  "name": "Overhead Squat",
+  "primaryExerciseId": "ex-ohsquat",
+  "members": [
+   "ex-ohsquat"
+  ]
+ },
+ {
+  "id": "goblet_squat",
+  "name": "Goblet Squat",
+  "primaryExerciseId": "ex-goblet",
+  "members": [
+   "ex-goblet"
+  ]
+ },
+ {
+  "id": "conventional_dl",
+  "name": "Conventional Deadlift",
+  "primaryExerciseId": "ex-dl",
+  "members": [
+   "ex-dl",
+   "ex-pause-dl"
+  ]
+ },
+ {
+  "id": "rdl",
+  "name": "Romanian Deadlift",
+  "primaryExerciseId": "ex-rdl",
+  "members": [
+   "ex-rdl"
+  ]
+ },
+ {
+  "id": "sumo_dl",
+  "name": "Sumo Deadlift",
+  "primaryExerciseId": "ex-sumo-dl",
+  "members": [
+   "ex-sumo-dl"
+  ]
+ },
+ {
+  "id": "trap_bar_dl",
+  "name": "Trap Bar Deadlift",
+  "primaryExerciseId": "ex-trapbar",
+  "members": [
+   "ex-trapbar"
+  ]
+ },
+ {
+  "id": "bench",
+  "name": "Bench Press",
+  "primaryExerciseId": "ex-bp",
+  "members": [
+   "ex-bp"
+  ]
+ },
+ {
+  "id": "cg_bench",
+  "name": "Close-Grip Bench",
+  "primaryExerciseId": "ex-cgbp",
+  "members": [
+   "ex-cgbp"
+  ]
+ },
+ {
+  "id": "incline_bb_bench",
+  "name": "Incline Barbell Bench",
+  "primaryExerciseId": "ex-incline-bb-press",
+  "members": [
+   "ex-incline-bb-press"
+  ]
+ },
+ {
+  "id": "db_bench",
+  "name": "Dumbbell Bench Press",
+  "primaryExerciseId": "ex-dbpress",
+  "members": [
+   "ex-dbpress"
+  ]
+ },
+ {
+  "id": "ohp",
+  "name": "Overhead Press",
+  "primaryExerciseId": "ex-ohp",
+  "members": [
+   "ex-ohp",
+   "ex-strict-shoulder",
+   "ex-bb-shoulder-press"
+  ]
+ },
+ {
+  "id": "push_press",
+  "name": "Push Press",
+  "primaryExerciseId": "ex-pushpress",
+  "members": [
+   "ex-pushpress"
+  ]
+ },
+ {
+  "id": "power_clean",
+  "name": "Power Clean",
+  "primaryExerciseId": "ex-pclean",
+  "members": [
+   "ex-pclean",
+   "ex-cleanpull"
+  ]
+ },
+ {
+  "id": "hang_clean",
+  "name": "Hang Clean",
+  "primaryExerciseId": "ex-hangclean",
+  "members": [
+   "ex-hangclean"
+  ]
+ },
+ {
+  "id": "clean_jerk",
+  "name": "Clean & Jerk",
+  "primaryExerciseId": "ex-cleanjerk",
+  "members": [
+   "ex-cleanjerk"
+  ]
+ },
+ {
+  "id": "power_snatch",
+  "name": "Power Snatch",
+  "primaryExerciseId": "ex-powersnatch",
+  "members": [
+   "ex-powersnatch",
+   "ex-psnatch",
+   "ex-snatchpull"
+  ]
+ },
+ {
+  "id": "hang_snatch",
+  "name": "Hang Snatch",
+  "primaryExerciseId": "ex-hangsnatch",
+  "members": [
+   "ex-hangsnatch"
+  ]
+ },
+ {
+  "id": "pullup",
+  "name": "Pull-Up",
+  "primaryExerciseId": "ex-pullup",
+  "members": [
+   "ex-pullup"
+  ]
+ },
+ {
+  "id": "chinup",
+  "name": "Chin-Up",
+  "primaryExerciseId": "ex-chinup",
+  "members": [
+   "ex-chinup"
+  ]
+ },
+ {
+  "id": "bb_row",
+  "name": "Barbell Row",
+  "primaryExerciseId": "ex-row",
+  "members": [
+   "ex-row"
+  ]
+ },
+ {
+  "id": "hip_thrust",
+  "name": "Hip Thrust",
+  "primaryExerciseId": "ex-hipthrust",
+  "members": [
+   "ex-hipthrust"
+  ]
+ },
+ {
+  "id": "leg_press",
+  "name": "Leg Press",
+  "primaryExerciseId": "ex-legpress",
+  "members": [
+   "ex-legpress"
+  ]
+ }
+]

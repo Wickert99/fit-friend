@@ -1,0 +1,30 @@
+{
+ "push": [
+  "chest",
+  "front_delts",
+  "side_delts",
+  "triceps"
+ ],
+ "pull": [
+  "lats",
+  "mid_back",
+  "rear_delts",
+  "upper_traps",
+  "biceps",
+  "forearms"
+ ],
+ "legs": [
+  "quads",
+  "hamstrings",
+  "glutes",
+  "adductors",
+  "abductors",
+  "calves"
+ ],
+ "core": [
+  "abs",
+  "obliques",
+  "lower_back",
+  "hip_flexors"
+ ]
+}

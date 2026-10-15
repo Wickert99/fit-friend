@@ -1,0 +1,995 @@
+{
+ "id": "prog-1rm-testing",
+ "name": "1RM / Max Testing",
+ "description": "Baseline block to establish strength 1RMs (squat / hinge / press / pull families), optional run time-trial PRs (100 m → 5 km), and classic benchmark WODs (Fran, Cindy, Murph…). Warm-up ladders and attempt rules only — no hypertrophy accessories. Log results under Maxes → Strength / Running / Benchmarks. Curated / peer-informed — not a competition meet protocol.",
+ "theme": "Strength",
+ "sports": [
+  "General Athletic",
+  "Rugby",
+  "CrossFit"
+ ],
+ "weeks": 1,
+ "isTemplate": true,
+ "isMine": false,
+ "createdAt": "2026-09-30T00:00:00.000Z",
+ "adaptations": [
+  "testing",
+  "baseline"
+ ],
+ "audience": "Anyone starting a strength block without current 1RMs, re-baselining mid-season, or filling gaps across squat / hinge / press / pull families",
+ "coachNotes": "Strength days: warm-up ladder (≈40×5 → 60×3 → 75×2 → 85×1 → 92×1 → 97×1 → 100×1). Full 3–5 min rest above 90%. Miss or form break = end that lift. Optional secondary maxes use a shorter ladder — skip if the primary was grinding. Run / benchmark days are optional — pick one primary test per session. Log under Workout → Maxes (Strength · Running · Benchmarks tabs). Every set stays editable after import.",
+ "days": [
+  {
+   "id": "pd-1rm-squat",
+   "name": "Day 1 — Squats",
+   "weekday": 1,
+   "focus": "Testing",
+   "sessionPad": "Establishes: Back Squat 1RM (primary) · Front Squat 1RM (optional secondary). Skip front squat if back-squat top single was a grinder. Warm-up only — no accessory volume.",
+   "exercises": [
+    {
+     "exerciseId": "ex-worldsgreatest",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "5/side",
+     "restSec": 0,
+     "notes": "Prep hips + T-spine before loading"
+    },
+    {
+     "exerciseId": "ex-bsquat",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 210,
+     "targetPercent1RM": 100,
+     "notes": "Back squat 1RM — full ladder. Brace hard, controlled eccentric. Spotter / safety pins near top singles. Log to Maxes.",
+     "schemes": [
+      {
+       "id": "sch-bsq-40",
+       "sets": 1,
+       "reps": "5",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-bsq-60",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-bsq-75",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-bsq-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-bsq-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-bsq-97",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 97
+      },
+      {
+       "id": "sch-bsq-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 240,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-fsquat",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL secondary: front squat 1RM — shorter ladder. Conservative opener. Elbows high. Skip if fatigued.",
+     "schemes": [
+      {
+       "id": "sch-fsq-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-fsq-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-fsq-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-fsq-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-fsq-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-fsq-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-bench-row",
+   "name": "Day 2 — Bench + Row",
+   "weekday": 2,
+   "focus": "Testing",
+   "sessionPad": "Establishes: Bench Press 1RM (primary) · Barbell Row 1RM (optional secondary). Row is antagonistic — take it only if bench left you fresh enough.",
+   "exercises": [
+    {
+     "exerciseId": "ex-tspine",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "8/side",
+     "restSec": 0,
+     "notes": "Open T-spine before pressing"
+    },
+    {
+     "exerciseId": "ex-bp",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 210,
+     "targetPercent1RM": 100,
+     "notes": "Bench 1RM — full ladder. Spotter recommended near top singles. Touch-and-press, feet planted. Log to Maxes.",
+     "schemes": [
+      {
+       "id": "sch-bp-40",
+       "sets": 1,
+       "reps": "5",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-bp-60",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-bp-75",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-bp-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-bp-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-bp-97",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 97
+      },
+      {
+       "id": "sch-bp-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 240,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-row",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL secondary: barbell bent-over row 1RM — shorter ladder. Strict torso; no bounce. Log best clean single.",
+     "schemes": [
+      {
+       "id": "sch-row-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-row-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-row-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-row-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-row-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-row-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-deadlift",
+   "name": "Day 3 — Deadlift",
+   "weekday": 3,
+   "focus": "Testing",
+   "sessionPad": "Establishes: Conventional Deadlift 1RM only. One heavy hinge today — do not stack trap-bar the same session. Longer rest above 90%.",
+   "exercises": [
+    {
+     "exerciseId": "ex-catcow",
+     "setType": "reps_load",
+     "sets": 2,
+     "reps": "10",
+     "restSec": 0,
+     "notes": "Wake up the spine — no load"
+    },
+    {
+     "exerciseId": "ex-dl",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 210,
+     "targetPercent1RM": 100,
+     "notes": "Conventional deadlift 1RM — full ladder. Reset each single (no bounce). Prefer competition stance. Log best clean single to Maxes.",
+     "schemes": [
+      {
+       "id": "sch-dl-40",
+       "sets": 1,
+       "reps": "5",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-dl-60",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-dl-75",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-dl-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-dl-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-dl-97",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 97
+      },
+      {
+       "id": "sch-dl-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 240,
+       "targetPercent1RM": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-press-pull",
+   "name": "Day 4 — Strict Press + Pull-Up",
+   "weekday": 4,
+   "focus": "Testing",
+   "sessionPad": "Establishes: Strict Overhead Press 1RM · Weighted Pull-Up or Chin-Up 1RM. Strict press only (no leg drive). For pull-ups: add belt/DB load once bodyweight singles are easy; log total external load + BW context in notes.",
+   "exercises": [
+    {
+     "exerciseId": "ex-tspine",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "6/side",
+     "restSec": 0,
+     "notes": "Light scap + T-spine prep"
+    },
+    {
+     "exerciseId": "ex-ohp",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 210,
+     "targetPercent1RM": 100,
+     "notes": "Strict press 1RM (no push-press / no leg drive). Full ladder. Glutes squeezed, lockout tall. Shorter ladder OK if shoulders taxed.",
+     "schemes": [
+      {
+       "id": "sch-ohp-40",
+       "sets": 1,
+       "reps": "5",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-ohp-60",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-ohp-75",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-ohp-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-ohp-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-ohp-97",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 97
+      },
+      {
+       "id": "sch-ohp-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 240,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-pullup",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "Weighted pull-up 1RM — shorter ladder on added load (or work up in kg on belt/DB). Full hang, chest to bar. If BW AMRAP <5, establish a hard bodyweight single / max-reps baseline instead. Log to Maxes.",
+     "schemes": [
+      {
+       "id": "sch-wpu-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-wpu-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-wpu-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-wpu-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-wpu-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-wpu-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-chinup",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL alternate grip: weighted chin-up 1RM. Pick pull-up OR chin — not both at true max. Skip if pull-up already emptied you.",
+     "schemes": [
+      {
+       "id": "sch-wchin-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-wchin-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-wchin-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-wchin-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-wchin-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-wchin-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-trap-hip",
+   "name": "Day 5 — Trap Bar + Hip Thrust",
+   "weekday": 5,
+   "focus": "Testing",
+   "sessionPad": "Establishes: Trap Bar Deadlift 1RM (primary) · Hip Thrust 1RM (optional secondary). Trap bar is a separate family from conventional — useful athletic baseline. Skip if still sore from Day 3.",
+   "exercises": [
+    {
+     "exerciseId": "ex-hipsircle",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "8/side",
+     "restSec": 0,
+     "notes": "Open hips before hinge / thrust"
+    },
+    {
+     "exerciseId": "ex-trapbar",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 210,
+     "targetPercent1RM": 100,
+     "notes": "Trap-bar deadlift 1RM — full ladder. High or low handles — note which in Maxes notes. Drive floor away; lockout tall.",
+     "schemes": [
+      {
+       "id": "sch-tbar-40",
+       "sets": 1,
+       "reps": "5",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-tbar-60",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-tbar-75",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-tbar-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-tbar-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-tbar-97",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 97
+      },
+      {
+       "id": "sch-tbar-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 240,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-hipthrust",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL secondary: barbell hip thrust 1RM — shorter ladder. Pause at top, posterior tilt. Pad the bar. Skip if trap-bar took everything.",
+     "schemes": [
+      {
+       "id": "sch-ht-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-ht-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-ht-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-ht-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-ht-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-ht-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-variants",
+   "name": "Day 6 — Bench variants + Clean (optional)",
+   "weekday": 6,
+   "focus": "Testing",
+   "sessionPad": "Establishes (pick what you need): Incline BB Bench and/or Close-Grip Bench · optional Power Clean. Fully optional day — skip any lift you do not program. Technique quality over absolute load on the clean.",
+   "exercises": [
+    {
+     "exerciseId": "ex-tspine",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "6/side",
+     "restSec": 0,
+     "notes": "Light prep — optional day"
+    },
+    {
+     "exerciseId": "ex-incline-bb-press",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL: incline barbell bench 1RM — shorter ladder. Separate family from flat bench. Spotter recommended.",
+     "schemes": [
+      {
+       "id": "sch-ibp-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-ibp-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-ibp-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-ibp-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-ibp-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-ibp-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-cgbp",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL: close-grip bench 1RM — shorter ladder. Pick incline OR close-grip as the hard single if both feel fresh; do not redline both.",
+     "schemes": [
+      {
+       "id": "sch-cgbp-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-cgbp-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-cgbp-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-cgbp-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-cgbp-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-cgbp-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    },
+    {
+     "exerciseId": "ex-pclean",
+     "setType": "reps_load",
+     "sets": 1,
+     "reps": "1",
+     "restSec": 180,
+     "targetPercent1RM": 100,
+     "notes": "OPTIONAL: power clean 1RM — shorter ladder. Receive quality over load; a heavy single with a poor catch does not count. Skip if you do not pull from the floor.",
+     "schemes": [
+      {
+       "id": "sch-pc-40",
+       "sets": 1,
+       "reps": "3",
+       "restSec": 90,
+       "targetPercent1RM": 40
+      },
+      {
+       "id": "sch-pc-60",
+       "sets": 1,
+       "reps": "2",
+       "restSec": 120,
+       "targetPercent1RM": 60
+      },
+      {
+       "id": "sch-pc-75",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 150,
+       "targetPercent1RM": 75
+      },
+      {
+       "id": "sch-pc-85",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 85
+      },
+      {
+       "id": "sch-pc-92",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 180,
+       "targetPercent1RM": 92
+      },
+      {
+       "id": "sch-pc-100",
+       "sets": 1,
+       "reps": "1",
+       "restSec": 210,
+       "targetPercent1RM": 100
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-run",
+   "name": "Optional — Run PR",
+   "weekday": -1,
+   "focus": "Testing",
+   "sessionPad": "Establishes: one running distance PR (pick primary). Do not stack a hard 5k with a true 400 m max the same day. Warm up thoroughly; log time under Maxes → Running.",
+   "exercises": [
+    {
+     "exerciseId": "ex-hipsircle",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "8/side",
+     "restSec": 0,
+     "notes": "Easy mobility before strides"
+    },
+    {
+     "exerciseId": "ex-buildup",
+     "setType": "reps_load",
+     "sets": 3,
+     "reps": "60-80m",
+     "restSec": 90,
+     "notes": "Build-up strides only — technique, not a sprint PR"
+    },
+    {
+     "exerciseId": "ex-run-100m",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "100m TT",
+     "distanceM": 100,
+     "restSec": 300,
+     "notes": "OPTIONAL primary: 100 m TT. Full recovery. Log best time → Maxes → Running."
+    },
+    {
+     "exerciseId": "ex-run-400m",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "400m TT",
+     "distanceM": 400,
+     "restSec": 600,
+     "notes": "OPTIONAL alternate primary: 400 m. Skip if you already ran 100 m all-out."
+    },
+    {
+     "exerciseId": "ex-run-1k",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "1km TT",
+     "distanceM": 1000,
+     "restSec": 0,
+     "notes": "OPTIONAL endurance PR: 1 km. Prefer this OR mile/2k/5k — one hard distance effort."
+    },
+    {
+     "exerciseId": "ex-run-mile",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "1 mile TT",
+     "distanceM": 1609,
+     "restSec": 0,
+     "notes": "OPTIONAL: 1 mile TT. Log → Maxes → Running."
+    },
+    {
+     "exerciseId": "ex-run-2k",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "2km TT",
+     "distanceM": 2000,
+     "restSec": 0,
+     "notes": "OPTIONAL: 2 km TT."
+    },
+    {
+     "exerciseId": "ex-run-5k",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "5km TT",
+     "distanceM": 5000,
+     "restSec": 0,
+     "notes": "OPTIONAL: 5 km TT. Fresh legs only — not after another hard PR today."
+    }
+   ]
+  },
+  {
+   "id": "pd-1rm-benchmark",
+   "name": "Optional — Benchmark WOD",
+   "weekday": -1,
+   "focus": "Testing",
+   "sessionPad": "Establishes: one classic benchmark (Fran / Cindy / Murph / Helen / DT / Row 2k). Pick a single test — do not redline two WODs. Log under Maxes → Benchmarks.",
+   "exercises": [
+    {
+     "exerciseId": "ex-tspine",
+     "setType": "each_side",
+     "sets": 2,
+     "reps": "6/side",
+     "restSec": 0,
+     "notes": "Light prep — then one benchmark only"
+    },
+    {
+     "exerciseId": "ex-wod-fran",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "for time",
+     "restSec": 0,
+     "notes": "OPTIONAL: Fran 21-15-9 thrusters + pull-ups. RX or note scaled loads. Log time → Maxes → Benchmarks."
+    },
+    {
+     "exerciseId": "ex-wod-cindy",
+     "setType": "amrap",
+     "sets": 1,
+     "reps": "AMRAP 20",
+     "restSec": 0,
+     "timeCapSec": 1200,
+     "notes": "OPTIONAL alternate: Cindy AMRAP 20. Log rounds+reps → Maxes → Benchmarks."
+    },
+    {
+     "exerciseId": "ex-wod-helen",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "for time",
+     "restSec": 0,
+     "notes": "OPTIONAL: Helen 3 RFT. Skip if Fran/Cindy already done."
+    },
+    {
+     "exerciseId": "ex-row-2k-tt",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "2000m TT",
+     "restSec": 0,
+     "distanceM": 2000,
+     "notes": "OPTIONAL engine: Row 2k TT. Log time → Maxes → Benchmarks."
+    },
+    {
+     "exerciseId": "ex-wod-murph",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "for time",
+     "restSec": 0,
+     "notes": "OPTIONAL hero: Murph. Partitioning OK — note vest / partition in Maxes notes."
+    },
+    {
+     "exerciseId": "ex-wod-dt",
+     "setType": "for_time",
+     "sets": 1,
+     "reps": "for time",
+     "restSec": 0,
+     "notes": "OPTIONAL: DT 5 RFT. Barbell cycling quality over ego load."
+    }
+   ]
+  }
+ ]
+}

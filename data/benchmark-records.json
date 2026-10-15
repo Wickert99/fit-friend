@@ -1,0 +1,69 @@
+[
+ {
+  "id": "wod_fran",
+  "name": "Fran",
+  "kind": "benchmark",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-wod-fran",
+  "members": [
+   "ex-wod-fran"
+  ],
+  "blurb": "21-15-9 thrusters (43/29 kg) + pull-ups · RX time"
+ },
+ {
+  "id": "wod_cindy",
+  "name": "Cindy",
+  "kind": "benchmark",
+  "scoreType": "amrap",
+  "primaryExerciseId": "ex-wod-cindy",
+  "members": [
+   "ex-wod-cindy"
+  ],
+  "blurb": "AMRAP 20: 5 pull-ups · 10 push-ups · 15 air squats"
+ },
+ {
+  "id": "wod_murph",
+  "name": "Murph",
+  "kind": "benchmark",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-wod-murph",
+  "members": [
+   "ex-wod-murph"
+  ],
+  "blurb": "1 mi · 100 PU · 200 push-ups · 300 squats · 1 mi (vest optional)"
+ },
+ {
+  "id": "wod_helen",
+  "name": "Helen",
+  "kind": "benchmark",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-wod-helen",
+  "members": [
+   "ex-wod-helen"
+  ],
+  "blurb": "3 RFT: 400 m run · 21 KB swing · 12 pull-ups"
+ },
+ {
+  "id": "row_2k",
+  "name": "Row 2k",
+  "kind": "benchmark",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-row-2k-tt",
+  "members": [
+   "ex-row-2k-tt",
+   "ex-row2k"
+  ],
+  "blurb": "2000 m row time trial"
+ },
+ {
+  "id": "wod_dt",
+  "name": "DT",
+  "kind": "benchmark",
+  "scoreType": "time",
+  "primaryExerciseId": "ex-wod-dt",
+  "members": [
+   "ex-wod-dt"
+  ],
+  "blurb": "5 RFT: 12 DL · 9 HPC · 6 SJ (70/48 kg)"
+ }
+]

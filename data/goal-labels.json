@@ -1,0 +1,13 @@
+{
+ "strength": "Strength",
+ "hypertrophy": "Hypertrophy",
+ "power": "Power",
+ "aerobic_capacity": "Aerobic capacity",
+ "speed": "Speed",
+ "mobility": "Mobility",
+ "work_capacity": "Work capacity",
+ "injury_resilience": "Injury resilience",
+ "skill": "Skill",
+ "testing": "Testing",
+ "baseline": "Baseline"
+}
