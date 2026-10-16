@@ -160,7 +160,7 @@ export function DayEditor() {
   const canStart = !!draft && (draft.exercises.length > 0 || !!draft.sessionPad?.trim())
 
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-col gap-4 px-4 pt-4 pb-nav" data-day-editor>
+    <div className="mx-auto flex w-full max-w-lg min-w-0 flex-col gap-4 px-4 pt-5 pb-nav" data-day-editor>
       <ScreenHeader
         title={dateLabel}
         subtitle="My day"

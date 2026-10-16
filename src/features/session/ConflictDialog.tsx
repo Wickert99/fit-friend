@@ -12,8 +12,8 @@ export function ConflictDialog({
   onCancel: () => void
 }) {
   return (
-    <div className="fixed inset-0 z-[70] flex items-end justify-center bg-ink/40 p-4 sm:items-center" role="dialog" aria-modal="true" aria-labelledby="conflict-title">
-      <div className="w-full max-w-lg space-y-3 rounded-3xl border border-charcoal-4 bg-charcoal p-4 shadow-raised">
+    <div className="sheet-overlay fixed inset-0 z-[70] flex items-end justify-center bg-ink/40 px-4 pt-4 sm:items-center" role="dialog" aria-modal="true" aria-labelledby="conflict-title">
+      <div className="safe-sheet w-full max-w-lg space-y-3 rounded-3xl border border-charcoal-4 bg-charcoal p-4 shadow-raised">
         <h2 id="conflict-title" className="text-lg font-semibold text-ink">
           Another workout is in progress
         </h2>

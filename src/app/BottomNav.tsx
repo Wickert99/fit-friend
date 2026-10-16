@@ -29,8 +29,7 @@ export function BottomNav() {
   }
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-charcoal-4 bg-charcoal/95 backdrop-blur-md"
-      style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0px))' }}
+      className="bottom-nav fixed inset-x-0 bottom-0 z-40 border-t border-charcoal-4 bg-charcoal/95 backdrop-blur-md"
       aria-label="Main"
       data-bottom-nav="true"
     >
