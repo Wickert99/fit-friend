@@ -59,7 +59,7 @@ body,
 html {
   overflow-x: clip;
   scroll-padding-top: calc(var(--safe-top) + 1rem);
-  scroll-padding-bottom: calc(var(--app-nav-offset) + 1rem);
+  scroll-padding-bottom: calc(var(--app-nav-offset) + var(--keyboard-inset) + 1rem);
 }
 
 body {
@@ -74,47 +74,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Installed PWAs draw under the status bar. Pad the shell, not the body, so iOS keeps the inset. */
-.app-shell,
-.safe-edges,
-.sheet-overlay {
-  /* Light status glyphs in black-translucent need a dark strip behind the clock. */
-  background-image: linear-gradient(#8f5a40, #8f5a40);
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 100% var(--safe-top);
-}
-
-.app-shell {
-  padding-left: constant(safe-area-inset-left);
-  padding-right: constant(safe-area-inset-right);
-  padding-left: var(--safe-left);
-  padding-right: var(--safe-right);
-}
-
-.app-header {
-  padding-top: constant(safe-area-inset-top);
-  padding-top: var(--safe-top);
-}
-
-.safe-edges {
-  box-sizing: border-box;
-  padding-top: constant(safe-area-inset-top);
-  padding-right: constant(safe-area-inset-right);
-  padding-bottom: constant(safe-area-inset-bottom);
-  padding-left: constant(safe-area-inset-left);
-  padding-top: var(--safe-top);
-  padding-right: var(--safe-right);
-  padding-bottom: var(--safe-bottom);
-  padding-left: var(--safe-left);
-}
-
+/* Full-screen fallbacks (loading, fatal error) sit outside the padded shell. */
 .safe-screen {
   box-sizing: border-box;
-  padding-top: max(1.5rem, constant(safe-area-inset-top));
-  padding-right: max(1.5rem, constant(safe-area-inset-right));
-  padding-bottom: max(1.5rem, constant(safe-area-inset-bottom));
-  padding-left: max(1.5rem, constant(safe-area-inset-left));
   padding-top: max(1.5rem, var(--safe-top));
   padding-right: max(1.5rem, var(--safe-right));
   padding-bottom: max(1.5rem, var(--safe-bottom));
@@ -127,7 +89,7 @@ select,
 textarea {
   font: inherit;
   scroll-margin-top: calc(var(--safe-top) + 1rem);
-  scroll-margin-bottom: calc(var(--app-nav-offset) + env(keyboard-inset-bottom, 0px) + 1rem);
+  scroll-margin-bottom: calc(var(--app-nav-offset) + var(--keyboard-inset) + 1rem);
 }
 
 :focus-visible {
@@ -157,10 +119,11 @@ textarea {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 30;
+    /* Above sheets so black-translucent status glyphs stay on a dark strip. */
+    z-index: 100;
     height: var(--safe-top);
     pointer-events: none;
-    background: var(--color-charcoal-2);
+    background: #8f5a40;
   }
 
   .pb-nav {
@@ -171,37 +134,14 @@ textarea {
     padding-bottom: calc(2rem + var(--safe-bottom) + var(--keyboard-inset));
   }
 
-  .pb-safe-end {
-    padding-bottom: calc(2rem + constant(safe-area-inset-bottom));
-    padding-bottom: calc(2rem + var(--safe-bottom));
-  }
-
-  /* Focus mode and the session summary carry the home-indicator inset themselves. */
-  .pb-safe-end:has([data-focus], [data-summary]) {
-    padding-bottom: 2rem;
-  }
-
-  .page-stack > * {
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  .bottom-nav {
-    padding-top: 0.125rem;
-    padding-bottom: max(0.75rem, constant(safe-area-inset-bottom));
-    padding-bottom: max(0.75rem, var(--safe-bottom));
-    padding-left: constant(safe-area-inset-left);
-    padding-right: constant(safe-area-inset-right);
-    padding-left: var(--safe-left);
-    padding-right: var(--safe-right);
-  }
-
   .pb-above-nav-actions {
     padding-bottom: calc(var(--app-nav-offset) + 6.5rem + var(--keyboard-inset));
   }
 
   .bottom-above-nav {
+    right: max(0.75rem, var(--safe-right));
     bottom: calc(var(--app-nav-offset) + 0.5rem + var(--keyboard-inset));
+    left: max(0.75rem, var(--safe-left));
   }
 
   .bottom-nav {
@@ -251,14 +191,6 @@ textarea {
   }
 
   .sheet-overlay {
-    box-sizing: border-box;
-    padding-top: constant(safe-area-inset-top);
-    padding-right: constant(safe-area-inset-right);
-    padding-left: constant(safe-area-inset-left);
-    padding-top: var(--safe-top);
-    padding-right: var(--safe-right);
-    padding-left: var(--safe-left);
-    overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
     padding-right: var(--safe-right);
@@ -297,7 +229,7 @@ textarea {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
-    scroll-padding-bottom: calc(env(keyboard-inset-bottom, 0px) + 1rem);
+    scroll-padding-bottom: calc(var(--keyboard-inset) + var(--safe-bottom) + 1rem);
   }
 
   .surface-page {
