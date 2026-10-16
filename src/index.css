@@ -45,6 +45,7 @@
   --safe-right: env(safe-area-inset-right, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
+  --keyboard-inset: 0px;
   --app-nav-offset: calc(3.5rem + max(0.75rem, var(--safe-bottom)));
   color-scheme: light;
 }
@@ -145,8 +146,29 @@ textarea {
 }
 
 @layer utilities {
+  .shell {
+    padding-top: var(--safe-top);
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+  }
+
+  .safe-top-scrim {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 30;
+    height: var(--safe-top);
+    pointer-events: none;
+    background: var(--color-charcoal-2);
+  }
+
   .pb-nav {
-    padding-bottom: calc(var(--app-nav-offset) + 1.5rem);
+    padding-bottom: calc(var(--app-nav-offset) + 1.5rem + var(--keyboard-inset));
+  }
+
+  .pb-safe-end {
+    padding-bottom: calc(2rem + var(--safe-bottom) + var(--keyboard-inset));
   }
 
   .pb-safe-end {
@@ -175,13 +197,17 @@ textarea {
   }
 
   .pb-above-nav-actions {
-    padding-bottom: calc(var(--app-nav-offset) + 6.5rem);
+    padding-bottom: calc(var(--app-nav-offset) + 6.5rem + var(--keyboard-inset));
   }
 
   .bottom-above-nav {
-    right: max(0.75rem, var(--safe-right));
-    bottom: calc(var(--app-nav-offset) + 0.5rem);
-    left: max(0.75rem, var(--safe-left));
+    bottom: calc(var(--app-nav-offset) + 0.5rem + var(--keyboard-inset));
+  }
+
+  .bottom-nav {
+    padding-right: var(--safe-right);
+    padding-bottom: max(0.75rem, var(--safe-bottom));
+    padding-left: var(--safe-left);
   }
 
   .hit-slop {
@@ -235,33 +261,33 @@ textarea {
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
+    padding-right: var(--safe-right);
+    padding-left: var(--safe-left);
   }
 
   .sheet-panel {
-    max-height: min(90dvh, calc(100dvh - var(--safe-top) - var(--safe-bottom) - 0.5rem));
-    padding-bottom: constant(safe-area-inset-bottom);
+    max-height: min(92dvh, calc(100dvh - var(--safe-top) - var(--keyboard-inset) - 0.75rem));
+    margin-bottom: var(--keyboard-inset);
     padding-bottom: var(--safe-bottom);
     overflow: hidden;
     overscroll-behavior: contain;
   }
 
-  [data-focus],
-  [data-summary] {
-    padding-bottom: constant(safe-area-inset-bottom);
-    padding-bottom: var(--safe-bottom);
+  .safe-sheet {
+    max-height: min(92dvh, calc(100dvh - var(--safe-top) - var(--keyboard-inset) - 0.75rem));
+    margin-bottom: var(--keyboard-inset);
+    padding-bottom: max(1rem, calc(var(--safe-bottom) + 0.75rem));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
-  [role='dialog'].fixed,
-  [role='alertdialog'].fixed {
+  .safe-fullscreen {
     box-sizing: border-box;
-    padding-top: max(1rem, constant(safe-area-inset-top));
-    padding-right: max(1rem, constant(safe-area-inset-right));
-    padding-bottom: max(1rem, constant(safe-area-inset-bottom));
-    padding-left: max(1rem, constant(safe-area-inset-left));
-    padding-top: max(1rem, var(--safe-top));
-    padding-right: max(1rem, var(--safe-right));
-    padding-bottom: max(1rem, var(--safe-bottom));
-    padding-left: max(1rem, var(--safe-left));
+    padding-top: var(--safe-top);
+    padding-right: var(--safe-right);
+    padding-bottom: var(--safe-bottom);
+    padding-left: var(--safe-left);
   }
 
   .sheet-body {
@@ -357,4 +383,16 @@ textarea {
     background: #f6ebe4;
     border-color: #e0c4b0;
   }
+}
+
+/* Unlayered so sheet safe-area padding wins over utility padding on the same node. */
+.safe-sheet {
+  padding-bottom: max(1rem, calc(var(--safe-bottom) + 0.75rem));
+}
+
+.safe-fullscreen {
+  padding-top: var(--safe-top);
+  padding-right: var(--safe-right);
+  padding-bottom: var(--safe-bottom);
+  padding-left: var(--safe-left);
 }

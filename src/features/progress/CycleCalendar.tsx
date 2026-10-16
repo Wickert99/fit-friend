@@ -105,7 +105,7 @@ export function CycleCalendarSheet({
         role="dialog"
         aria-modal="true"
         aria-labelledby="cycles-cal-title"
-        className="safe-edges relative z-10 flex h-[100dvh] w-full max-w-lg flex-col bg-charcoal-2 shadow-raised sm:h-[min(96dvh,900px)] sm:rounded-3xl sm:border sm:border-charcoal-4"
+        className="safe-fullscreen relative z-10 flex h-[100dvh] w-full max-w-lg flex-col bg-charcoal-2 shadow-raised sm:h-[min(96dvh,900px)] sm:rounded-3xl sm:border sm:border-charcoal-4"
       >
         <div className="flex items-center justify-between gap-2 border-b border-charcoal-4 bg-charcoal px-3 py-3">
           <div className="min-w-0">
@@ -132,7 +132,7 @@ export function CycleCalendarSheet({
             <Button size="sm" variant="ghost" aria-label="Previous" onClick={() => setCursor((current) => (scale === 'year' ? subYears(current, 1) : subMonths(current, 1)))}>
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <p className="min-w-[7.5rem] text-center text-sm font-semibold text-ink tabular-nums">{title}</p>
+            <p className="min-w-0 px-1 text-center text-sm font-semibold text-ink tabular-nums">{title}</p>
             <Button size="sm" variant="ghost" aria-label="Next" onClick={() => setCursor((current) => (scale === 'year' ? addYears(current, 1) : addMonths(current, 1)))}>
               <ChevronRight className="h-4 w-4" />
             </Button>

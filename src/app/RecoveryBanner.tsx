@@ -23,7 +23,7 @@ export function RecoveryBanner() {
   if (!storageNotice || nav.screen === 'session' || nav.screen === 'workout-mode') return null
   const backups = listCorruptBackups()
   return (
-    <div className="mx-auto w-full max-w-lg px-4 pt-4" data-storage-notice={storageNotice.recovered}>
+    <div className="mx-auto w-full max-w-lg px-4 pt-5" data-storage-notice={storageNotice.recovered}>
       <div className="rounded-2xl border border-[#d9a441] bg-[#fbf0d9] p-4">
         <div role="alert" className="flex gap-3">
           <TriangleAlert aria-hidden className="mt-0.5 h-5 w-5 shrink-0 text-[#7a5212]" />

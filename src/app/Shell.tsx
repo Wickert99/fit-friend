@@ -7,15 +7,37 @@ import { RecoveryBanner } from './RecoveryBanner.tsx'
 export function Shell({ children }: { children: ReactNode }) {
   const { nav } = useStore()
   useScrollRestore()
+  useKeyboardInset()
   return (
-    <div className="app-shell min-h-full bg-charcoal-2 text-ink">
-      <main className="app-header relative min-h-full min-w-0 overflow-x-clip" data-screen={nav.screen}>
+    <div className="shell min-h-full bg-charcoal-2 text-ink">
+      <div className="safe-top-scrim" aria-hidden />
+      <main className="relative min-h-full min-w-0 overflow-x-clip" data-screen={nav.screen}>
         <RecoveryBanner />
         {children}
       </main>
       <BottomNav />
     </div>
   )
+}
+
+function useKeyboardInset(): void {
+  useEffect(() => {
+    const viewport = window.visualViewport
+    if (!viewport) return
+    const apply = () => {
+      const overlap = window.innerHeight - viewport.offsetTop - viewport.height
+      const inset = overlap > 40 ? Math.round(overlap) : 0
+      document.documentElement.style.setProperty('--keyboard-inset', `${inset}px`)
+    }
+    apply()
+    viewport.addEventListener('resize', apply)
+    viewport.addEventListener('scroll', apply)
+    return () => {
+      viewport.removeEventListener('resize', apply)
+      viewport.removeEventListener('scroll', apply)
+      document.documentElement.style.removeProperty('--keyboard-inset')
+    }
+  }, [])
 }
 
 function useScrollRestore(): void {
