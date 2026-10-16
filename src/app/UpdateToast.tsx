@@ -12,8 +12,9 @@ export function UpdateToast() {
       window.location.reload()
     }
     const register = () => {
+      const base = import.meta.env.BASE_URL || '/'
       void navigator.serviceWorker
-        .register('/sw.js')
+        .register(`${base}sw.js`, { scope: base })
         .then((registration) => {
           if (registration.waiting && navigator.serviceWorker.controller) setWaiting(registration.waiting)
           registration.addEventListener('updatefound', () => {

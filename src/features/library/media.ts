@@ -1,10 +1,12 @@
+import { withBase } from '../../lib/base.ts'
+
 const IMAGE_PREFIX = '/exercise-images/'
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/
 
 export function exerciseImageUrls(exercise: { imageUrls?: string[] } | null | undefined): string[] {
   const urls = exercise?.imageUrls
   if (!Array.isArray(urls)) return []
-  return urls.filter((url) => typeof url === 'string' && url.startsWith(IMAGE_PREFIX))
+  return urls.filter((url) => typeof url === 'string' && url.startsWith(IMAGE_PREFIX)).map((url) => withBase(url))
 }
 
 export function exerciseVideoUrl(exercise: { videoUrl?: string } | null | undefined): string | null {

@@ -12,6 +12,7 @@ import {
   UserPlus,
   X,
 } from 'lucide-react'
+import { appBase } from '../../lib/base.ts'
 import type { ActivityEntry, Program, SupabaseProfile, WorkoutSession } from '../../types.ts'
 import {
   authLinkMessage,
@@ -156,7 +157,7 @@ function FriendsBody() {
   const [shareMessage, setShareMessage] = useState('')
   const [shareSessionId, setShareSessionId] = useState('')
   const origin = useMemo(() => (typeof window === 'undefined' ? '' : window.location.origin), [])
-  const inviteLink = inviteCode && origin ? `${origin}/#/friends?invite=${inviteCode}` : null
+  const inviteLink = inviteCode && origin ? `${origin}${appBase()}#/friends?invite=${inviteCode}` : null
   const signedIn = !!auth.user
   const mine = state.programs.filter((program) => program.isMine)
   const finished = state.sessions.filter((session) => session.status === 'completed')

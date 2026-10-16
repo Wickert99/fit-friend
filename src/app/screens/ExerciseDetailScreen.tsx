@@ -1,3 +1,4 @@
+import { withBase } from '../../lib/base.ts'
 import { useStore } from '../../store/useStore.ts'
 import { Badge, Card } from '../../ui/index.ts'
 import { FeatureStub } from './stub.tsx'
@@ -22,7 +23,7 @@ export default function ExerciseDetailScreen() {
           </div>
           <p className="mt-2 text-sm leading-relaxed text-ink">{exercise.description}</p>
           {exercise.imageUrls[0] ? (
-            <img src={exercise.imageUrls[0]} alt="" className="mt-3 aspect-video w-full rounded-xl bg-charcoal-3 object-cover" />
+            <img src={withBase(exercise.imageUrls[0])} alt="" className="mt-3 aspect-video w-full rounded-xl bg-charcoal-3 object-cover" />
           ) : null}
         </Card>
       ) : (
