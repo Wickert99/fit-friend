@@ -199,8 +199,7 @@ function DemoSheet({
         aria-modal="true"
         aria-labelledby={titleId}
         data-demo-sheet="true"
-        className="w-full max-w-lg rounded-t-3xl bg-charcoal p-4 shadow-raised"
-        style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+        className="safe-sheet w-full max-w-lg rounded-t-3xl bg-charcoal p-4 shadow-raised"
       >
         <div className="mb-3 flex items-center justify-between gap-3">
           <h2 id={titleId} className="min-w-0 truncate text-base font-semibold text-ink">

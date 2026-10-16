@@ -41,7 +41,12 @@
 }
 
 :root {
-  --app-nav-offset: calc(3.5rem + max(0.75rem, env(safe-area-inset-bottom, 0px)));
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --keyboard-inset: 0px;
+  --app-nav-offset: calc(3.5rem + max(0.75rem, var(--safe-bottom)));
   color-scheme: light;
 }
 
@@ -53,11 +58,12 @@ body,
 
 html {
   overflow-x: clip;
+  scroll-padding-top: calc(var(--safe-top) + 1rem);
+  scroll-padding-bottom: calc(var(--app-nav-offset) + var(--keyboard-inset) + 1rem);
 }
 
 body {
   margin: 0;
-  padding-top: env(safe-area-inset-top, 0px);
   overflow-x: clip;
   background: var(--color-charcoal-2);
   color: var(--color-ink);
@@ -68,11 +74,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Full-screen fallbacks (loading, fatal error) sit outside the padded shell. */
+.safe-screen {
+  box-sizing: border-box;
+  padding-top: max(1.5rem, var(--safe-top));
+  padding-right: max(1.5rem, var(--safe-right));
+  padding-bottom: max(1.5rem, var(--safe-bottom));
+  padding-left: max(1.5rem, var(--safe-left));
+}
+
 button,
 input,
 select,
 textarea {
   font: inherit;
+  scroll-margin-top: calc(var(--safe-top) + 1rem);
+  scroll-margin-bottom: calc(var(--app-nav-offset) + var(--keyboard-inset) + 1rem);
 }
 
 :focus-visible {
@@ -91,16 +108,46 @@ textarea {
 }
 
 @layer utilities {
+  .shell {
+    padding-top: var(--safe-top);
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+  }
+
+  .safe-top-scrim {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    /* Above sheets so black-translucent status glyphs stay on a dark strip. */
+    z-index: 100;
+    height: var(--safe-top);
+    pointer-events: none;
+    background: #8f5a40;
+  }
+
   .pb-nav {
-    padding-bottom: calc(var(--app-nav-offset) + 1.5rem);
+    padding-bottom: calc(var(--app-nav-offset) + 1.5rem + var(--keyboard-inset));
+  }
+
+  .pb-safe-end {
+    padding-bottom: calc(2rem + var(--safe-bottom) + var(--keyboard-inset));
   }
 
   .pb-above-nav-actions {
-    padding-bottom: calc(var(--app-nav-offset) + 6.5rem);
+    padding-bottom: calc(var(--app-nav-offset) + 6.5rem + var(--keyboard-inset));
   }
 
   .bottom-above-nav {
-    bottom: calc(var(--app-nav-offset) + 0.5rem);
+    right: max(0.75rem, var(--safe-right));
+    bottom: calc(var(--app-nav-offset) + 0.5rem + var(--keyboard-inset));
+    left: max(0.75rem, var(--safe-left));
+  }
+
+  .bottom-nav {
+    padding-right: var(--safe-right);
+    padding-bottom: max(0.75rem, var(--safe-bottom));
+    padding-left: var(--safe-left);
   }
 
   .hit-slop {
@@ -123,8 +170,12 @@ textarea {
     inset: -0.125rem;
   }
 
-  .h-scroll {
+  .h-scroll,
+  [data-week-tabs] {
     display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     gap: 0.5rem;
     margin-block: -2px;
     padding-block: 2px;
@@ -134,19 +185,41 @@ textarea {
     scrollbar-width: none;
   }
 
-  .h-scroll::-webkit-scrollbar {
+  .h-scroll::-webkit-scrollbar,
+  [data-week-tabs]::-webkit-scrollbar {
     display: none;
   }
 
   .sheet-overlay {
     overscroll-behavior: none;
     touch-action: none;
+    padding-right: var(--safe-right);
+    padding-left: var(--safe-left);
   }
 
   .sheet-panel {
-    max-height: min(90dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 0.5rem));
+    max-height: min(92dvh, calc(100dvh - var(--safe-top) - var(--keyboard-inset) - 0.75rem));
+    margin-bottom: var(--keyboard-inset);
+    padding-bottom: var(--safe-bottom);
     overflow: hidden;
     overscroll-behavior: contain;
+  }
+
+  .safe-sheet {
+    max-height: min(92dvh, calc(100dvh - var(--safe-top) - var(--keyboard-inset) - 0.75rem));
+    margin-bottom: var(--keyboard-inset);
+    padding-bottom: max(1rem, calc(var(--safe-bottom) + 0.75rem));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .safe-fullscreen {
+    box-sizing: border-box;
+    padding-top: var(--safe-top);
+    padding-right: var(--safe-right);
+    padding-bottom: var(--safe-bottom);
+    padding-left: var(--safe-left);
   }
 
   .sheet-body {
@@ -156,6 +229,7 @@ textarea {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
+    scroll-padding-bottom: calc(var(--keyboard-inset) + var(--safe-bottom) + 1rem);
   }
 
   .surface-page {
@@ -241,4 +315,16 @@ textarea {
     background: #f6ebe4;
     border-color: #e0c4b0;
   }
+}
+
+/* Unlayered so sheet safe-area padding wins over utility padding on the same node. */
+.safe-sheet {
+  padding-bottom: max(1rem, calc(var(--safe-bottom) + 0.75rem));
+}
+
+.safe-fullscreen {
+  padding-top: var(--safe-top);
+  padding-right: var(--safe-right);
+  padding-bottom: var(--safe-bottom);
+  padding-left: var(--safe-left);
 }

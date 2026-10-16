@@ -7,7 +7,7 @@ export function Page({ children, className }: { children: ReactNode; className?:
   const { nav } = useStore()
   const hidden = NAV_HIDDEN.has(nav.screen)
   return (
-    <div className={cn('mx-auto flex w-full max-w-lg flex-col gap-4 px-4 pt-4', hidden ? 'pb-8' : 'pb-nav', className)}>
+    <div className={cn('mx-auto flex w-full max-w-lg min-w-0 flex-col gap-4 px-4 pt-5', hidden ? 'pb-safe-end' : 'pb-nav', className)}>
       {children}
     </div>
   )
@@ -35,7 +35,7 @@ export function ScreenHeader({
 
 export function RouteSkeleton() {
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-col gap-4 px-4 pt-4 pb-nav" aria-busy="true" aria-label="Loading" data-route-skeleton="true">
+    <div className="mx-auto flex w-full max-w-lg min-w-0 flex-col gap-4 px-4 pt-5 pb-nav" aria-busy="true" aria-label="Loading" data-route-skeleton="true">
       <div>
         <div className="h-7 w-32 animate-pulse rounded-lg bg-charcoal-3" />
         <div className="mt-1.5 h-4 w-48 animate-pulse rounded bg-charcoal-3/80" />

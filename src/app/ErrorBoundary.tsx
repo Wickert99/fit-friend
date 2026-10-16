@@ -61,7 +61,7 @@ export class ErrorBoundary extends Component<Props, State> {
         className={
           inline
             ? 'mx-auto flex w-full max-w-lg items-center justify-center px-6 pt-16 pb-nav text-center'
-            : 'flex min-h-dvh items-center justify-center bg-[#f5efe6] p-6 text-center'
+            : 'safe-screen flex min-h-dvh items-center justify-center bg-[#f5efe6] text-center'
         }
       >
         <div className="max-w-sm">

@@ -34,8 +34,7 @@ export function SessionConflict({
         aria-modal="true"
         aria-labelledby="session-conflict-title"
         data-session-conflict="true"
-        className="w-full max-w-lg rounded-t-2xl border border-charcoal-4 bg-charcoal px-4 pt-5 shadow-card sm:rounded-2xl"
-        style={{ paddingBottom: 'max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem))' }}
+        className="safe-sheet w-full max-w-lg rounded-t-2xl border border-charcoal-4 bg-charcoal px-4 pt-5 shadow-card sm:rounded-2xl"
       >
         {confirming ? (
           <>

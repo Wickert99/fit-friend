@@ -92,13 +92,13 @@ export default function CommitToCalendar({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/40 p-0 sm:items-center sm:p-4">
+    <div className="sheet-overlay fixed inset-0 z-50 flex items-end justify-center bg-ink/40 p-0 sm:items-center sm:p-4">
       <button type="button" className="absolute inset-0 cursor-default" aria-label="Close" onClick={onClose} />
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="commit-title"
-        className="relative z-10 flex max-h-[88vh] w-full max-w-lg flex-col rounded-t-3xl border border-charcoal-4 bg-charcoal shadow-raised sm:rounded-3xl"
+        className="sheet-panel relative z-10 flex w-full max-w-lg flex-col rounded-t-3xl border border-charcoal-4 bg-charcoal shadow-raised sm:rounded-3xl"
       >
         <div className="flex items-center justify-between gap-2 border-b border-charcoal-4 px-4 py-3">
           <div className="min-w-0">
@@ -114,7 +114,7 @@ export default function CommitToCalendar({
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <div className="space-y-4 overflow-y-auto px-4 py-4">
+        <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4">
           <div>
             <label htmlFor="commit-start-date" className="mb-1 block text-xs font-medium text-muted">
               Start date
@@ -165,7 +165,7 @@ export default function CommitToCalendar({
           </div>
           <Preview prepared={prepared} hint={ready ? hint : ''} warning={warning} laterHelps={laterHelps} onMonday={() => setChosen(monday)} conflicts={conflicts} />
         </div>
-        <div className="space-y-2 border-t border-charcoal-4 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <div className="space-y-2 border-t border-charcoal-4 p-4">
           {ready && preview ? (
             <p className="text-center text-xs text-muted" data-commit-summary>
               Ready:{' '}

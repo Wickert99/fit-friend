@@ -105,7 +105,7 @@ export function CycleCalendarSheet({
         role="dialog"
         aria-modal="true"
         aria-labelledby="cycles-cal-title"
-        className="relative z-10 flex h-[100dvh] w-full max-w-lg flex-col bg-charcoal-2 shadow-raised sm:h-[min(96dvh,900px)] sm:rounded-3xl sm:border sm:border-charcoal-4"
+        className="safe-fullscreen relative z-10 flex h-[100dvh] w-full max-w-lg flex-col bg-charcoal-2 shadow-raised sm:h-[min(96dvh,900px)] sm:rounded-3xl sm:border sm:border-charcoal-4"
       >
         <div className="flex items-center justify-between gap-2 border-b border-charcoal-4 bg-charcoal px-3 py-3">
           <div className="min-w-0">
@@ -119,7 +119,7 @@ export function CycleCalendarSheet({
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <div className="flex items-center justify-between gap-2 border-b border-charcoal-4 bg-charcoal px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-charcoal-4 bg-charcoal px-3 py-2">
           <div className="flex gap-1.5" role="tablist" aria-label="Calendar scale">
             <Chip active={scale === 'year'} onClick={() => setScale('year')}>
               Year
@@ -132,7 +132,7 @@ export function CycleCalendarSheet({
             <Button size="sm" variant="ghost" aria-label="Previous" onClick={() => setCursor((current) => (scale === 'year' ? subYears(current, 1) : subMonths(current, 1)))}>
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <p className="min-w-[7.5rem] text-center text-sm font-semibold text-ink tabular-nums">{title}</p>
+            <p className="min-w-0 px-1 text-center text-sm font-semibold text-ink tabular-nums">{title}</p>
             <Button size="sm" variant="ghost" aria-label="Next" onClick={() => setCursor((current) => (scale === 'year' ? addYears(current, 1) : addMonths(current, 1)))}>
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -150,7 +150,7 @@ export function CycleCalendarSheet({
             <MonthGrid cursor={cursor} blocks={blocks} />
           )}
         </div>
-        <div className="border-t border-charcoal-4 bg-charcoal px-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="border-t border-charcoal-4 bg-charcoal px-3 py-3">
           <Legend blocks={visible.length ? visible : blocks} />
           {visible.length === 0 && blocks.length > 0 ? (
             <p className="mt-1.5 text-[11px] text-muted">No blocks in this {scale === 'year' ? 'year' : 'month'}.</p>
