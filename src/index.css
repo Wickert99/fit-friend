@@ -41,7 +41,11 @@
 }
 
 :root {
-  --app-nav-offset: calc(3.5rem + max(0.75rem, env(safe-area-inset-bottom, 0px)));
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --app-nav-offset: calc(3.5rem + max(0.75rem, var(--safe-bottom)));
   color-scheme: light;
 }
 
@@ -53,11 +57,12 @@ body,
 
 html {
   overflow-x: clip;
+  scroll-padding-top: calc(var(--safe-top) + 1rem);
+  scroll-padding-bottom: calc(var(--app-nav-offset) + 1rem);
 }
 
 body {
   margin: 0;
-  padding-top: env(safe-area-inset-top, 0px);
   overflow-x: clip;
   background: var(--color-charcoal-2);
   color: var(--color-ink);
@@ -68,11 +73,60 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Installed PWAs draw under the status bar. Pad the shell, not the body, so iOS keeps the inset. */
+.app-shell,
+.safe-edges,
+.sheet-overlay {
+  /* Light status glyphs in black-translucent need a dark strip behind the clock. */
+  background-image: linear-gradient(#8f5a40, #8f5a40);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% var(--safe-top);
+}
+
+.app-shell {
+  padding-left: constant(safe-area-inset-left);
+  padding-right: constant(safe-area-inset-right);
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+}
+
+.app-header {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: var(--safe-top);
+}
+
+.safe-edges {
+  box-sizing: border-box;
+  padding-top: constant(safe-area-inset-top);
+  padding-right: constant(safe-area-inset-right);
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-left: constant(safe-area-inset-left);
+  padding-top: var(--safe-top);
+  padding-right: var(--safe-right);
+  padding-bottom: var(--safe-bottom);
+  padding-left: var(--safe-left);
+}
+
+.safe-screen {
+  box-sizing: border-box;
+  padding-top: max(1.5rem, constant(safe-area-inset-top));
+  padding-right: max(1.5rem, constant(safe-area-inset-right));
+  padding-bottom: max(1.5rem, constant(safe-area-inset-bottom));
+  padding-left: max(1.5rem, constant(safe-area-inset-left));
+  padding-top: max(1.5rem, var(--safe-top));
+  padding-right: max(1.5rem, var(--safe-right));
+  padding-bottom: max(1.5rem, var(--safe-bottom));
+  padding-left: max(1.5rem, var(--safe-left));
+}
+
 button,
 input,
 select,
 textarea {
   font: inherit;
+  scroll-margin-top: calc(var(--safe-top) + 1rem);
+  scroll-margin-bottom: calc(var(--app-nav-offset) + env(keyboard-inset-bottom, 0px) + 1rem);
 }
 
 :focus-visible {
@@ -95,12 +149,39 @@ textarea {
     padding-bottom: calc(var(--app-nav-offset) + 1.5rem);
   }
 
+  .pb-safe-end {
+    padding-bottom: calc(2rem + constant(safe-area-inset-bottom));
+    padding-bottom: calc(2rem + var(--safe-bottom));
+  }
+
+  /* Focus mode and the session summary carry the home-indicator inset themselves. */
+  .pb-safe-end:has([data-focus], [data-summary]) {
+    padding-bottom: 2rem;
+  }
+
+  .page-stack > * {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .bottom-nav {
+    padding-top: 0.125rem;
+    padding-bottom: max(0.75rem, constant(safe-area-inset-bottom));
+    padding-bottom: max(0.75rem, var(--safe-bottom));
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+  }
+
   .pb-above-nav-actions {
     padding-bottom: calc(var(--app-nav-offset) + 6.5rem);
   }
 
   .bottom-above-nav {
+    right: max(0.75rem, var(--safe-right));
     bottom: calc(var(--app-nav-offset) + 0.5rem);
+    left: max(0.75rem, var(--safe-left));
   }
 
   .hit-slop {
@@ -123,8 +204,12 @@ textarea {
     inset: -0.125rem;
   }
 
-  .h-scroll {
+  .h-scroll,
+  [data-week-tabs] {
     display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     gap: 0.5rem;
     margin-block: -2px;
     padding-block: 2px;
@@ -134,19 +219,49 @@ textarea {
     scrollbar-width: none;
   }
 
-  .h-scroll::-webkit-scrollbar {
+  .h-scroll::-webkit-scrollbar,
+  [data-week-tabs]::-webkit-scrollbar {
     display: none;
   }
 
   .sheet-overlay {
+    box-sizing: border-box;
+    padding-top: constant(safe-area-inset-top);
+    padding-right: constant(safe-area-inset-right);
+    padding-left: constant(safe-area-inset-left);
+    padding-top: var(--safe-top);
+    padding-right: var(--safe-right);
+    padding-left: var(--safe-left);
+    overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
   }
 
   .sheet-panel {
-    max-height: min(90dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 0.5rem));
+    max-height: min(90dvh, calc(100dvh - var(--safe-top) - var(--safe-bottom) - 0.5rem));
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: var(--safe-bottom);
     overflow: hidden;
     overscroll-behavior: contain;
+  }
+
+  [data-focus],
+  [data-summary] {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: var(--safe-bottom);
+  }
+
+  [role='dialog'].fixed,
+  [role='alertdialog'].fixed {
+    box-sizing: border-box;
+    padding-top: max(1rem, constant(safe-area-inset-top));
+    padding-right: max(1rem, constant(safe-area-inset-right));
+    padding-bottom: max(1rem, constant(safe-area-inset-bottom));
+    padding-left: max(1rem, constant(safe-area-inset-left));
+    padding-top: max(1rem, var(--safe-top));
+    padding-right: max(1rem, var(--safe-right));
+    padding-bottom: max(1rem, var(--safe-bottom));
+    padding-left: max(1rem, var(--safe-left));
   }
 
   .sheet-body {
@@ -156,6 +271,7 @@ textarea {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
+    scroll-padding-bottom: calc(env(keyboard-inset-bottom, 0px) + 1rem);
   }
 
   .surface-page {

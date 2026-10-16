@@ -106,7 +106,7 @@ export function ChatSheet({
         if (event.target === event.currentTarget) onClose()
       }}
     >
-      <div className="flex max-h-[90vh] w-full max-w-lg flex-col rounded-t-2xl border border-charcoal-4 bg-charcoal shadow-card sm:rounded-2xl">
+      <div className="sheet-panel flex w-full max-w-lg flex-col rounded-t-2xl border border-charcoal-4 bg-charcoal shadow-card sm:rounded-2xl">
         <div className="flex shrink-0 items-center gap-3 border-b border-charcoal-4 px-4 py-3">
           <Avatar name={name} color="#b07d5c" />
           <div className="min-w-0 flex-1">

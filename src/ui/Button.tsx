@@ -59,7 +59,7 @@ export function IconButton({
       className={cn(
         'inline-flex shrink-0 items-center justify-center rounded-xl transition disabled:cursor-not-allowed disabled:opacity-40',
         size === 'md' && 'h-11 w-11',
-        size === 'sm' && 'hit-slop h-9 w-9',
+        size === 'sm' && 'h-11 w-11',
         variant === 'ghost' && 'text-muted hover:bg-charcoal-3/80 hover:text-ink',
         variant === 'outline' && 'border border-charcoal-4 bg-charcoal-2 text-muted hover:text-ink',
         variant === 'danger' && 'bg-danger/10 text-danger hover:bg-danger/18',

@@ -279,7 +279,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       <div
         role="status"
         aria-live="polite"
-        className="grid min-h-dvh place-items-center bg-charcoal-2 text-sm text-muted"
+        className="safe-screen grid min-h-dvh place-items-center bg-charcoal-2 text-sm text-muted"
       >
         Loading…
       </div>

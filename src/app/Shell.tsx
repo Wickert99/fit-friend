@@ -8,8 +8,8 @@ export function Shell({ children }: { children: ReactNode }) {
   const { nav } = useStore()
   useScrollRestore()
   return (
-    <div className="min-h-full bg-charcoal-2 text-ink">
-      <main className="relative min-h-full min-w-0 overflow-x-clip" data-screen={nav.screen}>
+    <div className="app-shell min-h-full bg-charcoal-2 text-ink">
+      <main className="app-header relative min-h-full min-w-0 overflow-x-clip" data-screen={nav.screen}>
         <RecoveryBanner />
         {children}
       </main>

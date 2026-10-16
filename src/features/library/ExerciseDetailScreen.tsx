@@ -29,7 +29,7 @@ export default function ExerciseDetailScreen() {
 
   if (!exercise) {
     return (
-      <div className="mx-auto flex w-full max-w-lg flex-col gap-4 px-4 pt-4 pb-nav">
+      <div className="page-stack mx-auto flex w-full min-w-0 max-w-lg flex-col gap-4 px-4 pt-4 pb-nav">
         <h1 className="text-lg font-semibold">Exercise</h1>
         <Card>
           <p>Exercise not found.</p>
@@ -43,7 +43,7 @@ export default function ExerciseDetailScreen() {
 
   const record = state.prs.find((item) => item.exerciseId === exercise.id)
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-col gap-4 px-4 pt-4 pb-nav">
+    <div className="page-stack mx-auto flex w-full min-w-0 max-w-lg flex-col gap-4 px-4 pt-4 pb-nav">
       <header className="flex items-center gap-3">
         <IconButton label="Back" variant="outline" onClick={backToTab}>
           <ArrowLeft className="h-5 w-5" />

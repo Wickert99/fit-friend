@@ -41,7 +41,7 @@ export function UpdateToast() {
     <div
       role="status"
       data-sw-update="true"
-      className="bottom-above-nav fixed inset-x-3 z-[70] mx-auto flex max-w-md items-center justify-between gap-3 rounded-2xl border border-charcoal-4 bg-charcoal p-3 text-sm text-ink shadow-raised"
+      className="bottom-above-nav fixed z-[70] mx-auto flex max-w-md items-center justify-between gap-3 rounded-2xl border border-charcoal-4 bg-charcoal p-3 text-sm text-ink shadow-raised"
     >
       <span>Update ready</span>
       <div className="flex gap-1">

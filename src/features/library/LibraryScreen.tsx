@@ -225,7 +225,7 @@ export default function LibraryScreen({ section }: { section: 'exercises' | 'pro
             )}
           </div>
           {selected.length > 0 ? (
-            <div className="bottom-above-nav fixed inset-x-0 z-30 mx-auto flex max-w-lg justify-center px-4">
+            <div className="bottom-above-nav fixed z-30 mx-auto flex max-w-lg justify-center px-4">
               <Button size="lg" className="w-full shadow-raised" onClick={() => startSelected('return')}>
                 Start workout · {selected.length} selected
               </Button>
