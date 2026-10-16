@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 import { repairJson } from './corrupt.ts'
 import { clearAllSchedule, createBoard, deleteSession, setLiftMax, upsertExercise } from './actions.ts'
+import { FORMAT_VERSION } from './keys.ts'
 import { runMigrations } from './migrate.ts'
 import { emptyState, mergeWithSeed, normalizeState, remapExerciseAliases } from './normalize.ts'
 import type { AppState, Exercise, WorkoutSession } from '../types.ts'
@@ -16,7 +17,7 @@ describe('migrations', () => {
       0,
       { 'ex-kb-turkish': 'ex-turkish' },
     )
-    assert.deepEqual(applied, ['core-collections', 'alias-remap-and-catalog'])
+    assert.deepEqual(applied, ['core-collections', 'alias-remap-and-catalog', 'paused-sessions'])
     assert.equal(state.profile.name, 'Ada')
     assert.equal(state.weightUnit, 'kg')
     assert.equal(state.sessions[0]?.exercises[0]?.exerciseId, 'ex-turkish')
@@ -26,8 +27,45 @@ describe('migrations', () => {
   })
 
   it('skips migrations that are already applied', () => {
-    const { applied } = runMigrations(emptyState(), 2, {})
+    const { applied } = runMigrations(emptyState(), FORMAT_VERSION, {})
     assert.deepEqual(applied, [])
+  })
+
+  it('keeps paused sessions and parks extra in-progress ones', () => {
+    const { state, applied } = runMigrations(
+      {
+        sessions: [
+          { id: 'old', name: 'Old', dateKey: '2026-10-01', status: 'in_progress', startedAt: '2026-10-01T08:00:00.000Z', exercises: [] },
+          { id: 'new', name: 'New', dateKey: '2026-10-02', status: 'in_progress', startedAt: '2026-10-02T08:00:00.000Z', exercises: [] },
+          {
+            id: 'held',
+            name: 'Held',
+            dateKey: '2026-10-03',
+            status: 'paused',
+            pausedAt: '2026-10-03T09:00:00.000Z',
+            currentSet: { exerciseIndex: 0, setIndex: 1 },
+            timer: { phase: 'rest', remainingSec: 30, total: 90 },
+            exercises: [{ exerciseId: 'ex-bsquat', sets: [{ setNumber: 1, reps: 3, loadKg: 40, completed: true }] }],
+          },
+          { id: 'left', name: 'Left', dateKey: '2026-10-04', status: 'abandoned', exercises: [] },
+        ],
+      },
+      2,
+      {},
+    )
+    assert.deepEqual(applied, ['paused-sessions'])
+    assert.equal(state.sessions.find((session) => session.id === 'new')?.status, 'in_progress')
+    assert.equal(state.sessions.find((session) => session.id === 'old')?.status, 'paused')
+    assert.ok(state.sessions.find((session) => session.id === 'old')?.pausedAt)
+    const held = state.sessions.find((session) => session.id === 'held')
+    assert.equal(held?.status, 'paused')
+    assert.equal(held?.pausedAt, '2026-10-03T09:00:00.000Z')
+    assert.equal(held?.currentSet?.setIndex, 1)
+    assert.equal(held?.timer?.remainingSec, 30)
+    assert.equal(held?.exercises[0]?.sets[0]?.completed, true)
+    assert.equal(held?.exercises[0]?.sets[0]?.loadKg, 40)
+    assert.equal(state.sessions.find((session) => session.id === 'left')?.status, 'paused')
+    assert.equal(state.prs.length, 0)
   })
 
   it('drops a legacy catalog id and keeps a custom copy', () => {

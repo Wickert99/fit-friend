@@ -14,7 +14,10 @@ import { FocusMode, type FocusHandle } from './FocusMode.tsx'
 import {
   deleteCompletedSession,
   discardSession,
+  editSet,
   finishSession,
+  pauseSession,
+  resumeSession,
   sessionCounts,
   sessionVolume,
   summarizeSession,
@@ -48,6 +51,7 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
   const toast = useToast()
   const focusRef = useRef<FocusHandle>(null)
   const allowRef = useRef(false)
+  const resumedId = useRef<string | null>(null)
   const [view, setView] = useState<'focus' | 'summary'>('focus')
   const [muted, setMuted] = useState(readMuted)
   const [dirty, setDirty] = useState(false)
@@ -64,6 +68,12 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
   blockedRef.current = blocked
 
   const onDirty = useCallback((value: boolean) => setDirty(value), [])
+  useEffect(() => {
+    if (resumedId.current === session.id) return
+    resumedId.current = session.id
+    if (session.status !== 'paused') return
+    update((current) => resumeSession(current, session.id))
+  }, [session.id, session.status, update])
   const onDone = useCallback(() => {
     focusRef.current?.flush()
     setDirty(false)
@@ -123,6 +133,17 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
     leaveNow(() => go('today', {}, { skipLeaveGuard: true }))
   }
 
+  function saveForLater() {
+    const snap = focusRef.current?.snapshot()
+    update((current) =>
+      pauseSession(current, session.id, (item) => {
+        const edited = snap?.pointer ? editSet(item, snap.pointer, snap.patch) : item
+        return { ...edited, notes, sessionPad: pad, pad, timer: snap?.timer ?? edited.timer }
+      }),
+    )
+    leaveNow(() => go('today', {}, { skipLeaveGuard: true }))
+  }
+
   async function discard() {
     const ok = await confirm('Discard this workout?\n\nLogged sets in this session are removed. Your plan for the day stays.')
     if (!ok) return
@@ -164,6 +185,7 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
           onChange={(recipe) => updateSession(session.id, recipe)}
           onDirty={onDirty}
           onDone={onDone}
+          onPause={saveForLater}
         />
       ) : (
         <Summary
@@ -181,6 +203,7 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
           onPick={(familyId, checked) => setPicked((current) => ({ ...current, [familyId]: checked }))}
           onFinish={finish}
           onKeep={() => setView('focus')}
+          onPause={saveForLater}
           onDiscard={() => void discard()}
         />
       )}
@@ -202,8 +225,11 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
             <Button
               variant="secondary"
               onClick={() => {
-                focusRef.current?.flush()
-                updateSession(session.id, (item) => ({ ...item, notes, sessionPad: pad, pad }))
+                const snap = focusRef.current?.snapshot()
+                updateSession(session.id, (item) => {
+                  const edited = snap?.pointer ? editSet(item, snap.pointer, snap.patch) : item
+                  return { ...edited, notes, sessionPad: pad, pad, timer: snap?.timer ?? edited.timer }
+                })
                 allowRef.current = true
                 leave.resolve(true)
                 setLeave(null)
@@ -243,6 +269,7 @@ function Summary({
   onPick,
   onFinish,
   onKeep,
+  onPause,
   onDiscard,
 }: {
   session: WorkoutSession
@@ -259,6 +286,7 @@ function Summary({
   onPick: (familyId: string, checked: boolean) => void
   onFinish: () => void
   onKeep: () => void
+  onPause: () => void
   onDiscard: () => void
 }) {
   return (
@@ -346,6 +374,9 @@ function Summary({
         <Button onClick={onFinish}>Finish</Button>
         <Button variant="secondary" onClick={onKeep}>
           Keep going
+        </Button>
+        <Button variant="secondary" data-pause-session onClick={onPause}>
+          Pause / Save for later
         </Button>
         <Button variant="danger" onClick={onDiscard}>
           Discard

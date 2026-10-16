@@ -3,7 +3,7 @@ import { describe, it } from 'node:test'
 import type { AppState, Exercise, LiftFamily, LiftMax, PlannedSession } from '../../types.ts'
 import { emptyState } from '../../store/normalize.ts'
 import { estimate1Rm, roundLoadKg } from '../../lib/setTypes/units.ts'
-import { displayPointer, finishSession, logSet, sessionExerciseFromPrescription, startFromPlan, summarizeSession, undoSet } from './logic.ts'
+import { displayPointer, finishSession, freezeTimer, logSet, pauseSession, resumeSession, sessionExerciseFromPrescription, startFromPlan, summarizeSession, thawTimer, undoSet } from './logic.ts'
 import type { TrainingContext } from './logic.ts'
 
 const families: LiftFamily[] = [
@@ -181,5 +181,83 @@ describe('session logging', () => {
     if (replaced.kind !== 'started') return
     assert.equal(replaced.state.sessions.filter((session) => session.status === 'in_progress').length, 1)
     assert.equal(replaced.state.sessions[0]?.name, 'B')
+    assert.equal(replaced.state.sessions.some((session) => session.name === 'A'), false)
+  })
+
+  it('pauses a workout in place and keeps it out of PRs, streaks, and history until finish', () => {
+    const plan: PlannedSession = {
+      id: 'plan-a',
+      dateKey: '2026-10-15',
+      name: 'A',
+      exercises: [{ exerciseId: 'ex-bsquat', setType: 'reps_load', sets: 2, reps: '5', restSec: 90, targetLoadKg: 100 }],
+    }
+    const other: PlannedSession = { ...plan, id: 'plan-b', name: 'B' }
+    const started = startFromPlan(stateWith(), plan, ctx(), 'return', new Date('2026-10-15T10:00:00.000Z'))
+    assert.equal(started.kind, 'started')
+    if (started.kind !== 'started') return
+    let session = started.state.sessions[0]!
+    session = logSet(session, { exerciseIndex: 0, setIndex: 0 }, { reps: 5, loadKg: 140 })
+    const logging = { ...started.state, sessions: [session] }
+    const now = new Date('2026-10-15T10:05:00.000Z')
+    const paused = pauseSession(
+      logging,
+      session.id,
+      (item) => ({
+        ...item,
+        timer: { phase: 'rest', endsAt: now.getTime() + 45_000, total: 90 },
+        currentSet: { exerciseIndex: 0, setIndex: 1 },
+      }),
+      now,
+    )
+    const held = paused.sessions.find((item) => item.id === session.id)
+    assert.equal(held?.status, 'paused')
+    assert.equal(held?.pausedAt, now.toISOString())
+    assert.equal(held?.exercises[0]?.sets[0]?.completed, true)
+    assert.equal(held?.exercises[0]?.sets[0]?.loadKg, 140)
+    assert.deepEqual(held?.currentSet, { exerciseIndex: 0, setIndex: 1 })
+    assert.equal(held?.timer?.phase, 'rest')
+    assert.equal(held?.timer?.remainingSec, 45)
+    assert.equal(held?.timer?.endsAt, undefined)
+    assert.equal(held?.restEndsAt, null)
+    assert.equal(paused.prs.length, 0)
+    assert.deepEqual(paused.commitmentDays, [])
+    assert.equal(paused.profile.streak, 0)
+    assert.equal(paused.activity.length, 0)
+    const summary = summarizeSession(held!, paused, ctx())
+    assert.equal(summary.prs.length, 1)
+    const openAgain = resumeSession(paused, session.id)
+    const saved = startFromPlan(openAgain, other, ctx(), 'pause', new Date('2026-10-15T11:00:00.000Z'))
+    assert.equal(saved.kind, 'started')
+    if (saved.kind !== 'started') return
+    assert.equal(saved.state.sessions.find((item) => item.name === 'A')?.status, 'paused')
+    assert.equal(saved.state.sessions.find((item) => item.name === 'A')?.exercises[0]?.sets[0]?.loadKg, 140)
+    assert.equal(saved.state.sessions.find((item) => item.name === 'B')?.status, 'in_progress')
+    assert.equal(saved.state.prs.length, 0)
+    const resumed = resumeSession(pauseSession(saved.state, saved.sessionId), session.id)
+    assert.equal(resumed.sessions.find((item) => item.id === session.id)?.status, 'in_progress')
+    assert.equal(resumed.sessions.find((item) => item.id === session.id)?.pausedAt, undefined)
+    assert.equal(resumed.sessions.find((item) => item.name === 'B')?.status, 'paused')
+    const done = finishSession(resumed, session.id, false, new Date('2026-10-15T12:00:00.000Z'))
+    const finished = done.sessions.find((item) => item.id === session.id)
+    assert.equal(finished?.status, 'completed')
+    assert.equal(finished?.timer, undefined)
+    assert.equal(done.prs[0]?.loadKg, 140)
+    assert.equal(done.commitmentDays.includes('2026-10-15'), true)
+    assert.equal(done.sessions.find((item) => item.name === 'B')?.status, 'paused')
+    assert.equal(done.sessions.filter((item) => item.status === 'completed').map((item) => item.id).includes(session.id), true)
+  })
+
+  it('freezes a running clock and thaws the same time left', () => {
+    const now = 1_700_000_000_000
+    const frozen = freezeTimer({ phase: 'rest', endsAt: now + 12_400, total: 90, warned: false }, now)
+    assert.equal(frozen?.phase, 'rest')
+    assert.equal(frozen?.remainingSec, 13)
+    assert.equal(frozen?.endsAt, undefined)
+    const thawed = thawTimer(frozen, now + 60_000)
+    assert.equal(thawed.phase, 'rest')
+    assert.equal(thawed.endsAt, now + 60_000 + 13_000)
+    const elapsed = freezeTimer({ phase: 'work', mode: 'up', startedAt: now - 8_000, cap: 0 }, now)
+    assert.equal(elapsed?.elapsedSec, 8)
+    assert.equal(thawTimer(elapsed, now + 30_000).startedAt, now + 30_000 - 8_000)
   })
 })

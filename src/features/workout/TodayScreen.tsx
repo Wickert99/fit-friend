@@ -10,7 +10,8 @@ import { CycleCalendarSheet } from '../progress/CycleCalendar.tsx'
 import { CycleSnapshot } from '../progress/CycleSnapshot.tsx'
 import { applyStart } from '../session/context.ts'
 import { ConflictDialog } from '../session/ConflictDialog.tsx'
-import { deleteCompletedSession, planForStart, sessionCounts, sessionVolume, todayPlan } from '../session/logic.ts'
+import { deleteCompletedSession, discardSession, pauseSession, planForStart, resumeSession, sessionCounts, sessionVolume, todayPlan } from '../session/logic.ts'
+import type { WorkoutSession } from '../../types.ts'
 import { parseKey } from './dates.ts'
 
 export default function TodayScreen() {
@@ -18,7 +19,7 @@ export default function TodayScreen() {
   const confirm = useConfirm()
   const today = todayKey()
   const [selected, setSelected] = useState(today)
-  const [conflict, setConflict] = useState<{ name: string; planDate: string } | null>(null)
+  const [conflict, setConflict] = useState<{ name: string; openId: string; intent: 'start' | { sessionId: string } } | null>(null)
   const [cyclesOpen, setCyclesOpen] = useState(false)
   const programming = useMemo(() => programmingFromState(state), [state])
   const selectedDate = parseKey(selected)
@@ -29,16 +30,26 @@ export default function TodayScreen() {
   const logged = state.sessions.filter((session) => session.status === 'completed' && session.dateKey === selected)
   const subtitle = viewingToday ? 'Today' : 'Selected day'
 
-  function start(mode: 'return' | 'replace' | 'resume') {
+  function start(mode: 'return' | 'replace' | 'resume' | 'pause') {
     const plan = planForStart(state, today)
     if (!plan) return
     const result = applyStart(state, plan, mode)
     if (result.kind === 'conflict') {
-      setConflict({ name: result.session.name, planDate: plan.dateKey })
+      setConflict({ name: result.session.name, openId: result.session.id, intent: 'start' })
       return
     }
     update(() => result.state)
     go('session', { sessionId: result.sessionId }, { skipLeaveGuard: true })
+  }
+
+  function openWorkout(target: WorkoutSession) {
+    const open = state.sessions.find((session) => session.status === 'in_progress' && session.id !== target.id)
+    if (open) {
+      setConflict({ name: open.name, openId: open.id, intent: { sessionId: target.id } })
+      return
+    }
+    if (target.status === 'paused') update((current) => resumeSession(current, target.id))
+    go('session', { sessionId: target.id })
   }
 
   async function remove(sessionId: string, name: string) {
@@ -83,19 +94,11 @@ export default function TodayScreen() {
       <CycleSnapshot sessions={state.sessions} programming={programming} unit={state.weightUnit} onOpen={() => setCyclesOpen(true)} />
       <CycleCalendarSheet open={cyclesOpen} programming={programming} onClose={() => setCyclesOpen(false)} />
       {viewingToday && info.inProgress ? (
-        <Card className="space-y-3">
-          <div className="flex items-center justify-between gap-2">
-            <div>
-              <p className="text-xs font-semibold tracking-wide text-muted uppercase">In progress</p>
-              <p className="font-semibold text-ink">{info.inProgress.name}</p>
-            </div>
-            <Badge>
-              {sessionCounts(info.inProgress).done}/{sessionCounts(info.inProgress).planned}
-            </Badge>
-          </div>
-          <Button onClick={() => go('session', { sessionId: info.inProgress?.id })}>Resume</Button>
-        </Card>
+        <ResumeCard session={info.inProgress} label="In progress" onResume={() => openWorkout(info.inProgress as WorkoutSession)} />
       ) : null}
+      {(viewingToday ? info.paused : info.paused.filter((session) => session.dateKey === selected)).map((session) => (
+        <ResumeCard key={session.id} session={session} label="Saved for later" onResume={() => openWorkout(session)} />
+      ))}
       {plannedName ? (
         <Card className="space-y-3">
           <div>
@@ -153,15 +156,57 @@ export default function TodayScreen() {
           name={conflict.name}
           onCancel={() => setConflict(null)}
           onResume={() => {
+            const openId = conflict.openId
             setConflict(null)
-            start('resume')
+            if (conflict.intent === 'start') start('resume')
+            else go('session', { sessionId: openId })
           }}
-          onReplace={() => {
+          onSaveLater={() => {
+            const pending = conflict
             setConflict(null)
-            start('replace')
+            if (!pending) return
+            if (pending.intent === 'start') {
+              start('pause')
+              return
+            }
+            const sessionId = pending.intent.sessionId
+            update((current) => resumeSession(pauseSession(current, pending.openId), sessionId))
+            go('session', { sessionId })
+          }}
+          onDiscard={() => {
+            const pending = conflict
+            setConflict(null)
+            if (!pending) return
+            if (pending.intent === 'start') {
+              start('replace')
+              return
+            }
+            const sessionId = pending.intent.sessionId
+            update((current) => resumeSession(discardSession(current, pending.openId), sessionId))
+            go('session', { sessionId })
           }}
         />
       ) : null}
     </Page>
+  )
+}
+
+function ResumeCard({ session, label, onResume }: { session: WorkoutSession; label: string; onResume: () => void }) {
+  const counts = sessionCounts(session)
+  return (
+    <Card className="space-y-3" data-resume-card={session.id}>
+      <div className="flex items-center justify-between gap-2">
+        <div>
+          <p className="text-xs font-semibold tracking-wide text-muted uppercase">{label}</p>
+          <p className="font-semibold text-ink">{session.name}</p>
+        </div>
+        <Badge>
+          {counts.done}/{counts.planned}
+        </Badge>
+      </div>
+      <Button data-resume-session={session.id} onClick={onResume}>
+        Resume
+      </Button>
+    </Card>
   )
 }

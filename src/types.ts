@@ -229,7 +229,27 @@ export interface SessionExercise {
   coachCue?: string
 }
 
-export type SessionStatus = 'in_progress' | 'completed'
+export type SessionStatus = 'in_progress' | 'paused' | 'completed'
+
+/** Focus clock saved with a session so pause and resume restore the same place. */
+export interface SessionTimer {
+  phase: 'ready' | 'count-in' | 'work' | 'rest'
+  /** Wall-clock end while the workout is still in progress. */
+  endsAt?: number
+  startedAt?: number
+  /** Countdown seconds frozen at pause. */
+  remainingSec?: number
+  /** Elapsed seconds frozen at pause for a count-up. */
+  elapsedSec?: number
+  total?: number
+  cap?: number
+  mode?: 'down' | 'up'
+  warned?: boolean
+  warning?: string
+  left?: number
+  spoken?: number
+  sideIndex?: number
+}
 
 export interface WorkoutSession {
   id: string
@@ -241,6 +261,10 @@ export interface WorkoutSession {
   status: SessionStatus
   startedAt?: string
   completedAt?: string
+  /** Set while status is paused. Cleared on resume. */
+  pausedAt?: string
+  /** Rest, work, or count-in clock. Frozen while paused. */
+  timer?: SessionTimer | null
   focus?: string
   pad?: string
   sessionPad?: string

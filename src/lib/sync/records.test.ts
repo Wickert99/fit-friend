@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { emptyState } from '../../store/normalize.ts'
+import { recomputePrs } from '../maxes/prs.ts'
+import { emptyState, normalizeState } from '../../store/normalize.ts'
 import type { AppState, WorkoutSession } from '../../types.ts'
 import {
   MAX_RECORD_BYTES,
@@ -171,5 +172,62 @@ describe('sync records', () => {
     assert.equal(massDelete(1, 100), false)
     const tombs = tombstones([{ kind: 'session', id: 's1', updated_at: '2026-10-01T00:00:00.000Z' }], '2026-10-02T00:00:00.000Z')
     assert.equal(tombs[0]?.deleted_at, tombs[0]?.updated_at)
+  })
+
+  it('round-trips a paused session through user_records without treating it as finished', () => {
+    const paused = session('s1', {
+      status: 'paused',
+      pausedAt: '2026-10-16T01:00:00.000Z',
+      startedAt: '2026-10-16T00:30:00.000Z',
+      currentSet: { exerciseIndex: 0, setIndex: 1 },
+      timer: { phase: 'rest', remainingSec: 40, total: 90 },
+      restEndsAt: null,
+      exercises: [
+        {
+          exerciseId: 'ex-bsquat',
+          setType: 'reps_load',
+          sets: [
+            { setNumber: 1, reps: 5, loadKg: 100, completed: true },
+            { setNumber: 2, reps: 5, loadKg: 100, completed: false },
+          ],
+        },
+      ],
+    })
+    const state = emptyState()
+    state.sessions = [paused]
+    const records = recordsForSync(state)
+    const data = records.get(recordKey('session', 's1'))?.data as WorkoutSession
+    assert.equal(data.status, 'paused')
+    assert.equal(data.currentSet?.setIndex, 1)
+    assert.equal(data.timer?.remainingSec, 40)
+    assert.equal(data.exercises[0]?.sets[0]?.completed, true)
+    assert.notEqual(contentHash(data), contentHash({ ...data, status: 'in_progress' }))
+    const remote = integrateRemote(
+      [
+        {
+          kind: 'session',
+          id: 's1',
+          data,
+          updated_at: '2026-10-16T01:00:00.000Z',
+          deleted_at: null,
+          rev: 3,
+        },
+      ],
+      {},
+      {},
+    )
+    const next = applyChanges(emptyState(), remote.apply, syncBaselineState())
+    assert.equal(next.sessions[0]?.status, 'paused')
+    assert.equal(next.sessions[0]?.exercises[0]?.sets[0]?.loadKg, 100)
+    assert.equal(recomputePrs(next.sessions).length, 0)
+    const normalized = normalizeState(next)
+    assert.equal(normalized.sessions[0]?.status, 'paused')
+    assert.equal(normalized.sessions[0]?.timer?.phase, 'rest')
+    assert.equal(normalized.sessions[0]?.currentSet?.setIndex, 1)
+    const clock = { [recordKey('session', 's1')]: { h: contentHash(data), t: '2026-10-16T01:00:00.000Z' } }
+    const pushed = pushPayloads(records, clock, {})
+    assert.equal(pushed.length, 1)
+    assert.equal(pushed[0]?.deleted_at, null)
+    assert.equal((pushed[0]?.data as WorkoutSession).status, 'paused')
   })
 })

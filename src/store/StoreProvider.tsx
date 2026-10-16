@@ -68,7 +68,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!ready || !state) return
     savePersisted(storage, state, { hotSeq: hotSeq.current, seedVersion: SEED_VERSION })
-    const active = state.sessions.filter((session) => session.status === 'in_progress')
+    const active = state.sessions.filter((session) => session.status === 'in_progress' || session.status === 'paused')
     if (active.length) {
       hotSeq.current = Math.max(Date.now(), hotSeq.current + 1)
       void journalSessions(active, hotSeq.current)

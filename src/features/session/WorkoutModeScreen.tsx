@@ -58,7 +58,15 @@ export default function WorkoutModeScreen() {
             update(() => result.state)
             go('session', { sessionId: result.sessionId }, { skipLeaveGuard: true })
           }}
-          onReplace={() => {
+          onSaveLater={() => {
+            const plan = planForStart(state, today)
+            if (!plan) return
+            const result = applyStart(state, plan, 'pause')
+            if (result.kind === 'conflict') return
+            update(() => result.state)
+            go('session', { sessionId: result.sessionId }, { skipLeaveGuard: true })
+          }}
+          onDiscard={() => {
             const plan = planForStart(state, today)
             if (!plan) return
             const result = applyStart(state, plan, 'replace')

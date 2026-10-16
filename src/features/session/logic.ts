@@ -11,6 +11,7 @@ import type {
   Program,
   ProgramDay,
   SessionExercise,
+  SessionTimer,
   SetType,
   WeightUnit,
   WorkoutSession,
@@ -593,9 +594,11 @@ export function finishSession(state: AppState, sessionId: string, shared: boolea
   const existing = state.sessions.find((session) => session.id === sessionId)
   if (!existing) return state
   const completedAt = now.toISOString()
-  const sessions = state.sessions.map((session) =>
-    session.id === sessionId ? { ...session, status: 'completed' as const, completedAt, shared } : session,
-  )
+  const sessions = state.sessions.map((session) => {
+    if (session.id !== sessionId) return session
+    const { timer: _timer, pausedAt: _pausedAt, restEndsAt: _restEndsAt, ...rest } = session
+    return { ...rest, status: 'completed' as const, completedAt, shared }
+  })
   const session = sessions.find((item) => item.id === sessionId) ?? existing
   const dateKey = sessionDate(session)
   const commitmentDays = state.commitmentDays.includes(dateKey) ? state.commitmentDays : [dateKey, ...state.commitmentDays]
@@ -665,7 +668,116 @@ export function discardSession(state: AppState, sessionId: string): AppState {
   return { ...state, sessions: state.sessions.filter((session) => session.id !== sessionId || session.status === 'completed') }
 }
 
-export type StartMode = 'return' | 'replace' | 'resume'
+/** Stop the clock at `now` so a paused rest or interval resumes with the same time left. */
+export function freezeTimer(timer: SessionTimer | null | undefined, now = Date.now()): SessionTimer | undefined {
+  if (!timer) return undefined
+  const sideIndex = timer.sideIndex
+  const withSide = (next: SessionTimer): SessionTimer => (sideIndex != null ? { ...next, sideIndex } : next)
+  if (timer.phase === 'ready') return withSide({ phase: 'ready' })
+  if (timer.phase === 'work' && timer.mode === 'up') {
+    const elapsedSec =
+      timer.startedAt != null ? Math.max(0, Math.floor((now - timer.startedAt) / 1000)) : Math.max(0, timer.elapsedSec ?? 0)
+    return withSide({ phase: 'work', mode: 'up', elapsedSec, cap: timer.cap ?? 0 })
+  }
+  const remainingSec =
+    timer.endsAt != null ? Math.max(0, Math.ceil((timer.endsAt - now) / 1000)) : Math.max(0, timer.remainingSec ?? 0)
+  if (remainingSec <= 0) return withSide({ phase: 'ready' })
+  if (timer.phase === 'rest') {
+    return withSide({
+      phase: 'rest',
+      remainingSec,
+      total: timer.total ?? remainingSec,
+      warned: !!timer.warned,
+      ...(timer.warning ? { warning: timer.warning } : {}),
+    })
+  }
+  if (timer.phase === 'count-in') return withSide({ phase: 'count-in', remainingSec, left: remainingSec, spoken: remainingSec })
+  return withSide({ phase: 'work', mode: 'down', remainingSec, cap: timer.cap ?? 0 })
+}
+
+/** Turn a frozen timer back into wall-clock timestamps for Focus mode. */
+export function thawTimer(timer: SessionTimer | null | undefined, now = Date.now()): SessionTimer {
+  const sideIndex = timer?.sideIndex
+  const ready = (): SessionTimer => (sideIndex != null ? { phase: 'ready', sideIndex } : { phase: 'ready' })
+  if (!timer || timer.phase === 'ready') return ready()
+  if (timer.phase === 'work' && timer.mode === 'up') {
+    const elapsed =
+      timer.elapsedSec ?? (timer.startedAt != null ? Math.max(0, Math.floor((now - timer.startedAt) / 1000)) : 0)
+    return {
+      phase: 'work',
+      mode: 'up',
+      startedAt: now - elapsed * 1000,
+      cap: timer.cap ?? 0,
+      ...(sideIndex != null ? { sideIndex } : {}),
+    }
+  }
+  const remaining =
+    timer.remainingSec ?? (timer.endsAt != null ? Math.max(0, Math.ceil((timer.endsAt - now) / 1000)) : 0)
+  if (remaining <= 0) return ready()
+  const endsAt = timer.endsAt != null && timer.remainingSec == null ? timer.endsAt : now + remaining * 1000
+  if (timer.phase === 'rest') {
+    return {
+      phase: 'rest',
+      endsAt,
+      total: timer.total ?? remaining,
+      warned: !!timer.warned,
+      ...(timer.warning ? { warning: timer.warning } : {}),
+      ...(sideIndex != null ? { sideIndex } : {}),
+    }
+  }
+  if (timer.phase === 'count-in') {
+    return {
+      phase: 'count-in',
+      endsAt,
+      left: remaining,
+      spoken: remaining,
+      ...(sideIndex != null ? { sideIndex } : {}),
+    }
+  }
+  return {
+    phase: 'work',
+    mode: 'down',
+    endsAt,
+    cap: timer.cap ?? 0,
+    ...(sideIndex != null ? { sideIndex } : {}),
+  }
+}
+
+export function pauseSession(
+  state: AppState,
+  sessionId: string,
+  recipe: (session: WorkoutSession) => WorkoutSession = (session) => session,
+  now = new Date(),
+): AppState {
+  return {
+    ...state,
+    sessions: state.sessions.map((session) => {
+      if (session.id !== sessionId || session.status === 'completed') return session
+      const next = recipe(session)
+      const timer = freezeTimer(next.timer, now.getTime())
+      return {
+        ...next,
+        status: 'paused',
+        pausedAt: now.toISOString(),
+        timer,
+        restEndsAt: null,
+      }
+    }),
+  }
+}
+
+export function resumeSession(state: AppState, sessionId: string): AppState {
+  return {
+    ...state,
+    sessions: state.sessions.map((session) => {
+      if (session.id !== sessionId || session.status !== 'paused') return session
+      const { pausedAt: _pausedAt, ...rest } = session
+      return { ...rest, status: 'in_progress' }
+    }),
+  }
+}
+
+export type StartMode = 'return' | 'replace' | 'resume' | 'pause'
 
 export type StartResult =
   | { kind: 'started'; sessionId: string; state: AppState }
@@ -677,21 +789,34 @@ function matchesPlan(session: WorkoutSession, plan: PlannedSession): boolean {
   return session.plannedSessionId === plan.id
 }
 
+function parkedMatch(state: AppState, plan: PlannedSession): WorkoutSession | undefined {
+  return state.sessions.find((session) => session.status === 'paused' && matchesPlan(session, plan))
+}
+
 export function startFromPlan(state: AppState, plan: PlannedSession, ctx: TrainingContext, mode: StartMode = 'return', now = new Date()): StartResult {
   const current = state.sessions.find((session) => session.status === 'in_progress')
   if (current && matchesPlan(current, plan)) return { kind: 'resumed', sessionId: current.id, state }
   if (current && mode === 'resume') return { kind: 'resumed', sessionId: current.id, state }
-  if (current && mode !== 'replace') return { kind: 'conflict', session: current, state }
+  if (current && mode !== 'replace' && mode !== 'pause') return { kind: 'conflict', session: current, state }
+
+  let base = state
+  if (current && mode === 'pause') base = pauseSession(state, current.id, (session) => session, now)
+  if (current && mode === 'replace') {
+    base = { ...state, sessions: state.sessions.filter((session) => session.id !== current.id) }
+  }
+  const parked = parkedMatch(base, plan)
+  if (parked) return { kind: 'resumed', sessionId: parked.id, state: resumeSession(base, parked.id) }
+
   const session = buildSession(plan, ctx, createId('ses'), now)
-  const sessions = [session, ...state.sessions.filter((item) => item.status !== 'in_progress')]
+  const sessions = [session, ...base.sessions.filter((item) => item.status !== 'in_progress')]
   return {
     kind: 'started',
     sessionId: session.id,
     state: {
-      ...state,
+      ...base,
       sessions,
       plannedSessions: {
-        ...state.plannedSessions,
+        ...base.plannedSessions,
         [plan.dateKey]: { ...plan, updatedAt: now.toISOString() },
       },
     },
@@ -700,12 +825,14 @@ export function startFromPlan(state: AppState, plan: PlannedSession, ctx: Traini
 
 export function todayPlan(state: AppState, dateKey: string): {
   inProgress?: WorkoutSession
+  paused: WorkoutSession[]
   plan?: PlannedSession
   programDay?: { program: Program; day: ProgramDay }
   canStart: boolean
   name?: string
 } {
   const inProgress = state.sessions.find((session) => session.status === 'in_progress')
+  const paused = state.sessions.filter((session) => session.status === 'paused')
   const plan = state.plannedSessions[dateKey]
   const programDay = !plan && state.scheduled[dateKey] ? findProgramDay(state, dateKey) ?? undefined : undefined
   const logged = state.sessions.some((session) => {
@@ -713,10 +840,13 @@ export function todayPlan(state: AppState, dateKey: string): {
     if (!plan) return false
     return session.plannedSessionId === plan.id || (session.programDayId === plan.programDayId && session.name === plan.name)
   })
-  const sameWorkout = !!(inProgress && plan && (inProgress.plannedSessionId === plan.id || inProgress.name === plan.name))
+  const matches = (session: WorkoutSession | undefined) =>
+    !!(session && plan && (session.plannedSessionId === plan.id || session.name === plan.name))
+  const sameWorkout = matches(inProgress) || paused.some((session) => matches(session))
   const hasWork = plan ? plan.exercises.length > 0 || !!plan.sessionPad?.trim() : !!(programDay && programDay.day.exercises.length > 0)
   return {
     inProgress,
+    paused,
     plan,
     programDay,
     canStart: hasWork && !logged && !sameWorkout,

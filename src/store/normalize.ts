@@ -18,6 +18,8 @@ import type {
   ProgramInstance,
   SeasonGoals,
   SessionExercise,
+  SessionStatus,
+  SessionTimer,
   SetScheme,
   SetType,
   WeightUnit,
@@ -146,6 +148,44 @@ function normalizeLoggedSet(raw: unknown, index: number): LoggedSet {
   }
 }
 
+function sessionStatus(value: unknown): SessionStatus {
+  if (value === 'completed') return 'completed'
+  if (value === 'paused' || value === 'abandoned') return 'paused'
+  return 'in_progress'
+}
+
+function finiteNumber(value: unknown): number | undefined {
+  return typeof value === 'number' && Number.isFinite(value) ? value : undefined
+}
+
+function normalizeTimer(raw: unknown): SessionTimer | undefined {
+  if (!isRecord(raw)) return undefined
+  if (raw.phase !== 'ready' && raw.phase !== 'count-in' && raw.phase !== 'work' && raw.phase !== 'rest') return undefined
+  const timer: SessionTimer = { phase: raw.phase }
+  if (raw.mode === 'down' || raw.mode === 'up') timer.mode = raw.mode
+  const endsAt = finiteNumber(raw.endsAt)
+  const startedAt = finiteNumber(raw.startedAt)
+  const remainingSec = finiteNumber(raw.remainingSec)
+  const elapsedSec = finiteNumber(raw.elapsedSec)
+  const total = finiteNumber(raw.total)
+  const cap = finiteNumber(raw.cap)
+  const left = finiteNumber(raw.left)
+  const spoken = finiteNumber(raw.spoken)
+  const sideIndex = finiteNumber(raw.sideIndex)
+  if (endsAt != null) timer.endsAt = endsAt
+  if (startedAt != null) timer.startedAt = startedAt
+  if (remainingSec != null) timer.remainingSec = remainingSec
+  if (elapsedSec != null) timer.elapsedSec = elapsedSec
+  if (total != null) timer.total = total
+  if (cap != null) timer.cap = cap
+  if (left != null) timer.left = left
+  if (spoken != null) timer.spoken = spoken
+  if (sideIndex != null) timer.sideIndex = sideIndex
+  if (typeof raw.warned === 'boolean') timer.warned = raw.warned
+  if (typeof raw.warning === 'string') timer.warning = raw.warning
+  return timer
+}
+
 function normalizeSessionExercise(raw: unknown): SessionExercise | null {
   if (!isRecord(raw) || typeof raw.exerciseId !== 'string') return null
   const sets = Array.isArray(raw.sets) ? raw.sets.map(normalizeLoggedSet) : []
@@ -167,7 +207,9 @@ export function normalizeSession(raw: unknown): WorkoutSession | null {
     id: raw.id,
     name: asString(raw.name, 'Session'),
     dateKey: asString(raw.dateKey),
-    status: raw.status === 'completed' ? 'completed' : 'in_progress',
+    status: sessionStatus(raw.status),
+    pausedAt: typeof raw.pausedAt === 'string' ? raw.pausedAt : undefined,
+    timer: normalizeTimer(raw.timer),
     exercises,
     notes: typeof raw.notes === 'string' ? raw.notes : undefined,
     sessionPad: typeof raw.sessionPad === 'string' ? raw.sessionPad : typeof raw.pad === 'string' ? raw.pad : '',

@@ -114,7 +114,10 @@ export default function ExerciseDetailScreen() {
         onResume={() => {
           if (conflict) launch(conflict.name, conflict.exerciseIds, 'resume')
         }}
-        onReplace={() => {
+        onSaveLater={() => {
+          if (conflict) launch(conflict.name, conflict.exerciseIds, 'pause')
+        }}
+        onDiscard={() => {
           if (conflict) launch(conflict.name, conflict.exerciseIds, 'replace')
         }}
       />

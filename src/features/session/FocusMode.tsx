@@ -1,6 +1,6 @@
 import { Volume2, VolumeX } from 'lucide-react'
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
-import type { Exercise, LiftFamily, LiftMax, SessionExercise, WeightUnit, WorkoutSession } from '../../types.ts'
+import type { Exercise, LiftFamily, LiftMax, SessionExercise, SessionTimer, WeightUnit, WorkoutSession } from '../../types.ts'
 import { buildFocusSteps, clockLabel, restWarningAt, sessionToCue, type FocusStep } from '../../lib/cues/index.ts'
 import { SET_TYPE_LABELS, logShape, resolveSetType } from '../../lib/setTypes/index.ts'
 import { kgToUnit, unitToKg } from '../../lib/setTypes/units.ts'
@@ -15,13 +15,21 @@ import {
   removeLastSet,
   sessionCounts,
   setAt,
+  thawTimer,
   undoSet,
   type SetPatch,
   type SetPointer,
 } from './logic.ts'
 
+export interface FocusSnapshot {
+  pointer: SetPointer | null
+  patch: SetPatch
+  timer: SessionTimer
+}
+
 export interface FocusHandle {
   flush: () => void
+  snapshot: () => FocusSnapshot
 }
 
 interface Draft {
@@ -51,7 +59,8 @@ export const FocusMode = forwardRef<FocusHandle, {
   onChange: (recipe: (session: WorkoutSession) => WorkoutSession) => void
   onDirty: (dirty: boolean) => void
   onDone: () => void
-}>(function FocusMode({ session, exercises, unit, families, aliases, liftMaxes, muted, onToggleMute, onChange, onDirty, onDone }, ref) {
+  onPause: () => void
+}>(function FocusMode({ session, exercises, unit, families, aliases, liftMaxes, muted, onToggleMute, onChange, onDirty, onDone, onPause }, ref) {
   const names = useMemo(() => Object.fromEntries(exercises.map((exercise) => [exercise.id, exercise.name])), [exercises])
   const steps = useMemo(
     () => buildFocusSteps(session.exercises.map(sessionToCue), names, unit, { unit, families, aliases, liftMaxes, exercises }),
@@ -61,10 +70,10 @@ export const FocusMode = forwardRef<FocusHandle, {
   const exercise = pointer ? session.exercises[pointer.exerciseIndex] : undefined
   const library = exercises.find((item) => item.id === exercise?.exerciseId) ?? null
   const group = pointer && exercise ? stepsFor(steps, pointer.exerciseIndex, pointer.setIndex, exercise.exerciseId) : []
-  const [sideIndex, setSideIndex] = useState(0)
+  const [sideIndex, setSideIndex] = useState(() => session.timer?.sideIndex ?? 0)
   const step = group[sideIndex] ?? group[0]
   const [draft, setDraft] = useState<Draft>(() => draftFrom(session))
-  const [phase, setPhase] = useState<Phase>({ name: 'ready' })
+  const [phase, setPhase] = useState<Phase>(() => phaseFrom(session.timer))
   const [now, setNow] = useState(() => Date.now())
   const [undo, setUndo] = useState<SetPointer | null>(null)
   const [openList, setOpenList] = useState(false)
@@ -74,11 +83,13 @@ export const FocusMode = forwardRef<FocusHandle, {
   const phaseRef = useRef(phase)
   const stepRef = useRef(step)
   const pointerRef = useRef(pointer)
+  const sideRef = useRef(sideIndex)
   const mutedRef = useRef(muted)
   const onChangeRef = useRef(onChange)
   phaseRef.current = phase
   stepRef.current = step
   pointerRef.current = pointer
+  sideRef.current = sideIndex
   mutedRef.current = muted
   onChangeRef.current = onChange
 
@@ -107,12 +118,19 @@ export const FocusMode = forwardRef<FocusHandle, {
   const patchRef = useRef(patch)
   patchRef.current = patch
 
+  const readSnapshot = (): FocusSnapshot => ({
+    pointer: pointerRef.current,
+    patch: patchRef.current(),
+    timer: liveTimer(phaseRef.current, sideRef.current),
+  })
+
   useImperativeHandle(ref, () => ({
     flush: () => {
-      const current = pointerRef.current
-      if (!current) return
-      onChangeRef.current((item) => editSet(item, current, patchRef.current()))
+      const snap = readSnapshot()
+      if (!snap.pointer) return
+      onChangeRef.current((item) => editSet(item, snap.pointer as SetPointer, snap.patch))
     },
+    snapshot: () => readSnapshot(),
   }))
 
   useWakeLock(true)
@@ -120,8 +138,13 @@ export const FocusMode = forwardRef<FocusHandle, {
 
   const pointerKey = pointer ? `${pointer.exerciseIndex}:${pointer.setIndex}` : 'none'
   const setType = exercise?.setType
+  const seenPointer = useRef<string | null>(null)
   useEffect(() => {
-    setSideIndex(0)
+    if (seenPointer.current == null) seenPointer.current = pointerKey
+    else if (seenPointer.current !== pointerKey) {
+      seenPointer.current = pointerKey
+      setSideIndex(0)
+    }
     const current = pointerRef.current
     const logged = current ? setAt(session, current) : undefined
     setDraft({
@@ -210,6 +233,16 @@ export const FocusMode = forwardRef<FocusHandle, {
   useEffect(() => {
     onDirty(dirty)
   }, [dirty, onDirty])
+
+  useEffect(() => {
+    const timer = liveTimer(phase, sideIndex)
+    onChangeRef.current((item) => {
+      if (item.status === 'paused' || item.status === 'completed') return item
+      const restEndsAt = timer.phase === 'rest' ? (timer.endsAt ?? null) : null
+      if (sameTimer(item.timer, timer) && (item.restEndsAt ?? null) === restEndsAt) return item
+      return { ...item, timer, restEndsAt }
+    })
+  }, [phase, sideIndex, session.status])
 
   const counts = sessionCounts(session)
   const finished = counts.planned > 0 && counts.done >= counts.planned && phase.name === 'ready'
@@ -384,6 +417,9 @@ export const FocusMode = forwardRef<FocusHandle, {
           <Button onClick={onDone}>Review</Button>
         </Card>
       )}
+      <Button variant="secondary" className="w-full" data-pause-session onClick={onPause}>
+        Pause / Save for later
+      </Button>
       {undo && !finished && phase.name !== 'rest' ? (
         <div className="flex items-center justify-between gap-2 rounded-2xl border border-charcoal-4 bg-charcoal px-3 py-2">
           <p className="text-sm text-ink">Set logged</p>
@@ -524,6 +560,45 @@ function AllSets({
       ))}
     </div>
   )
+}
+
+function phaseFrom(timer: SessionTimer | null | undefined): Phase {
+  const thawed = thawTimer(timer)
+  if (thawed.phase === 'rest' && thawed.endsAt) {
+    return { name: 'rest', endsAt: thawed.endsAt, total: thawed.total ?? 0, warned: !!thawed.warned, warning: thawed.warning }
+  }
+  if (thawed.phase === 'count-in' && thawed.endsAt) {
+    return { name: 'count-in', endsAt: thawed.endsAt, left: thawed.left ?? 0, spoken: thawed.spoken ?? 0 }
+  }
+  if (thawed.phase === 'work' && thawed.mode === 'down' && thawed.endsAt) {
+    return { name: 'work', mode: 'down', startedAt: Date.now(), endsAt: thawed.endsAt, cap: 0 }
+  }
+  if (thawed.phase === 'work' && thawed.mode === 'up' && thawed.startedAt) {
+    return { name: 'work', mode: 'up', startedAt: thawed.startedAt, endsAt: thawed.startedAt, cap: thawed.cap ?? 0 }
+  }
+  return { name: 'ready' }
+}
+
+function liveTimer(phase: Phase, sideIndex: number, now = Date.now()): SessionTimer {
+  const side = sideIndex > 0 ? { sideIndex } : {}
+  if (phase.name === 'rest') {
+    return { phase: 'rest', endsAt: phase.endsAt, total: phase.total, warned: phase.warned, warning: phase.warning, ...side }
+  }
+  if (phase.name === 'count-in') {
+    return { phase: 'count-in', endsAt: phase.endsAt, left: phase.left, spoken: phase.spoken, ...side }
+  }
+  if (phase.name === 'work' && phase.mode === 'down') {
+    return { phase: 'work', mode: 'down', endsAt: phase.endsAt, cap: phase.cap, ...side }
+  }
+  if (phase.name === 'work' && phase.mode === 'up') {
+    return { phase: 'work', mode: 'up', startedAt: phase.startedAt, cap: phase.cap, elapsedSec: Math.max(0, Math.floor((now - phase.startedAt) / 1000)), ...side }
+  }
+  return { phase: 'ready', ...side }
+}
+
+function sameTimer(left: SessionTimer | null | undefined, right: SessionTimer): boolean {
+  if (!left) return false
+  return JSON.stringify(left) === JSON.stringify(right)
 }
 
 function draftFrom(session: WorkoutSession): Draft {

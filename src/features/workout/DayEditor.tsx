@@ -86,7 +86,7 @@ export function DayEditor() {
     setBaseline(signature(next))
   }
 
-  function begin(plan: PlannedSession, mode: 'return' | 'replace' | 'resume') {
+  function begin(plan: PlannedSession, mode: 'return' | 'replace' | 'resume' | 'pause') {
     const result = applyStart(state, plan, mode)
     if (result.kind === 'conflict') {
       setConflict({ id: result.session.id, name: result.session.name })
@@ -368,7 +368,11 @@ export function DayEditor() {
             setConflict(null)
             if (draft) begin(draft, 'resume')
           }}
-          onReplace={() => {
+          onSaveLater={() => {
+            setConflict(null)
+            if (draft) begin(draft, 'pause')
+          }}
+          onDiscard={() => {
             setConflict(null)
             if (draft) begin(draft, 'replace')
           }}

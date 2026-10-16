@@ -105,5 +105,15 @@ describe('quick session', () => {
     assert.equal(replaced.kind, 'started')
     assert.deepEqual(replaced.next.sessions.map((session) => session.id), ['ses-new'])
     assert.equal(replaced.next.sessions[0]?.exercises[0]?.exerciseId, 'ex-bsquat')
+    const saved = planQuickStart(base, {
+      name: 'Custom · 1 exercise',
+      exerciseIds: ['ex-bsquat'],
+      mode: 'pause',
+      sessionId: 'ses-new',
+      dateKey: '2026-10-15',
+    })
+    assert.equal(saved.kind, 'started')
+    assert.equal(saved.next.sessions.find((session) => session.id === 'ses-open')?.status, 'paused')
+    assert.equal(saved.next.sessions.find((session) => session.id === 'ses-new')?.status, 'in_progress')
   })
 })

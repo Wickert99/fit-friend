@@ -31,7 +31,7 @@ export const LEGACY_STATE_KEYS = [
 ] as const
 
 /** Bump when the on-disk shape changes. Migrations in migrate.ts run up to this. */
-export const FORMAT_VERSION = 2
+export const FORMAT_VERSION = 3
 
 /** Catalog stamp. A mismatch merges the bundled seed without wiping user logs. */
 export const SEED_VERSION = '2026-10-12.2'

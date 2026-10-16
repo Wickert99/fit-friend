@@ -5,11 +5,13 @@ import { ProgressSubNav } from '../../app/TabSubNav.tsx'
 import { exerciseIdAliases } from '../../store/aliases.ts'
 import { benchmarkRecords, liftFamilies, runRecords } from '../../store/catalog.ts'
 import { useStore } from '../../store/useStore.ts'
-import type { Exercise, PersonalRecord } from '../../types.ts'
+import type { Exercise, PersonalRecord, WorkoutSession } from '../../types.ts'
 import { Badge, Button, Card, EmptyState, Page, ScreenHeader } from '../../ui/index.ts'
 import { deleteLoggedSession, formatKey, programmingFromState } from '../../lib/cycles/index.ts'
 import { formatVolume, formatWeightNumber, plural, sessionVolumeKg } from '../../lib/maxes/index.ts'
 import { formatRecord, recordKind } from '../../lib/maxes/scores.ts'
+import { ConflictDialog } from '../session/ConflictDialog.tsx'
+import { discardSession, pauseSession, resumeSession, sessionCounts } from '../session/logic.ts'
 import { CycleCalendarSheet, CycleExplorer } from './CycleCalendar.tsx'
 import { CycleSnapshot } from './CycleSnapshot.tsx'
 
@@ -38,6 +40,7 @@ function formatWhen(iso: string | undefined): string {
 export default function LogScreen() {
   const { state, go, update } = useStore()
   const [cyclesOpen, setCyclesOpen] = useState(false)
+  const [conflict, setConflict] = useState<{ name: string; openId: string; sessionId: string } | null>(null)
   const unit = state.weightUnit ?? 'kg'
   const programming = useMemo(() => programmingFromState(state), [state])
   const maxes = useMemo(() => {
@@ -59,6 +62,13 @@ export default function LogScreen() {
     for (const kind of ['strength', 'run', 'benchmark'] as const) groups[kind].sort((a, b) => a.name.localeCompare(b.name))
     return { groups, kinds: (['strength', 'run', 'benchmark'] as const).filter((kind) => groups[kind].length > 0) }
   }, [state.liftMaxes, unit])
+  const openWorkouts = state.sessions
+    .filter((session) => session.status === 'in_progress' || session.status === 'paused')
+    .slice()
+    .sort((a, b) => {
+      if (a.status !== b.status) return a.status === 'in_progress' ? -1 : 1
+      return (b.pausedAt ?? b.startedAt ?? '').localeCompare(a.pausedAt ?? a.startedAt ?? '')
+    })
   const history = state.sessions
     .filter((session) => session.status === 'completed')
     .slice()
@@ -66,10 +76,46 @@ export default function LogScreen() {
   const records = state.prs.slice().sort((a, b) => (b.loadKg ?? 0) - (a.loadKg ?? 0))
   const openCycles = () => setCyclesOpen(true)
 
+  function openWorkout(target: WorkoutSession) {
+    const open = state.sessions.find((session) => session.status === 'in_progress' && session.id !== target.id)
+    if (open) {
+      setConflict({ name: open.name, openId: open.id, sessionId: target.id })
+      return
+    }
+    if (target.status === 'paused') update((current) => resumeSession(current, target.id))
+    go('session', { sessionId: target.id })
+  }
+
   return (
     <Page>
       <ScreenHeader title="Progress" subtitle="Cycles, maxes, PRs, and history" />
       <ProgressSubNav value="log" />
+      {openWorkouts.length > 0 ? (
+        <section className="space-y-3" data-log-resume>
+          <h2 className="text-xs font-semibold tracking-wider text-muted uppercase">Resume</h2>
+          {openWorkouts.map((session) => {
+            const counts = sessionCounts(session)
+            return (
+              <Card key={session.id} data-resume-card={session.id}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <Badge tone={session.status === 'paused' ? 'warn' : 'lime'}>
+                      {session.status === 'paused' ? 'Saved for later' : 'In progress'}
+                    </Badge>
+                    <p className="mt-2 font-semibold">{session.name}</p>
+                    <p className="mt-1 text-xs text-muted">
+                      {formatWhen(session.pausedAt ?? session.startedAt)} · {counts.done}/{counts.planned} sets
+                    </p>
+                  </div>
+                  <Button data-resume-session={session.id} onClick={() => openWorkout(session)}>
+                    Resume
+                  </Button>
+                </div>
+              </Card>
+            )
+          })}
+        </section>
+      ) : null}
       <CycleSnapshot sessions={state.sessions} programming={programming} unit={unit} onOpen={openCycles} />
       <CycleExplorer programming={programming} />
       <CycleCalendarSheet open={cyclesOpen} programming={programming} onClose={() => setCyclesOpen(false)} />
@@ -176,6 +222,29 @@ export default function LogScreen() {
           ))
         )}
       </section>
+      {conflict ? (
+        <ConflictDialog
+          name={conflict.name}
+          onCancel={() => setConflict(null)}
+          onResume={() => {
+            const openId = conflict.openId
+            setConflict(null)
+            go('session', { sessionId: openId })
+          }}
+          onSaveLater={() => {
+            const pending = conflict
+            setConflict(null)
+            update((current) => resumeSession(pauseSession(current, pending.openId), pending.sessionId))
+            go('session', { sessionId: pending.sessionId })
+          }}
+          onDiscard={() => {
+            const pending = conflict
+            setConflict(null)
+            update((current) => resumeSession(discardSession(current, pending.openId), pending.sessionId))
+            go('session', { sessionId: pending.sessionId })
+          }}
+        />
+      ) : null}
     </Page>
   )
 }

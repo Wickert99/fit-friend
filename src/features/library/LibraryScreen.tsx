@@ -55,7 +55,7 @@ export default function LibraryScreen({ section }: { section: 'exercises' | 'pro
     setSelected((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]))
   }
 
-  const startSelected = (mode: 'return' | 'resume' | 'replace') => {
+  const startSelected = (mode: 'return' | 'resume' | 'replace' | 'pause') => {
     const ids = conflict && mode !== 'return' ? conflict.exerciseIds : selected
     const name = `Custom · ${countLabel(ids.length, 'exercise')}`
     const result = launch(name, ids, mode)
@@ -371,7 +371,8 @@ export default function LibraryScreen({ section }: { section: 'exercises' | 'pro
         startName={conflict ? `Custom · ${countLabel(conflict.exerciseIds.length, 'exercise')}` : undefined}
         onDismiss={dismissConflict}
         onResume={() => startSelected('resume')}
-        onReplace={() => startSelected('replace')}
+        onSaveLater={() => startSelected('pause')}
+        onDiscard={() => startSelected('replace')}
       />
     </Page>
   )

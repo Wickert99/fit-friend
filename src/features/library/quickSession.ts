@@ -1,6 +1,7 @@
 import type { AppState, Exercise, SessionExercise, SetType, WorkoutSession } from '../../types.ts'
+import { pauseSession } from '../session/logic.ts'
 
-export type ConflictMode = 'return' | 'resume' | 'replace'
+export type ConflictMode = 'return' | 'resume' | 'replace' | 'pause'
 
 export interface QuickStartInput {
   name: string
@@ -90,7 +91,10 @@ export function planQuickStart(state: AppState, input: QuickStartInput, aliases:
   if (open && input.mode === 'resume') {
     return { next: state, kind: 'resumed', sessionId: open.id, conflict: open }
   }
-  if (open && input.mode !== 'replace') {
+  let base = state
+  if (open && input.mode === 'pause') {
+    base = pauseSession(state, open.id)
+  } else if (open && input.mode !== 'replace') {
     return { next: state, kind: 'conflict', sessionId: open.id, conflict: open }
   }
   const session: WorkoutSession = {
@@ -104,8 +108,8 @@ export function planQuickStart(state: AppState, input: QuickStartInput, aliases:
   }
   return {
     next: {
-      ...state,
-      sessions: [session, ...state.sessions.filter((item) => item.status !== 'in_progress')],
+      ...base,
+      sessions: [session, ...base.sessions.filter((item) => item.status !== 'in_progress')],
     },
     kind: 'started',
     sessionId: session.id,
