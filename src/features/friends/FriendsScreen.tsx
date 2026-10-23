@@ -39,6 +39,7 @@ import { formatProgressDetail, formatWeight } from './progressSnapshot.ts'
 import { acceptProgramShare, declineProgramShare, listIncomingShares, listOutgoingShares, shareProgram } from './shareApi.ts'
 import type { ShareView } from './programShare.ts'
 import { SyncPanel } from './SyncPanel.tsx'
+import { WhoopConnect } from '../whoop/WhoopConnect.tsx'
 import { loadThreads, type ChatThread } from './chat.ts'
 
 if (typeof window !== 'undefined') {
@@ -596,6 +597,7 @@ function FriendsBody() {
             </div>
             <SyncPanel />
           </Card>
+          <WhoopConnect />
           <section className="space-y-3">
             <SectionLabel>Invite a friend</SectionLabel>
             <Card>

@@ -121,6 +121,7 @@ function readParam(hashParams: URLSearchParams, searchParams: URLSearchParams, n
 export function captureAuthLinkError(win: Window & typeof globalThis = window): boolean {
   try {
     const { hash, search } = win.location
+    if (hash.split('?')[0] === '#/whoop-callback') return false
     const hashParams = new URLSearchParams(hash.replace(/^#\/?[^?=&]*\?/, '').replace(/^#/, ''))
     const searchParams = new URLSearchParams(search)
     const error = readParam(hashParams, searchParams, 'error')

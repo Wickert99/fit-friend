@@ -11,6 +11,9 @@ describe('installed app updates', () => {
     assert.match(worker, /key\.startsWith\('ff-shell-'\) && key !== SHELL/)
     assert.match(worker, /client\.navigate\(client\.url\)/)
     assert.match(worker, /fetch\(req, \{ cache: 'no-cache' \}\)/)
+    assert.match(worker, /function isAppShellPath/)
+    assert.match(worker, /isAppShellPath\(url\.pathname\)/)
+    assert.match(worker, /whoop-callback\.html/)
     assert.doesNotMatch(worker, /the new worker waits/i)
   })
 

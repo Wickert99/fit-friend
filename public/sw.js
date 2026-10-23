@@ -20,6 +20,12 @@ const RUNTIME = `ff-runtime-${VERSION}`
 const IMAGES = 'ff-exercise-images-v1'
 const IMAGES_MAX = 200
 
+function isAppShellPath(pathname) {
+  if (pathname === INDEX_URL || pathname === ROOT_URL) return true
+  if (BASE !== '/' && pathname === BASE.slice(0, -1)) return true
+  return false
+}
+
 function rooted(path) {
   if (path === '/') return BASE
   if (BASE !== '/' && (path === BASE || path.startsWith(BASE))) return path
@@ -87,7 +93,9 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(req, { cache: 'no-cache' })
         .then((res) => {
-          if (res.ok) {
+          // Only the app shell may replace the offline index. whoop-callback.html is a
+          // separate navigation and must not be stored as index.html.
+          if (res.ok && isAppShellPath(url.pathname)) {
             const copy = res.clone()
             caches.open(SHELL).then((c) => c.put(INDEX_URL, copy))
           }

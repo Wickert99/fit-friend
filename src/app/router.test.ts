@@ -24,6 +24,7 @@ describe('hash router', () => {
     assert.equal(parseHash('#/exercise/ex-bsquat', today).exerciseId, 'ex-bsquat')
     assert.equal(parseHash('#/workout-mode', today).screen, 'workout-mode')
     assert.equal(parseHash('', today).screen, 'today')
+    assert.deepEqual(parseHash('#/whoop-callback?code=abc&state=def', today), { screen: 'friends' })
   })
 
   it('round-trips hashes', () => {
