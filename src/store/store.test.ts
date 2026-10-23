@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { describe, it } from 'node:test'
+import { filterPrograms } from '../features/library/search.ts'
 import { repairJson } from './corrupt.ts'
 import { clearAllSchedule, createBoard, deleteSession, setLiftMax, upsertExercise } from './actions.ts'
-import { FORMAT_VERSION } from './keys.ts'
+import { FORMAT_VERSION, SEED_VERSION } from './keys.ts'
 import { runMigrations } from './migrate.ts'
 import { emptyState, mergeWithSeed, normalizeState, remapExerciseAliases } from './normalize.ts'
-import type { AppState, Exercise, WorkoutSession } from '../types.ts'
+import type { AppState, Exercise, Program, WorkoutSession } from '../types.ts'
 
 describe('migrations', () => {
   it('fills a partial v1 blob and remaps legacy exercise ids at v2', () => {
@@ -126,6 +128,52 @@ describe('seed merge', () => {
     assert.equal(merged.programs[0]?.name, 'My edited copy')
     assert.ok(merged.exercises.some((item) => item.id === 'ex-custom'))
     assert.ok(merged.exercises.some((item) => item.id === 'ex-bsquat'))
+  })
+
+  it('adds a new built-in program to a library saved before that catalog stamp', () => {
+    assert.notEqual(SEED_VERSION, '2026-10-12.2')
+    const persist = readFileSync(new URL('./persist.ts', import.meta.url), 'utf8')
+    assert.match(persist, /storedSeed !== SEED_VERSION/)
+    const seed = emptyState()
+    seed.profile.name = 'Seed'
+    seed.programs = [
+      {
+        id: 'prog-bristol-method',
+        name: 'Bristol Method',
+        description: 'Air-bike cruise session',
+        theme: 'Endurance',
+        sports: ['General Athletic'],
+        weeks: 4,
+        isTemplate: true,
+        isMine: false,
+        createdAt: '2026-10-23T00:00:00.000Z',
+        days: [],
+      },
+    ]
+    const mine: Program = {
+      id: 'prog-hugh',
+      name: 'Hugh block',
+      description: 'Personal',
+      theme: 'Strength',
+      sports: ['General Athletic'],
+      weeks: 1,
+      isTemplate: false,
+      isMine: true,
+      createdAt: '2026-10-01T00:00:00.000Z',
+      days: [],
+    }
+    const saved = emptyState()
+    saved.profile.name = 'Hugh'
+    saved.programs = [mine]
+    saved.sessions = normalizeState({
+      sessions: [{ id: 'logged', name: 'Push', dateKey: '2026-10-22', status: 'completed', exercises: [] }],
+    }).sessions
+    const merged = mergeWithSeed(saved, seed, {})
+    assert.equal(merged.profile.name, 'Hugh')
+    assert.equal(merged.sessions[0]?.id, 'logged')
+    assert.equal(merged.programs.find((program) => program.id === 'prog-hugh')?.name, 'Hugh block')
+    const found = filterPrograms(merged.programs, { query: 'Bris', theme: 'All', sport: 'All' })
+    assert.equal(found[0]?.id, 'prog-bristol-method')
   })
 })
 

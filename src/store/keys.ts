@@ -33,7 +33,12 @@ export const LEGACY_STATE_KEYS = [
 /** Bump when the on-disk shape changes. Migrations in migrate.ts run up to this. */
 export const FORMAT_VERSION = 3
 
-/** Catalog stamp. A mismatch merges the bundled seed without wiping user logs. */
-export const SEED_VERSION = '2026-10-12.2'
+/**
+ * Catalog stamp. A mismatch merges bundled exercises and program templates into the
+ * library already saved on the device, without wiping logs or programs the person owns.
+ * Bump this whenever a built-in template or exercise is added or edited. A phone that
+ * already saved the previous stamp will otherwise keep that older library forever.
+ */
+export const SEED_VERSION = '2026-10-23.1'
 
 export const HOT_SEQ_FIELD = '__hotSeq'

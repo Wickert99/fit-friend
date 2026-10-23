@@ -8,8 +8,9 @@
  * exercise-images: cache-first in 'ff-exercise-images-v1', capped, never precached.
  * Activate deletes every cache except the current shell/runtime pair, including the retired
  * 'ff-models-v1' cache from the removed 3D model.
- * Updates: the new worker waits. The page shows "Update ready · Reload"; Reload posts SKIP_WAITING
- * and the page reloads on controllerchange.
+ * Updates: a new worker takes over immediately. Open screens are reloaded so an installed
+ * home-screen app does not keep running the previous bundle. Navigations revalidate
+ * index.html instead of trusting a ten-minute cached copy.
  */
 const VERSION = 'dev'
 const PRECACHE = []
@@ -36,8 +37,15 @@ async function trimImages() {
 }
 
 self.addEventListener('install', (event) => {
-  if (VERSION === 'dev' || PRECACHE.length === 0) return
-  event.waitUntil(caches.open(SHELL).then((c) => c.addAll([ROOT_URL, INDEX_URL, ...PRECACHE.map(rooted)])))
+  event.waitUntil(
+    (async () => {
+      if (VERSION !== 'dev' && PRECACHE.length > 0) {
+        const cache = await caches.open(SHELL)
+        await cache.addAll([ROOT_URL, INDEX_URL, ...PRECACHE.map(rooted)])
+      }
+      await self.skipWaiting()
+    })(),
+  )
 })
 
 self.addEventListener('message', (event) => {
@@ -47,10 +55,24 @@ self.addEventListener('message', (event) => {
 self.addEventListener('activate', (event) => {
   const keep = new Set([SHELL, RUNTIME, IMAGES])
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => Promise.all(keys.filter((k) => !keep.has(k)).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim()),
+    (async () => {
+      const keys = await caches.keys()
+      const updating = keys.some((key) => key.startsWith('ff-shell-') && key !== SHELL)
+      await Promise.all(keys.filter((key) => !keep.has(key)).map((key) => caches.delete(key)))
+      await self.clients.claim()
+      if (!updating) return
+      const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true })
+      await Promise.all(
+        windows.map(async (client) => {
+          if (!client.url || typeof client.navigate !== 'function') return
+          try {
+            await client.navigate(client.url)
+          } catch {
+            /* The page also reloads when the controller changes. */
+          }
+        }),
+      )
+    })(),
   )
 })
 
@@ -63,7 +85,7 @@ self.addEventListener('fetch', (event) => {
 
   if (req.mode === 'navigate') {
     event.respondWith(
-      fetch(req)
+      fetch(req, { cache: 'no-cache' })
         .then((res) => {
           if (res.ok) {
             const copy = res.clone()

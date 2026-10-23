@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { describe, it } from 'node:test'
 import type { Exercise, Program } from '../../types.ts'
+import { filterPrograms } from './search.ts'
 
 function load(path: string): unknown {
   return JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
@@ -42,6 +43,12 @@ function bristolFrom(programs: Program[]): Program {
 }
 
 describe('Bristol Method library session', () => {
+  it('matches a short search for Bris', () => {
+    const programs = load('../../../data/programs.json') as Program[]
+    const found = filterPrograms(programs, { query: 'Bris', theme: 'All', sport: 'All' })
+    assert.equal(found.some((program) => program.id === 'prog-bristol-method'), true)
+  })
+
   it('keeps the same air-bike session in every app-side catalog', () => {
     const programs = load('../../../data/programs.json') as Program[]
     const extra = load('../../../data/programs-extra-subset.json') as Program[]

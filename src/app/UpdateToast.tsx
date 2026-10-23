@@ -1,64 +1,50 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
+const RELOAD_STAMP = 'ff-sw-reloaded-at'
+
+/** Install updates without asking. A home-screen app otherwise keeps the previous bundle. */
 export function UpdateToast() {
-  const [waiting, setWaiting] = useState<ServiceWorker | null>(null)
-
   useEffect(() => {
     if (!import.meta.env.PROD || !('serviceWorker' in navigator)) return
-    let reloaded = false
+    const hadController = !!navigator.serviceWorker.controller
     const reload = () => {
-      if (reloaded) return
-      reloaded = true
+      const last = Number(sessionStorage.getItem(RELOAD_STAMP) || 0)
+      if (Date.now() - last < 8000) return
+      sessionStorage.setItem(RELOAD_STAMP, String(Date.now()))
       window.location.reload()
     }
     const register = () => {
       const base = import.meta.env.BASE_URL || '/'
       void navigator.serviceWorker
-        .register(`${base}sw.js`, { scope: base })
+        .register(`${base}sw.js`, { scope: base, updateViaCache: 'none' })
         .then((registration) => {
-          if (registration.waiting && navigator.serviceWorker.controller) setWaiting(registration.waiting)
+          const check = () => {
+            void registration.update().catch(() => undefined)
+          }
+          const claim = (worker: ServiceWorker | null) => {
+            worker?.postMessage('SKIP_WAITING')
+          }
+          if (registration.waiting && navigator.serviceWorker.controller) claim(registration.waiting)
           registration.addEventListener('updatefound', () => {
             const installing = registration.installing
             installing?.addEventListener('statechange', () => {
-              if (installing.state === 'installed' && navigator.serviceWorker.controller) setWaiting(installing)
+              if (installing.state === 'installed' && navigator.serviceWorker.controller) claim(installing)
             })
           })
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') check()
+          })
+          window.addEventListener('pageshow', check)
+          window.addEventListener('focus', check)
         })
         .catch(() => undefined)
     }
     if (document.readyState === 'complete') register()
     else window.addEventListener('load', register, { once: true })
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (sessionStorage.getItem('ff-sw-reload')) {
-        sessionStorage.removeItem('ff-sw-reload')
-        reload()
-      }
+      if (hadController) reload()
     })
   }, [])
 
-  if (!waiting) return null
-  return (
-    <div
-      role="status"
-      data-sw-update="true"
-      className="bottom-above-nav fixed z-[70] mx-auto flex max-w-md items-center justify-between gap-3 rounded-2xl border border-charcoal-4 bg-charcoal p-3 text-sm text-ink shadow-raised"
-    >
-      <span>Update ready</span>
-      <div className="flex gap-1">
-        <button type="button" onClick={() => setWaiting(null)} className="min-h-11 rounded-full px-3 text-muted">
-          Later
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            sessionStorage.setItem('ff-sw-reload', '1')
-            waiting.postMessage('SKIP_WAITING')
-          }}
-          className="min-h-11 rounded-full bg-[#8f5a40] px-4 font-semibold text-white"
-        >
-          Reload
-        </button>
-      </div>
-    </div>
-  )
+  return null
 }
