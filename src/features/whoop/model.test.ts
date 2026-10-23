@@ -152,6 +152,19 @@ describe('whoop workout matching', () => {
     assert.equal(matchWhoopWorkout(window, [tiedB, tiedA])?.id, 'a')
   })
 
+  it('matches each same-day session to its own workout', () => {
+    const morning = { startedAt: '2026-10-23T08:00:00.000Z', completedAt: '2026-10-23T09:00:00.000Z' }
+    const evening = { startedAt: '2026-10-23T18:00:00.000Z', completedAt: '2026-10-23T19:00:00.000Z' }
+    const am = workout({ id: 'am', start: morning.startedAt, end: morning.completedAt })
+    const pm = workout({ id: 'pm', start: evening.startedAt, end: evening.completedAt })
+    const morningWindow = sessionWindow(morning)
+    const eveningWindow = sessionWindow(evening)
+    assert.ok(morningWindow)
+    assert.ok(eveningWindow)
+    assert.equal(matchWhoopWorkout(morningWindow, [pm, am])?.id, 'am')
+    assert.equal(matchWhoopWorkout(eveningWindow, [pm, am])?.id, 'pm')
+  })
+
   it('returns no window when the session has no finish time', () => {
     assert.equal(sessionWindow({ startedAt: '2022-04-24T03:00:00.000Z' }), null)
     assert.equal(sessionWindow({ startedAt: '2022-04-24T04:00:00.000Z', completedAt: '2022-04-24T03:00:00.000Z' }), null)

@@ -4,7 +4,8 @@ import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns'
 import { PlanSubNav } from '../../app/TabSubNav.tsx'
 import { exerciseIdAliases } from '../../store/aliases.ts'
 import { useStore } from '../../store/useStore.ts'
-import type { Exercise, Prescription, Program, WorkoutSession } from '../../types.ts'
+import { plansOnDate } from '../../store/dayPlans.ts'
+import type { Exercise, PlannedSession, Prescription, Program, WorkoutSession } from '../../types.ts'
 import { Badge, Button, Card, Page, ScreenHeader, cn } from '../../ui/index.ts'
 import {
   WEEK_OPTS,
@@ -65,15 +66,10 @@ export default function CalendarScreen() {
   }, [cursor])
 
   const scheduled = findScheduled(state.programs, state.scheduled, selectedKey)
-  const planned = state.plannedSessions[selectedKey]
+  const plans = plansOnDate(state.plannedSessions, selectedKey)
   const logged = state.sessions.filter((session) => session.status === 'completed' && session.dateKey === selectedKey)
-  const title = planned?.name ?? scheduled?.day.name
-  const focus = planned?.focus ?? scheduled?.day.focus ?? scheduled?.program.theme
-  const programName = planned?.programName ?? scheduled?.program.name
-  const exercises = planned?.exercises ?? scheduled?.day.exercises ?? []
-  const pad = (planned?.sessionPad ?? scheduled?.day.sessionPad ?? '').trim()
-  const freeWrite = isFreeWrite(title, focus, exercises.length, pad)
-  const hasPlan = !!(scheduled || planned)
+  const anchor = plans.find((plan) => plan.programDayId === scheduled?.day.id) ?? plans[0]
+  const hasPlan = !!(scheduled || plans.length)
   const hasAnything = hasPlan || logged.length > 0
   const active = state.programs.find((program) => program.id === state.activeProgramId) ?? scheduled?.program ?? null
   const mine = state.programs.filter((program) => program.isMine || program.id === state.activeProgramId)
@@ -84,7 +80,7 @@ export default function CalendarScreen() {
     state.programs[0] ??
     null
   const loggedThisPlan = logged.some(
-    (session) => session.programDayId === (planned?.programDayId ?? scheduled?.day.id) || session.name === title,
+    (session) => session.programDayId === scheduled?.day.id || session.name === scheduled?.day.name,
   )
 
   const confirmClearAll = (first: string, second: string) => {
@@ -150,7 +146,7 @@ export default function CalendarScreen() {
             const isSelected = isSameDay(day, selected)
             const today = isToday(day)
             const committed = state.commitmentDays.includes(key)
-            const marked = !!(state.scheduled[key] || state.plannedSessions[key] || committed)
+            const marked = !!(state.scheduled[key] || plansOnDate(state.plannedSessions, key).length || committed)
             return (
               <button
                 key={key}
@@ -261,33 +257,32 @@ export default function CalendarScreen() {
             </div>
           </Card>
         ) : null}
-        {hasPlan ? (
-          <Card onClick={() => openWorkout(selectedKey)} className="cursor-pointer border-charcoal-4 bg-charcoal shadow-card">
-            <div className="flex gap-3">
-              <div className="w-1 shrink-0 rounded-full bg-lime" aria-hidden />
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-2">
-                  {programName ? <Badge tone="lime">{programName}</Badge> : null}
-                  {focus ? <Badge tone="steel">{focus}</Badge> : null}
-                  {freeWrite && !/free\s*write/i.test(focus ?? '') ? <Badge tone="lime">Free write</Badge> : null}
-                  {loggedThisPlan ? <Badge tone="success">Logged</Badge> : null}
-                </div>
-                <h3 className="mt-1.5 text-base font-semibold text-ink">{title}</h3>
-                {pad ? (
-                  <p data-session-pad-preview className="font-hand mt-2 line-clamp-4 text-sm leading-relaxed whitespace-pre-wrap text-ink">
-                    {pad}
-                  </p>
-                ) : exercises.length === 0 ? (
-                  <p className="mt-0.5 text-sm text-muted">{freeWrite ? 'Free-write session' : '0 exercises'}</p>
-                ) : (
-                  <p className="mt-0.5 text-sm text-muted">
-                    {exercises.length} exercise{exercises.length === 1 ? '' : 's'}
-                  </p>
-                )}
-                {exercises.length > 0 ? <ExercisePreview exercises={exercises} library={state.exercises} /> : null}
-              </div>
-            </div>
-          </Card>
+        {plans.map((plan) => (
+          <PlanCard
+            key={plan.id}
+            plan={plan}
+            logged={logged.some(
+              (session) => session.plannedSessionId === plan.id || (session.programDayId === plan.programDayId && session.name === plan.name),
+            )}
+            library={state.exercises}
+            onOpen={() => openWorkout(selectedKey)}
+          />
+        ))}
+        {scheduled && !plans.some((plan) => plan.programDayId === scheduled.day.id) ? (
+          <PlanCard
+            plan={{
+              id: scheduled.day.id,
+              dateKey: selectedKey,
+              name: scheduled.day.name,
+              focus: scheduled.day.focus ?? scheduled.program.theme,
+              programName: scheduled.program.name,
+              sessionPad: scheduled.day.sessionPad,
+              exercises: scheduled.day.exercises,
+            }}
+            logged={loggedThisPlan}
+            library={state.exercises}
+            onOpen={() => openWorkout(selectedKey)}
+          />
         ) : null}
         {reassigning && hasPlan && chosen ? (
           <Card className="border-lime/30">
@@ -301,10 +296,10 @@ export default function CalendarScreen() {
                 <button
                   key={day.id}
                   type="button"
-                  aria-pressed={(planned?.programDayId ?? scheduled?.day.id) === day.id}
+                  aria-pressed={(anchor?.programDayId ?? scheduled?.day.id) === day.id}
                   className={cn(
                     'hit-slop-sm min-h-11 rounded-full border px-3.5 py-2 text-xs font-medium',
-                    (planned?.programDayId ?? scheduled?.day.id) === day.id
+                    (anchor?.programDayId ?? scheduled?.day.id) === day.id
                       ? 'border-lime/50 bg-lime/8 font-semibold text-lime-dim'
                       : 'border-charcoal-4 bg-charcoal text-muted',
                   )}
@@ -337,8 +332,7 @@ export default function CalendarScreen() {
             ) : null}
           </Card>
         ) : null}
-        {!hasPlan
-          ? logged.map((session) => (
+        {logged.map((session) => (
               <LoggedCard
                 key={session.id}
                 session={session}
@@ -353,11 +347,53 @@ export default function CalendarScreen() {
                   }
                 }}
               />
-            ))
-          : null}
+            ))}
       </section>
       {commit ? <CommitToCalendar source={commit} initialStart={selectedKey} onClose={() => setCommit(null)} /> : null}
     </Page>
+  )
+}
+
+function PlanCard({
+  plan,
+  logged,
+  library,
+  onOpen,
+}: {
+  plan: PlannedSession
+  logged: boolean
+  library: Exercise[]
+  onOpen: () => void
+}) {
+  const pad = (plan.sessionPad ?? '').trim()
+  const freeWrite = isFreeWrite(plan.name, plan.focus, plan.exercises.length, pad)
+  return (
+    <Card onClick={onOpen} className="cursor-pointer border-charcoal-4 bg-charcoal shadow-card">
+      <div className="flex gap-3">
+        <div className="w-1 shrink-0 rounded-full bg-lime" aria-hidden />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            {plan.programName ? <Badge tone="lime">{plan.programName}</Badge> : null}
+            {plan.focus ? <Badge tone="steel">{plan.focus}</Badge> : null}
+            {freeWrite && !/free\s*write/i.test(plan.focus ?? '') ? <Badge tone="lime">Free write</Badge> : null}
+            {logged ? <Badge tone="success">Logged</Badge> : null}
+          </div>
+          <h3 className="mt-1.5 text-base font-semibold text-ink">{plan.name}</h3>
+          {pad ? (
+            <p data-session-pad-preview className="font-hand mt-2 line-clamp-4 text-sm leading-relaxed whitespace-pre-wrap text-ink">
+              {pad}
+            </p>
+          ) : plan.exercises.length === 0 ? (
+            <p className="mt-0.5 text-sm text-muted">{freeWrite ? 'Free-write session' : '0 exercises'}</p>
+          ) : (
+            <p className="mt-0.5 text-sm text-muted">
+              {plan.exercises.length} exercise{plan.exercises.length === 1 ? '' : 's'}
+            </p>
+          )}
+          {plan.exercises.length > 0 ? <ExercisePreview exercises={plan.exercises} library={library} /> : null}
+        </div>
+      </div>
+    </Card>
   )
 }
 

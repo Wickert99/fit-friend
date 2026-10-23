@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { PlanSubNav } from '../../app/TabSubNav.tsx'
-import { todayKey } from '../../store/id.ts'
+import { plansOnDate } from '../../store/dayPlans.ts'
+import { createId, todayKey } from '../../store/id.ts'
 import { useStore } from '../../store/useStore.ts'
 import type { Program } from '../../types.ts'
 import { Badge, Button, Chip, EmptyState, Page, ScreenHeader, Segmented, Sheet, Stepper } from '../../ui/index.ts'
@@ -89,8 +90,9 @@ export default function MusclesScreen() {
     const session = sessionOf(result)
     if (!session) return
     const dateKey = todayKey()
+    const existing = plansOnDate(state.plannedSessions, dateKey).find((plan) => plan.programId === session.program.id && plan.programDayId === session.day.id)
     savePlannedSession({
-      id: `plan-${dateKey}`,
+      id: existing?.id ?? createId('plan'),
       dateKey,
       name: session.name,
       focus: session.focus,

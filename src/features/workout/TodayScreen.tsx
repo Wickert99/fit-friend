@@ -1,5 +1,6 @@
 import { addDays, format, startOfWeek } from 'date-fns'
 import { useMemo, useState } from 'react'
+import { plansOnDate } from '../../store/dayPlans.ts'
 import { todayKey } from '../../store/id.ts'
 import { useStore } from '../../store/useStore.ts'
 import { Badge, Button, Card, EmptyState, Page, ScreenHeader, useConfirm } from '../../ui/index.ts'
@@ -11,6 +12,7 @@ import { CycleSnapshot } from '../progress/CycleSnapshot.tsx'
 import { applyStart } from '../session/context.ts'
 import { ConflictDialog } from '../session/ConflictDialog.tsx'
 import { deleteCompletedSession, discardSession, pauseSession, planForStart, resumeSession, sessionCounts, sessionVolume, todayPlan } from '../session/logic.ts'
+import type { PlannedSession } from '../../types.ts'
 import type { WorkoutSession } from '../../types.ts'
 import { parseKey } from './dates.ts'
 
@@ -19,7 +21,7 @@ export default function TodayScreen() {
   const confirm = useConfirm()
   const today = todayKey()
   const [selected, setSelected] = useState(today)
-  const [conflict, setConflict] = useState<{ name: string; openId: string; intent: 'start' | { sessionId: string } } | null>(null)
+  const [conflict, setConflict] = useState<{ name: string; openId: string; intent: { planId: string } | { sessionId: string } } | null>(null)
   const [cyclesOpen, setCyclesOpen] = useState(false)
   const programming = useMemo(() => programmingFromState(state), [state])
   const selectedDate = parseKey(selected)
@@ -30,12 +32,10 @@ export default function TodayScreen() {
   const logged = state.sessions.filter((session) => session.status === 'completed' && session.dateKey === selected)
   const subtitle = viewingToday ? 'Today' : 'Selected day'
 
-  function start(mode: 'return' | 'replace' | 'resume' | 'pause') {
-    const plan = planForStart(state, today)
-    if (!plan) return
+  function start(plan: PlannedSession, mode: 'return' | 'replace' | 'resume' | 'pause') {
     const result = applyStart(state, plan, mode)
     if (result.kind === 'conflict') {
-      setConflict({ name: result.session.name, openId: result.session.id, intent: 'start' })
+      setConflict({ name: result.session.name, openId: result.session.id, intent: { planId: plan.id } })
       return
     }
     update(() => result.state)
@@ -73,7 +73,7 @@ export default function TodayScreen() {
           const key = todayKey(day)
           const active = key === selected
           const hasLog = state.sessions.some((session) => session.status === 'completed' && session.dateKey === key)
-          const hasPlan = !!state.plannedSessions[key] || !!state.scheduled[key]
+          const hasPlan = plansOnDate(state.plannedSessions, key).length > 0 || !!state.scheduled[key]
           return (
             <button
               key={key}
@@ -99,7 +99,33 @@ export default function TodayScreen() {
       {(viewingToday ? info.paused : info.paused.filter((session) => session.dateKey === selected)).map((session) => (
         <ResumeCard key={session.id} session={session} label="Saved for later" onResume={() => openWorkout(session)} />
       ))}
-      {plannedName ? (
+      {info.entries.length > 0 ? (
+        info.entries.map((entry) => {
+          const count = entry.plan.exercises.length
+          return (
+            <Card key={entry.plan.id} className="space-y-3" data-day-plan={entry.plan.id}>
+              <div>
+                <p className="text-xs font-semibold tracking-wide text-muted uppercase">Scheduled</p>
+                <p className="font-semibold text-ink">{entry.plan.name}</p>
+                <p className="text-sm text-muted">
+                  {count} {count === 1 ? 'exercise' : 'exercises'}
+                  {entry.plan.focus ? ` · ${entry.plan.focus}` : ''}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {viewingToday && entry.canStart ? (
+                  <Button data-start-workout={entry.plan.id} onClick={() => start(entry.plan, 'return')}>
+                    Start
+                  </Button>
+                ) : null}
+                <Button variant="secondary" onClick={() => go('workout', { dateKey: selected, workoutTab: 'day' })}>
+                  Open day
+                </Button>
+              </div>
+            </Card>
+          )
+        })
+      ) : plannedName ? (
         <Card className="space-y-3">
           <div>
             <p className="text-xs font-semibold tracking-wide text-muted uppercase">Scheduled</p>
@@ -111,7 +137,13 @@ export default function TodayScreen() {
           </div>
           <div className="flex flex-wrap gap-2">
             {viewingToday && info.canStart ? (
-              <Button data-start-workout onClick={() => start('return')}>
+              <Button
+                data-start-workout
+                onClick={() => {
+                  const plan = info.plan ?? planForStart(state, today)
+                  if (plan) start(plan, 'return')
+                }}
+              >
                 Start
               </Button>
             ) : null}
@@ -158,15 +190,20 @@ export default function TodayScreen() {
           onResume={() => {
             const openId = conflict.openId
             setConflict(null)
-            if (conflict.intent === 'start') start('resume')
-            else go('session', { sessionId: openId })
+            if ('planId' in conflict.intent) {
+              const planId = conflict.intent.planId
+              const plan = plansOnDate(state.plannedSessions, today).find((item) => item.id === planId) ?? planForStart(state, today)
+              if (plan) start(plan, 'resume')
+            } else go('session', { sessionId: openId })
           }}
           onSaveLater={() => {
             const pending = conflict
             setConflict(null)
             if (!pending) return
-            if (pending.intent === 'start') {
-              start('pause')
+            if ('planId' in pending.intent) {
+              const planId = pending.intent.planId
+              const plan = plansOnDate(state.plannedSessions, today).find((item) => item.id === planId) ?? planForStart(state, today)
+              if (plan) start(plan, 'pause')
               return
             }
             const sessionId = pending.intent.sessionId
@@ -177,8 +214,10 @@ export default function TodayScreen() {
             const pending = conflict
             setConflict(null)
             if (!pending) return
-            if (pending.intent === 'start') {
-              start('replace')
+            if ('planId' in pending.intent) {
+              const planId = pending.intent.planId
+              const plan = plansOnDate(state.plannedSessions, today).find((item) => item.id === planId) ?? planForStart(state, today)
+              if (plan) start(plan, 'replace')
               return
             }
             const sessionId = pending.intent.sessionId

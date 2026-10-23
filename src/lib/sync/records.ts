@@ -1,4 +1,5 @@
-import type { AppState, Exercise, PersonalRecord, Program } from '../../types.ts'
+import type { AppState, Exercise, PersonalRecord, PlannedSession, Program } from '../../types.ts'
+import { applyPlannedRecord, isDateKey } from '../../store/dayPlans.ts'
 
 /** Kinds the recovered sync engine reads and writes. */
 export const SYNC_KINDS = [
@@ -229,12 +230,15 @@ export function extractRecords(state: Partial<AppState> | null | undefined): Map
   for (const session of source.sessions ?? []) put('session', session.id, clone(session))
   for (const pr of source.prs ?? []) put('pr', prKey(pr), clone(pr))
   for (const board of source.planBoards ?? []) put('plan_board', board.id, clone(board))
-  for (const [dateKey, planned] of Object.entries(source.plannedSessions ?? {})) {
-    put('planned_session', dateKey, clone(planned))
+  for (const planned of Object.values(source.plannedSessions ?? {})) {
+    if (planned?.id) put('planned_session', planned.id, clone(planned))
   }
   for (const instance of source.programInstances ?? []) put('program_instance', instance.id, clone(instance))
-  for (const [dateKey, completed] of Object.entries(source.completedPlans ?? {})) {
-    put('completed_plan', dateKey, clone(completed))
+  for (const [key, completed] of Object.entries(source.completedPlans ?? {})) {
+    const id = completed?.plan?.id || key
+    if (!id) continue
+    const data = completed?.plan ? { ...completed, plan: { ...completed.plan, id } } : completed
+    put('completed_plan', id, clone(data))
   }
   for (const key of SETTING_SCALARS) {
     if (key in (source as object)) put('settings', key, wrapSetting((source as Record<string, unknown>)[key]))
@@ -284,11 +288,66 @@ function replaceBy<T>(list: T[] | undefined, idOf: (item: T) => string, id: stri
   return copy
 }
 
-function replaceMap<T>(map: Record<string, T> | undefined, id: string, next: T | null): Record<string, T> {
-  const copy = { ...(map ?? {}) }
-  if (next === null) delete copy[id]
-  else copy[id] = next
-  return copy
+function applyCompletedRecord(
+  records: AppState['completedPlans'],
+  id: string,
+  data: NonNullable<AppState['completedPlans']>[string] | null,
+): AppState['completedPlans'] {
+  const next = { ...(records ?? {}) }
+  if (data == null) {
+    delete next[id]
+    for (const [key, record] of Object.entries(next)) {
+      if (record?.plan?.id === id) delete next[key]
+    }
+    return next
+  }
+  const planId = data.plan?.id || (isDateKey(id) ? `plan-${id}` : id)
+  const plan = data.plan
+    ? { ...data.plan, id: planId, dateKey: data.plan.dateKey || (isDateKey(id) ? id : data.plan.dateKey) }
+    : undefined
+  if (id !== planId) delete next[id]
+  next[planId] = plan ? { ...data, plan } : data
+  return next
+}
+
+/**
+ * Copy a v3 date-keyed clock entry onto the workout's own id.
+ * The date entry stays so an older cloud row is not applied back over a second workout.
+ */
+export function adoptLegacyPlanKeys(
+  clock: Clock,
+  meta: Meta,
+  plans: Record<string, PlannedSession>,
+  completed: AppState['completedPlans'],
+): { clock: Clock; meta: Meta; changed: boolean } {
+  const nextClock: Clock = { ...clock }
+  const nextMeta: Meta = { ...meta }
+  let changed = false
+  const move = (kind: string, from: string, to: string) => {
+    if (!from || from === to) return
+    const oldKey = recordKey(kind, from)
+    const newKey = recordKey(kind, to)
+    if (!nextClock[oldKey] || nextClock[newKey]) return
+    nextClock[newKey] = nextClock[oldKey]
+    if (nextMeta[oldKey] && !nextMeta[newKey]) nextMeta[newKey] = nextMeta[oldKey]
+    changed = true
+  }
+  const byDate = new Map<string, PlannedSession[]>()
+  for (const plan of Object.values(plans)) {
+    if (!plan?.dateKey) continue
+    const list = byDate.get(plan.dateKey) ?? []
+    list.push(plan)
+    byDate.set(plan.dateKey, list)
+  }
+  for (const [date, list] of byDate) {
+    if (list.length !== 1 || !list[0]) continue
+    move('planned_session', date, list[0].id)
+  }
+  for (const [id, record] of Object.entries(completed ?? {})) {
+    const date = record?.plan?.dateKey
+    if (date) move('completed_plan', date, record.plan?.id || id)
+  }
+  return { clock: nextClock, meta: nextMeta, changed }
 }
 
 function applySetting(state: AppState, id: string, data: unknown, seed: AppState): AppState {
@@ -338,7 +397,7 @@ export function applyChanges(state: AppState, changes: ApplyChange[], seed: AppS
         next.planBoards = replaceBy(next.planBoards, (item) => item.id, change.id, data as AppState['planBoards'][number] | null)
         break
       case 'planned_session':
-        next.plannedSessions = replaceMap(next.plannedSessions, change.id, data as AppState['plannedSessions'][string] | null)
+        next.plannedSessions = applyPlannedRecord(next.plannedSessions, change.id, data as PlannedSession | null)
         break
       case 'program_instance':
         next.programInstances = replaceBy(
@@ -349,7 +408,7 @@ export function applyChanges(state: AppState, changes: ApplyChange[], seed: AppS
         )
         break
       case 'completed_plan':
-        next.completedPlans = replaceMap(next.completedPlans, change.id, data as NonNullable<AppState['completedPlans']>[string] | null)
+        next.completedPlans = applyCompletedRecord(next.completedPlans, change.id, data as NonNullable<AppState['completedPlans']>[string] | null)
         break
       case 'settings':
         next = applySetting(next, change.id, data, seed)

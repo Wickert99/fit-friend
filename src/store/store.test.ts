@@ -4,6 +4,7 @@ import { describe, it } from 'node:test'
 import { filterPrograms } from '../features/library/search.ts'
 import { repairJson } from './corrupt.ts'
 import { clearAllSchedule, createBoard, deleteSession, setLiftMax, upsertExercise } from './actions.ts'
+import { plansOnDate } from './dayPlans.ts'
 import { FORMAT_VERSION, SEED_VERSION } from './keys.ts'
 import { runMigrations } from './migrate.ts'
 import { emptyState, mergeWithSeed, normalizeState, remapExerciseAliases } from './normalize.ts'
@@ -19,7 +20,7 @@ describe('migrations', () => {
       0,
       { 'ex-kb-turkish': 'ex-turkish' },
     )
-    assert.deepEqual(applied, ['core-collections', 'alias-remap-and-catalog', 'paused-sessions'])
+    assert.deepEqual(applied, ['core-collections', 'alias-remap-and-catalog', 'paused-sessions', 'unique-session-ids'])
     assert.equal(state.profile.name, 'Ada')
     assert.equal(state.weightUnit, 'kg')
     assert.equal(state.sessions[0]?.exercises[0]?.exerciseId, 'ex-turkish')
@@ -55,7 +56,7 @@ describe('migrations', () => {
       2,
       {},
     )
-    assert.deepEqual(applied, ['paused-sessions'])
+    assert.deepEqual(applied, ['paused-sessions', 'unique-session-ids'])
     assert.equal(state.sessions.find((session) => session.id === 'new')?.status, 'in_progress')
     assert.equal(state.sessions.find((session) => session.id === 'old')?.status, 'paused')
     assert.ok(state.sessions.find((session) => session.id === 'old')?.pausedAt)
@@ -68,6 +69,51 @@ describe('migrations', () => {
     assert.equal(held?.exercises[0]?.sets[0]?.loadKg, 40)
     assert.equal(state.sessions.find((session) => session.id === 'left')?.status, 'paused')
     assert.equal(state.prs.length, 0)
+  })
+
+  it('keeps two workouts that shared a day in storage v3', () => {
+    const { state, applied } = runMigrations(
+      {
+        sessions: [
+          {
+            id: '2026-10-23',
+            name: 'Morning',
+            dateKey: '2026-10-23',
+            status: 'completed',
+            startedAt: '2026-10-23T08:00:00.000Z',
+            completedAt: '2026-10-23T09:00:00.000Z',
+            exercises: [{ exerciseId: 'ex-bsquat', sets: [{ reps: 5, loadKg: 100, completed: true }] }],
+          },
+          {
+            id: '2026-10-23',
+            name: 'Evening',
+            dateKey: '2026-10-23',
+            status: 'completed',
+            startedAt: '2026-10-23T18:00:00.000Z',
+            completedAt: '2026-10-23T19:00:00.000Z',
+            exercises: [{ exerciseId: 'ex-bp', sets: [{ reps: 8, loadKg: 60, completed: true }] }],
+          },
+        ],
+        plannedSessions: {
+          '2026-10-24': { id: 'plan-2026-10-24', dateKey: '2026-10-24', name: 'Next', exercises: [{ exerciseId: 'ex-dl', sets: 3, reps: '5' }] },
+        },
+      },
+      3,
+      {},
+    )
+    assert.deepEqual(applied, ['unique-session-ids'])
+    const day = state.sessions.filter((session) => session.dateKey === '2026-10-23')
+    assert.equal(day.length, 2)
+    assert.equal(new Set(day.map((session) => session.id)).size, 2)
+    assert.equal(day.find((session) => session.name === 'Evening')?.id, '2026-10-23')
+    assert.equal(day.find((session) => session.name === 'Morning')?.exercises[0]?.exerciseId, 'ex-bsquat')
+    assert.equal(day.find((session) => session.name === 'Evening')?.exercises[0]?.sets[0]?.loadKg, 60)
+    const next = plansOnDate(state.plannedSessions, '2026-10-24')
+    assert.equal(next.length, 1)
+    assert.equal(next[0]?.name, 'Next')
+    assert.equal(next[0]?.id, 'plan-2026-10-24')
+    assert.equal(next[0]?.exercises[0]?.exerciseId, 'ex-dl')
+    assert.equal(state.plannedSessions['2026-10-24'], undefined)
   })
 
   it('drops a legacy catalog id and keeps a custom copy', () => {

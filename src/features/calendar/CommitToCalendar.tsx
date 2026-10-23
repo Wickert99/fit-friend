@@ -1,6 +1,7 @@
 import { Calendar, Check, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { getDay } from 'date-fns'
+import { plansOnDate } from '../../store/dayPlans.ts'
 import { useStore } from '../../store/useStore.ts'
 import type { PlanBoard, Program } from '../../types.ts'
 import { Badge, Button, Chip, Input, useBodyScrollLock } from '../../ui/index.ts'
@@ -70,7 +71,9 @@ export default function CommitToCalendar({
   const conflicts = useMemo(
     () =>
       preview
-        ? preview.mappings.filter((item) => state.scheduled[item.dateKey] || state.plannedSessions[item.dateKey]).map((item) => item.dateKey)
+        ? preview.mappings
+            .filter((item) => state.scheduled[item.dateKey] || plansOnDate(state.plannedSessions, item.dateKey).length > 0)
+            .map((item) => item.dateKey)
         : [],
     [preview, state.scheduled, state.plannedSessions],
   )

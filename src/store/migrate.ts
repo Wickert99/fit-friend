@@ -1,4 +1,5 @@
 import type { AppState } from '../types.ts'
+import { indexCompletedPlans, indexPlansById, uniqueSessionIds } from './dayPlans.ts'
 import { FORMAT_VERSION } from './keys.ts'
 import { normalizeState, remapExerciseAliases } from './normalize.ts'
 
@@ -34,7 +35,37 @@ export const migrations: Migration[] = [
     description: 'Keep paused workouts. Extra in-progress sessions are parked as paused instead of being dropped.',
     apply: (state) => parkExtraOpenSessions(state),
   },
+  {
+    version: 4,
+    id: 'unique-session-ids',
+    description: 'Keep every workout. Each session and plan is stored by its own id so a second workout on the same day does not replace the first.',
+    apply: (state) => assignUniqueWorkoutIds(state),
+  },
 ]
+
+/** Give every logged session and planned workout its own id. Nothing is dropped. */
+export function assignUniqueWorkoutIds(state: AppState): AppState {
+  const sessions = uniqueSessionIds(state.sessions)
+  const plannedSessions = indexPlansById(state.plannedSessions)
+  const completedPlans = indexCompletedPlans(state.completedPlans)
+  const sameSessions = sessions.every((session, index) => session === state.sessions[index])
+  const samePlans = plannedSessions === state.plannedSessions || samePlanMap(plannedSessions, state.plannedSessions)
+  const sameCompleted = completedPlans === state.completedPlans
+  if (sameSessions && samePlans && sameCompleted) return state
+  return {
+    ...state,
+    sessions,
+    plannedSessions,
+    ...(completedPlans ? { completedPlans } : {}),
+  }
+}
+
+function samePlanMap(left: AppState['plannedSessions'], right: AppState['plannedSessions']): boolean {
+  const leftKeys = Object.keys(left)
+  const rightKeys = Object.keys(right)
+  if (leftKeys.length !== rightKeys.length) return false
+  return leftKeys.every((key) => left[key] === right[key])
+}
 
 /** Leave one in-progress session. Any others are paused so their sets survive. */
 export function parkExtraOpenSessions(state: AppState, now = new Date().toISOString()): AppState {

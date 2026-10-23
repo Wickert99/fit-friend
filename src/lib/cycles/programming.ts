@@ -6,6 +6,7 @@ import {
   startOfWeek,
 } from 'date-fns'
 import type { AppState, Program, ProgramInstance, SeasonGoals, WorkoutSession } from '../../types.ts'
+import { plansOnDate } from '../../store/dayPlans.ts'
 import { sessionVolumeKg } from '../maxes/volume.ts'
 import {
   WEEK_OPTS,
@@ -118,17 +119,23 @@ export function programmingFromState(state: AppState): ProgrammingContext {
   const instance = activeProgram?.activeInstance ?? latestInstance(state.programInstances, activeProgram?.id)
   const board = state.planBoards.find((item) => item.id === state.activeBoardId) ?? state.planBoards[0]
   const planWeekCount = board?.weeks.length || undefined
-  const keys = new Set<string>([...Object.keys(state.scheduled), ...Object.keys(state.plannedSessions)])
+  const keys = new Set<string>(Object.keys(state.scheduled))
+  for (const plan of Object.values(state.plannedSessions)) if (plan?.dateKey) keys.add(plan.dateKey)
   const completed = new Map<string, { programId?: string }>()
   for (const record of Object.values(state.completedPlans ?? {})) {
     const plan = record?.plan
     if (!plan?.dateKey) continue
     keys.add(plan.dateKey)
-    completed.set(plan.dateKey, plan)
+    const current = completed.get(plan.dateKey)
+    if (!current || (activeProgram && plan.programId === activeProgram.id && current.programId !== activeProgram.id)) {
+      completed.set(plan.dateKey, plan)
+    }
   }
   const matched: string[] = []
   for (const key of keys) {
-    const plan = state.plannedSessions[key] ?? completed.get(key)
+    const dayPlans = plansOnDate(state.plannedSessions, key)
+    const plan =
+      dayPlans.find((item) => activeProgram && item.programId === activeProgram.id) ?? dayPlans[0] ?? completed.get(key)
     if (activeProgram && plan?.programId === activeProgram.id) {
       matched.push(key)
       continue

@@ -2,7 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import type { AppState } from '../../types.ts'
 import { exerciseIdAliases } from '../../store/aliases.ts'
 import { CATALOG_KEY, HOT_SEQ_FIELD, STATE_KEY, SYNC_KEYS } from '../../store/keys.ts'
-import { remapExerciseAliases } from '../../store/normalize.ts'
+import { normalizeState, remapExerciseAliases } from '../../store/normalize.ts'
 import { savePersisted } from '../../store/persist.ts'
 import { browserStorage } from '../../store/storage.ts'
 import { isSupabaseConfigured, loadSupabase } from '../supabase/client.ts'
@@ -32,6 +32,7 @@ import {
   skipEcho,
   syncBaselineState,
   tombstones,
+  adoptLegacyPlanKeys,
   applyChanges,
   type Clock,
   type Meta,
@@ -202,7 +203,7 @@ export function readDiskState(): AppState | null {
       if (Array.isArray(catalog.programs)) parsed.programs = catalog.programs
     }
     if (!parsed.profile || typeof parsed.profile !== 'object') return null
-    return parsed as unknown as AppState
+    return normalizeState(parsed)
   } catch {
     return null
   }
@@ -536,6 +537,11 @@ async function cycle(): Promise<void> {
   const state = memory ?? readDiskState()
   if (!supabase || !userId || !state) return
   if (!memory) memory = state
+  const adopted = adoptLegacyPlanKeys(readClock(), readMeta().recs, memory.plannedSessions, memory.completedPlans)
+  if (adopted.changed) {
+    writeClock(adopted.clock)
+    writeMeta({ ...readMeta(), recs: adopted.meta })
+  }
   const gen = readGen()
   const check = () => {
     if (readGen() !== gen || uid !== userId) throw new StaleSync()
