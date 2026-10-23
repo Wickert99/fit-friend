@@ -23000,6 +23000,58 @@
    ],
    "audience": "Athletes building aerobic base for Running",
    "coachNotes": "Aerobic sessions by time / zones. Strength pieces stay submaximal."
+  },
+  {
+   "id": "prog-bristol-method",
+   "name": "Bristol Method",
+   "description": "Air-bike cruise session: 4 minutes easy, then 6 rounds of 4 minutes at 80–85% max heart rate with 1 minute off the bike. Add one round when every round stays in that band, up to about 45–60 minutes. Curated from Jack Tyler's Bristol Method.",
+   "theme": "Endurance",
+   "sports": [
+    "General Athletic",
+    "CrossFit"
+   ],
+   "weeks": 4,
+   "progression": {
+    "percentPerWeek": 0,
+    "deloadEvery": 0
+   },
+   "isTemplate": true,
+   "isMine": false,
+   "createdAt": "2026-10-23T00:00:00.000Z",
+   "adaptations": [
+    "aerobic_capacity",
+    "work_capacity"
+   ],
+   "audience": "Athletes who want low-impact aerobic work they can lengthen one round at a time, instead of sitting on the bike for a straight half hour",
+   "coachNotes": "Rest is completely off the bike, not an easy pedal — heart rate should only partly come down. Keep every work round at 4 minutes and every rest at 1 minute. Start at 6 rounds. When you can hold 80–85% of max heart rate for all of them with a smooth cadence, add one round next session. Build toward 9–12 rounds (about 45–60 minutes). Do not make the rounds harder to progress. Repeat on days you are not already cooked. A published example held about 60 rpm to sit in that heart-rate band; use cadence to stay in the band, not as the goal.",
+   "days": [
+    {
+     "id": "pd-bristol-method",
+     "name": "Bristol Method",
+     "focus": "Endurance",
+     "sessionPad": "Warm-up: 4 min easy, about 57 rpm, then step off for 1 min. Work: 6 × 4 min at 80–85% max heart rate, 1 min completely off the bike. Smooth cadence — about 60 rpm is a common place to start. Add one round next time every round stays in the band. Stop around 9–12 rounds (45–60 min).",
+     "exercises": [
+      {
+       "exerciseId": "ex-airbike-steady",
+       "setType": "time",
+       "sets": 1,
+       "reps": "4 min",
+       "restSec": 60,
+       "timeCapSec": 240,
+       "notes": "Easy spin, about 57 rpm. Then stay off the bike for the full minute before the first work round."
+      },
+      {
+       "exerciseId": "ex-biker",
+       "setType": "time",
+       "sets": 6,
+       "reps": "4 min",
+       "restSec": 60,
+       "timeCapSec": 240,
+       "notes": "80–85% max heart rate. Nudge cadence (about 60 rpm is a common start) so heart rate stays in the band. Step off the bike for the whole minute. Add one round when all 6 stay in the band; stop the build at 9–12 rounds."
+      }
+     ]
+    }
+   ]
   }
  ],
  "sessions": [],
