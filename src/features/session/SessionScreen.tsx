@@ -11,6 +11,8 @@ import { formatExactLoad, formatPlateLoad } from '../../lib/setTypes/units.ts'
 import { readMuted, writeMuted } from './browser.ts'
 import { trainingContext } from './context.ts'
 import { FocusMode, type FocusHandle } from './FocusMode.tsx'
+import { IntervalGuide, IntervalResult } from '../intervals/IntervalGuide.tsx'
+import { markInRange, matchHrInterval, patchProfileHr, pinVisibleRemaining } from '../intervals/engine.ts'
 import { WhoopSessionHeartRate } from '../whoop/WhoopSessionHeartRate.tsx'
 import {
   deleteCompletedSession,
@@ -62,6 +64,7 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
   const [picked, setPicked] = useState<Record<string, boolean>>({})
   const [leave, setLeave] = useState<{ resolve: (ok: boolean) => void } | null>(null)
   const summary = summarizeSession(session, state, trainingContext(state))
+  const guided = matchHrInterval(session)
   const names = Object.fromEntries(state.exercises.map((exercise) => [exercise.id, exercise.name]))
   const notesDirty = notes !== (session.notes ?? '') || pad !== (session.sessionPad ?? session.pad ?? '')
   const blocked = dirty || notesDirty
@@ -134,12 +137,16 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
     leaveNow(() => go('today', {}, { skipLeaveGuard: true }))
   }
 
-  function saveForLater() {
+  function saveForLater(visibleRemainingSec?: number) {
     const snap = focusRef.current?.snapshot()
     update((current) =>
       pauseSession(current, session.id, (item) => {
         const edited = snap?.pointer ? editSet(item, snap.pointer, snap.patch) : item
-        return { ...edited, notes, sessionPad: pad, pad, timer: snap?.timer ?? edited.timer }
+        const hrInterval =
+          visibleRemainingSec != null && edited.hrInterval
+            ? pinVisibleRemaining(edited.hrInterval, visibleRemainingSec)
+            : edited.hrInterval
+        return { ...edited, notes, sessionPad: pad, pad, timer: snap?.timer ?? edited.timer, hrInterval }
       }),
     )
     leaveNow(() => go('today', {}, { skipLeaveGuard: true }))
@@ -169,6 +176,25 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
         )}
       </div>
       {view === 'focus' ? (
+        guided ? (
+          <IntervalGuide
+            key={session.id}
+            session={session}
+            program={guided}
+            profile={state.profile}
+            history={state.sessions}
+            muted={muted}
+            onToggleMute={() => {
+              const next = !muted
+              setMuted(next)
+              writeMuted(next)
+            }}
+            onProfile={(patch) => update((current) => ({ ...current, profile: patchProfileHr(current.profile, patch) }))}
+            onChange={(recipe) => updateSession(session.id, recipe)}
+            onDone={onDone}
+            onPause={saveForLater}
+          />
+        ) : (
         <FocusMode
           ref={focusRef}
           session={session}
@@ -188,6 +214,7 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
           onDone={onDone}
           onPause={saveForLater}
         />
+        )
       ) : (
         <Summary
           session={session}
@@ -206,6 +233,11 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
           onKeep={() => setView('focus')}
           onPause={saveForLater}
           onDiscard={() => void discard()}
+          onMark={(round, inRange) =>
+            updateSession(session.id, (item) =>
+              item.hrInterval ? { ...item, hrInterval: markInRange(item.hrInterval, round, inRange) } : item,
+            )
+          }
         />
       )}
       {leave ? (
@@ -272,6 +304,7 @@ function Summary({
   onKeep,
   onPause,
   onDiscard,
+  onMark,
 }: {
   session: WorkoutSession
   names: Record<string, string>
@@ -289,9 +322,11 @@ function Summary({
   onKeep: () => void
   onPause: () => void
   onDiscard: () => void
+  onMark: (round: number, inRange: boolean) => void
 }) {
   return (
     <div className="space-y-4" data-summary>
+      <IntervalResult session={session} onMark={onMark} />
       <header>
         <h1 className="text-xl font-semibold text-ink">{session.name}</h1>
         <p className="text-sm text-muted">
@@ -413,6 +448,7 @@ function CompletedSession({ session }: { session: WorkoutSession }) {
           {sessionCounts(session).done} sets · {formatExactLoad(sessionVolume(session), state.weightUnit)}
         </p>
       </header>
+      <IntervalResult session={session} />
       <WhoopSessionHeartRate session={session} />
       {session.exercises.map((exercise, index) => (
         <Card key={`${exercise.exerciseId}-${index}`} className="space-y-1">

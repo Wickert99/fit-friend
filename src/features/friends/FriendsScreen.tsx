@@ -39,6 +39,7 @@ import { formatProgressDetail, formatWeight } from './progressSnapshot.ts'
 import { acceptProgramShare, declineProgramShare, listIncomingShares, listOutgoingShares, shareProgram } from './shareApi.ts'
 import type { ShareView } from './programShare.ts'
 import { SyncPanel } from './SyncPanel.tsx'
+import { HeartRateSettings } from '../intervals/HeartRateFields.tsx'
 import { WhoopConnect } from '../whoop/WhoopConnect.tsx'
 import { loadThreads, type ChatThread } from './chat.ts'
 
@@ -450,6 +451,7 @@ function FriendsBody() {
           setMessage(null)
         }}
       />
+      <HeartRateSettings />
       {!auth.configured ? (
         <Card className="border-dashed">
           <p className="text-sm text-muted">

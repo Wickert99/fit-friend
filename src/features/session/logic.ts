@@ -32,6 +32,7 @@ import {
 } from '../../lib/setTypes/index.ts'
 import { deleteLoggedSession } from '../../lib/cycles/schedule.ts'
 import { estimate1Rm, roundLoadKg } from '../../lib/setTypes/units.ts'
+import { freezeHrInterval } from '../intervals/engine.ts'
 import { familyIdFor, familyName, resolveMax } from './families.ts'
 
 export interface SetPointer {
@@ -761,6 +762,7 @@ export function pauseSession(
         pausedAt: now.toISOString(),
         timer,
         restEndsAt: null,
+        hrInterval: freezeHrInterval(next.hrInterval, now.getTime()) ?? undefined,
       }
     }),
   }

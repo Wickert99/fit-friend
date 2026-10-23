@@ -105,6 +105,8 @@ export interface HeartRateMetrics {
   zones: ZoneRow[]
   zonesMissing: boolean
   bristol: BristolNote | null
+  /** The person's max heart rate from the Whoop payload, when present. */
+  userMaxHeartRate: number | null
 }
 
 export type HeartRatePhase =
@@ -452,6 +454,7 @@ function describeMatch(session: SessionHeartRateInput, workout: WhoopWorkout | n
       zones,
       zonesMissing: zones.length === 0,
       bristol: bristolNote(session, workout),
+      userMaxHeartRate: workout.userMaxHeartRate,
     },
   }
 }
