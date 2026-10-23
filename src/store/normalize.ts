@@ -384,9 +384,20 @@ function normalizeLiftMax(id: string, raw: unknown): LiftMax | null {
   }
 }
 
+function optionalInt(value: unknown, min: number, max: number): number | undefined {
+  const n = typeof value === 'number' ? value : typeof value === 'string' && value.trim() !== '' ? Number(value) : NaN
+  if (!Number.isFinite(n)) return undefined
+  const rounded = Math.round(n)
+  if (rounded < min || rounded > max) return undefined
+  return rounded
+}
+
 function normalizeProfile(raw: unknown, fallback: Profile): Profile {
   if (!isRecord(raw)) return fallback
-  return {
+  const age = optionalInt(raw.age, 8, 100)
+  const maxHeartRate = optionalInt(raw.maxHeartRate, 100, 230)
+  const whoopMaxHeartRate = optionalInt(raw.whoopMaxHeartRate, 100, 230)
+  const profile: Profile = {
     ...fallback,
     ...raw,
     id: asString(raw.id, fallback.id),
@@ -397,6 +408,13 @@ function normalizeProfile(raw: unknown, fallback: Profile): Profile {
     streak: asNumber(raw.streak, 0),
     isYou: raw.isYou == null ? true : !!raw.isYou,
   }
+  if (age == null) delete profile.age
+  else profile.age = age
+  if (maxHeartRate == null) delete profile.maxHeartRate
+  else profile.maxHeartRate = maxHeartRate
+  if (whoopMaxHeartRate == null) delete profile.whoopMaxHeartRate
+  else profile.whoopMaxHeartRate = whoopMaxHeartRate
+  return profile
 }
 
 function normalizeInstance(raw: unknown): ProgramInstance | null {

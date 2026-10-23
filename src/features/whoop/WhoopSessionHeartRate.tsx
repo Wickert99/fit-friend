@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { WorkoutSession } from '../../types.ts'
+import { useStore } from '../../store/useStore.ts'
 import { Badge, Card, EmptyState } from '../../ui/index.ts'
 import { loadSessionHeartRate } from './api.ts'
 import type { HeartRateView } from './model.ts'
@@ -9,6 +10,8 @@ export function WhoopSessionHeartRate({ session }: { session: WorkoutSession }) 
   const requestKey = `${id}|${startedAt ?? ''}|${completedAt ?? ''}|${programId ?? ''}|${name ?? ''}`
   const [result, setResult] = useState<{ key: string; view: HeartRateView } | null>(null)
   const view: HeartRateView | 'loading' = result?.key === requestKey ? result.view : 'loading'
+  const userMax = view !== 'loading' && view.kind === 'metrics' ? view.metrics.userMaxHeartRate : null
+  const { update } = useStore()
 
   useEffect(() => {
     let alive = true
@@ -19,6 +22,14 @@ export function WhoopSessionHeartRate({ session }: { session: WorkoutSession }) 
       alive = false
     }
   }, [requestKey, programId, name, startedAt, completedAt])
+
+  useEffect(() => {
+    if (userMax == null) return
+    update((current) => {
+      if (current.profile.whoopMaxHeartRate === userMax) return current
+      return { ...current, profile: { ...current.profile, whoopMaxHeartRate: userMax } }
+    })
+  }, [userMax, update])
 
   if (view === 'loading') {
     return (

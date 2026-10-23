@@ -42,6 +42,43 @@ export interface Profile {
   bio: string
   streak: number
   isYou: boolean
+  /** Age in years. Used to estimate max heart rate when no measured max is saved. */
+  age?: number
+  /** Manual max heart rate in bpm. Wins over Whoop and the age estimate. */
+  maxHeartRate?: number
+  /** Max heart rate last reported on a scored Whoop workout, in bpm. */
+  whoopMaxHeartRate?: number
+}
+
+/** One optional in-range answer for a guided heart-rate interval. */
+export interface HrIntervalMark {
+  round: number
+  inRange: boolean
+}
+
+/**
+ * Guided heart-rate interval clock stored on the workout.
+ * Lives in the session user_record, so pause, resume, and a second workout
+ * the same day each keep their own clock.
+ */
+export interface HrIntervalState {
+  programId: string
+  rounds: number
+  /** Snapshotted when the clock starts. Absent while still choosing rounds. */
+  maxHr?: number
+  source?: 'manual' | 'whoop' | 'estimate'
+  lowPct: number
+  highPct: number
+  /** Index into the phase list. Equal to the phase count once the session is done. */
+  phaseIndex: number
+  /** Wall-clock end of the current phase while the workout is running. */
+  endsAt?: number
+  /** Seconds left, frozen while paused. */
+  remainingSec?: number
+  run: 'setup' | 'live' | 'done'
+  marks: HrIntervalMark[]
+  /** True after the 10-second warning for this phase has fired. */
+  warned?: boolean
 }
 
 export interface Friend {
@@ -275,6 +312,8 @@ export interface WorkoutSession {
   currentSet?: { exerciseIndex: number; setIndex: number }
   /** Planned-session id this log was started from. */
   plannedSessionId?: string
+  /** Guided heart-rate intervals, when this workout uses one. */
+  hrInterval?: HrIntervalState
 }
 
 export interface PersonalRecord {
