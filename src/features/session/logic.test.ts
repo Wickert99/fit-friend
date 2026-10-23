@@ -247,6 +247,47 @@ describe('session logging', () => {
     assert.equal(done.sessions.filter((item) => item.status === 'completed').map((item) => item.id).includes(session.id), true)
   })
 
+  it('keeps both workouts when a second one is completed the same day', () => {
+    const day = '2026-10-23'
+    const morning: PlannedSession = {
+      id: 'plan-am',
+      dateKey: day,
+      name: 'Morning',
+      exercises: [{ exerciseId: 'ex-bsquat', setType: 'reps_load', sets: 1, reps: '5', restSec: 90, targetLoadKg: 100 }],
+    }
+    const evening: PlannedSession = {
+      id: 'plan-pm',
+      dateKey: day,
+      name: 'Evening',
+      exercises: [{ exerciseId: 'ex-bsquat', setType: 'reps_load', sets: 1, reps: '8', restSec: 90, targetLoadKg: 80 }],
+    }
+    const seeded = stateWith({
+      plannedSessions: { 'plan-am': morning, 'plan-pm': evening },
+    })
+    const first = startFromPlan(seeded, morning, ctx(), 'return', new Date('2026-10-23T08:00:00.000Z'))
+    assert.equal(first.kind, 'started')
+    if (first.kind !== 'started') return
+    let session = first.state.sessions.find((item) => item.plannedSessionId === 'plan-am')!
+    session = logSet(session, { exerciseIndex: 0, setIndex: 0 }, { reps: 5, loadKg: 100 })
+    const withMorning = { ...first.state, sessions: first.state.sessions.map((item) => (item.id === session.id ? session : item)) }
+    const afterMorning = finishSession(withMorning, session.id, false, new Date('2026-10-23T09:00:00.000Z'))
+    assert.equal(afterMorning.plannedSessions['plan-pm']?.name, 'Evening')
+    const second = startFromPlan(afterMorning, evening, ctx(), 'pause', new Date('2026-10-23T18:00:00.000Z'))
+    assert.equal(second.kind, 'started')
+    if (second.kind !== 'started') return
+    let night = second.state.sessions.find((item) => item.id === second.sessionId)!
+    night = logSet(night, { exerciseIndex: 0, setIndex: 0 }, { reps: 8, loadKg: 80 })
+    const withNight = { ...second.state, sessions: second.state.sessions.map((item) => (item.id === night.id ? night : item)) }
+    const done = finishSession(withNight, night.id, false, new Date('2026-10-23T19:00:00.000Z'))
+    const completed = done.sessions.filter((item) => item.status === 'completed' && item.dateKey === day)
+    assert.deepEqual(completed.map((item) => item.name).sort(), ['Evening', 'Morning'])
+    assert.equal(new Set(completed.map((item) => item.id)).size, 2)
+    assert.equal(completed.find((item) => item.name === 'Morning')?.exercises[0]?.sets[0]?.loadKg, 100)
+    assert.equal(completed.find((item) => item.name === 'Evening')?.exercises[0]?.sets[0]?.loadKg, 80)
+    assert.notEqual(completed[0]?.startedAt, completed[1]?.startedAt)
+    assert.equal(done.commitmentDays.includes(day), true)
+  })
+
   it('freezes a running clock and thaws the same time left', () => {
     const now = 1_700_000_000_000
     const frozen = freezeTimer({ phase: 'rest', endsAt: now + 12_400, total: 90, warned: false }, now)

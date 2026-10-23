@@ -5,6 +5,7 @@ import { emptyState, normalizeState } from '../../store/normalize.ts'
 import type { AppState, WorkoutSession } from '../../types.ts'
 import {
   MAX_RECORD_BYTES,
+  adoptLegacyPlanKeys,
   applyChanges,
   backfillClock,
   baselineHashes,
@@ -229,5 +230,89 @@ describe('sync records', () => {
     assert.equal(pushed.length, 1)
     assert.equal(pushed[0]?.deleted_at, null)
     assert.equal((pushed[0]?.data as WorkoutSession).status, 'paused')
+  })
+
+  it('syncs two workouts on the same day as separate user_records', () => {
+    const state = emptyState()
+    state.sessions = [
+      session('ses-am', {
+        name: 'Morning',
+        dateKey: '2026-10-23',
+        startedAt: '2026-10-23T08:00:00.000Z',
+        completedAt: '2026-10-23T09:00:00.000Z',
+      }),
+      session('ses-pm', {
+        name: 'Evening',
+        dateKey: '2026-10-23',
+        startedAt: '2026-10-23T18:00:00.000Z',
+        completedAt: '2026-10-23T19:00:00.000Z',
+      }),
+    ]
+    state.plannedSessions = {
+      'plan-a': { id: 'plan-a', dateKey: '2026-10-24', name: 'A', exercises: [] },
+      'plan-b': { id: 'plan-b', dateKey: '2026-10-24', name: 'B', exercises: [] },
+    }
+    const records = recordsForSync(state)
+    assert.equal(records.has(recordKey('session', 'ses-am')), true)
+    assert.equal(records.has(recordKey('session', 'ses-pm')), true)
+    assert.equal(records.has(recordKey('session', '2026-10-23')), false)
+    assert.equal(records.has(recordKey('planned_session', 'plan-a')), true)
+    assert.equal(records.has(recordKey('planned_session', 'plan-b')), true)
+    assert.equal(records.has(recordKey('planned_session', '2026-10-24')), false)
+    const remote = integrateRemote(
+      [
+        {
+          kind: 'session',
+          id: 'ses-am',
+          data: records.get(recordKey('session', 'ses-am'))?.data,
+          updated_at: '2026-10-23T09:00:00.000Z',
+          deleted_at: null,
+          rev: 1,
+        },
+        {
+          kind: 'session',
+          id: 'ses-pm',
+          data: records.get(recordKey('session', 'ses-pm'))?.data,
+          updated_at: '2026-10-23T19:00:00.000Z',
+          deleted_at: null,
+          rev: 2,
+        },
+        {
+          kind: 'planned_session',
+          id: '2026-10-24',
+          data: { id: 'plan-a', dateKey: '2026-10-24', name: 'A', exercises: [] },
+          updated_at: '2026-10-24T00:00:00.000Z',
+          deleted_at: null,
+          rev: 3,
+        },
+        {
+          kind: 'planned_session',
+          id: 'plan-b',
+          data: { id: 'plan-b', dateKey: '2026-10-24', name: 'B', exercises: [] },
+          updated_at: '2026-10-24T01:00:00.000Z',
+          deleted_at: null,
+          rev: 4,
+        },
+      ],
+      {},
+      {},
+    )
+    const next = applyChanges(emptyState(), remote.apply, syncBaselineState())
+    assert.deepEqual(
+      next.sessions.map((item) => item.name).sort(),
+      ['Evening', 'Morning'],
+    )
+    assert.equal(next.plannedSessions['plan-a']?.name, 'A')
+    assert.equal(next.plannedSessions['plan-b']?.name, 'B')
+    assert.equal(next.plannedSessions['2026-10-24'], undefined)
+    const adopted = adoptLegacyPlanKeys(
+      { [recordKey('planned_session', '2026-10-24')]: { h: 'abc', t: '2026-10-24T00:00:00.000Z' } },
+      {},
+      { 'plan-a': { id: 'plan-a', dateKey: '2026-10-24', name: 'A', exercises: [] } },
+      undefined,
+    )
+    assert.equal(adopted.changed, true)
+    assert.equal(adopted.clock[recordKey('planned_session', 'plan-a')]?.h, 'abc')
+    assert.equal(adopted.clock[recordKey('planned_session', '2026-10-24')]?.h, 'abc')
   })
 })

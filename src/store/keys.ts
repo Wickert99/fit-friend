@@ -31,7 +31,7 @@ export const LEGACY_STATE_KEYS = [
 ] as const
 
 /** Bump when the on-disk shape changes. Migrations in migrate.ts run up to this. */
-export const FORMAT_VERSION = 3
+export const FORMAT_VERSION = 4
 
 /**
  * Catalog stamp. A mismatch merges bundled exercises and program templates into the

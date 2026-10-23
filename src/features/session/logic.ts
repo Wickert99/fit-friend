@@ -16,6 +16,7 @@ import type {
   WeightUnit,
   WorkoutSession,
 } from '../../types.ts'
+import { plansOnDate, putPlan, removePlan } from '../../store/dayPlans.ts'
 import { createId, todayKey } from '../../store/id.ts'
 import {
   freshScheme,
@@ -626,10 +627,12 @@ export function finishSession(state: AppState, sessionId: string, shared: boolea
   let scheduled = state.scheduled
   let completedPlans = state.completedPlans
   if (planned) {
-    plannedSessions = { ...state.plannedSessions }
-    delete plannedSessions[planned.dateKey]
+    plannedSessions = removePlan(state.plannedSessions, planned.id)
+    const stillPlanned = plansOnDate(plannedSessions, planned.dateKey)
     scheduled = { ...state.scheduled }
-    delete scheduled[planned.dateKey]
+    if (!stillPlanned.some((item) => item.programDayId && item.programDayId === scheduled[planned.dateKey])) {
+      delete scheduled[planned.dateKey]
+    }
     completedPlans = { ...(state.completedPlans ?? {}), [planned.id]: { plan: planned } }
   }
   return {
@@ -648,16 +651,13 @@ export function finishSession(state: AppState, sessionId: string, shared: boolea
 
 function findCompletedPlan(state: AppState, session: WorkoutSession): PlannedSession | null {
   if (session.plannedSessionId) {
-    for (const plan of Object.values(state.plannedSessions)) {
-      if (plan.id === session.plannedSessionId) return plan
-    }
-    return null
+    return plansOnDate(state.plannedSessions, session.dateKey).find((plan) => plan.id === session.plannedSessionId)
+      ?? Object.values(state.plannedSessions).find((plan) => plan.id === session.plannedSessionId)
+      ?? null
   }
-  const plan = state.plannedSessions[session.dateKey]
-  if (!plan) return null
-  if (session.programDayId) return plan.programDayId === session.programDayId ? plan : null
-  if (plan.programDayId) return null
-  return plan.name === session.name ? plan : null
+  const sameDay = plansOnDate(state.plannedSessions, session.dateKey)
+  if (session.programDayId) return sameDay.find((plan) => plan.programDayId === session.programDayId) ?? null
+  return sameDay.find((plan) => !plan.programDayId && plan.name === session.name) ?? null
 }
 
 export function deleteCompletedSession(state: AppState, sessionId: string, now = new Date()): AppState {
@@ -815,51 +815,76 @@ export function startFromPlan(state: AppState, plan: PlannedSession, ctx: Traini
     state: {
       ...base,
       sessions,
-      plannedSessions: {
-        ...base.plannedSessions,
-        [plan.dateKey]: { ...plan, updatedAt: now.toISOString() },
-      },
+      plannedSessions: putPlan(base.plannedSessions, { ...plan, updatedAt: now.toISOString() }),
     },
   }
+}
+
+function sessionMatchesPlan(session: WorkoutSession | undefined, plan: PlannedSession): boolean {
+  if (!session) return false
+  if (session.plannedSessionId && plan.id) return session.plannedSessionId === plan.id
+  return session.dateKey === plan.dateKey && session.name === plan.name
+}
+
+function planWasLogged(state: AppState, plan: PlannedSession): boolean {
+  return state.sessions.some((session) => {
+    if (session.status !== 'completed') return false
+    if (session.plannedSessionId && session.plannedSessionId === plan.id) return true
+    if (session.dateKey !== plan.dateKey) return false
+    if (plan.programDayId && session.programDayId === plan.programDayId && session.name === plan.name) return true
+    return false
+  })
+}
+
+export interface DayPlanEntry {
+  plan: PlannedSession
+  canStart: boolean
 }
 
 export function todayPlan(state: AppState, dateKey: string): {
   inProgress?: WorkoutSession
   paused: WorkoutSession[]
   plan?: PlannedSession
+  entries: DayPlanEntry[]
   programDay?: { program: Program; day: ProgramDay }
   canStart: boolean
   name?: string
 } {
   const inProgress = state.sessions.find((session) => session.status === 'in_progress')
   const paused = state.sessions.filter((session) => session.status === 'paused')
-  const plan = state.plannedSessions[dateKey]
-  const programDay = !plan && state.scheduled[dateKey] ? findProgramDay(state, dateKey) ?? undefined : undefined
-  const logged = state.sessions.some((session) => {
-    if (session.status !== 'completed' || session.dateKey !== dateKey) return false
-    if (!plan) return false
-    return session.plannedSessionId === plan.id || (session.programDayId === plan.programDayId && session.name === plan.name)
+  const entries: DayPlanEntry[] = plansOnDate(state.plannedSessions, dateKey).map((plan) => {
+    const hasWork = plan.exercises.length > 0 || !!plan.sessionPad?.trim()
+    const sameWorkout = sessionMatchesPlan(inProgress, plan) || paused.some((session) => sessionMatchesPlan(session, plan))
+    return { plan, canStart: hasWork && !planWasLogged(state, plan) && !sameWorkout }
   })
-  const matches = (session: WorkoutSession | undefined) =>
-    !!(session && plan && (session.plannedSessionId === plan.id || session.name === plan.name))
-  const sameWorkout = matches(inProgress) || paused.some((session) => matches(session))
-  const hasWork = plan ? plan.exercises.length > 0 || !!plan.sessionPad?.trim() : !!(programDay && programDay.day.exercises.length > 0)
+  const plan = entries.find((entry) => entry.canStart)?.plan ?? entries[0]?.plan
+  const programDay = !plan && state.scheduled[dateKey] ? findProgramDay(state, dateKey) ?? undefined : undefined
+  const loggedProgram = state.sessions.some((session) => {
+    if (session.status !== 'completed' || session.dateKey !== dateKey || !programDay) return false
+    return session.programDayId === programDay.day.id || session.name === programDay.day.name
+  })
+  const sameProgram =
+    !!programDay &&
+    (sessionMatchesPlan(inProgress, { id: '', dateKey, name: programDay.day.name, exercises: [] }) ||
+      paused.some((session) => session.name === programDay.day.name && session.dateKey === dateKey))
+  const programCanStart = !!(programDay && programDay.day.exercises.length > 0) && !loggedProgram && !sameProgram
   return {
     inProgress,
     paused,
     plan,
+    entries,
     programDay,
-    canStart: hasWork && !logged && !sameWorkout,
+    canStart: entries.some((entry) => entry.canStart) || programCanStart,
     name: plan?.name ?? programDay?.day.name,
   }
 }
 
 export function planForStart(state: AppState, dateKey: string): PlannedSession | null {
-  const plan = state.plannedSessions[dateKey]
-  if (plan && (plan.exercises.length > 0 || !!plan.sessionPad?.trim())) return plan
-  const found = findProgramDay(state, dateKey)
-  if (!found || found.day.exercises.length === 0) return null
-  return plannedFromProgramDay(dateKey, found.program, found.day)
+  const info = todayPlan(state, dateKey)
+  const ready = info.entries.find((entry) => entry.canStart)
+  if (ready) return ready.plan
+  if (!info.programDay || info.programDay.day.exercises.length === 0 || !info.canStart) return null
+  return plannedFromProgramDay(dateKey, info.programDay.program, info.programDay.day)
 }
 
 export function restFor(session: WorkoutSession, pointer: SetPointer, stepRest: number | undefined, exercises: Exercise[]): number {

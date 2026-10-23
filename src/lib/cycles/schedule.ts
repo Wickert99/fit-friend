@@ -1,4 +1,5 @@
 import type { AppState, PlanBoard, PlannedSession, Prescription, Program, ProgramDay, ProgramInstance } from '../../types.ts'
+import { putPlan, removePlansOnDate } from '../../store/dayPlans.ts'
 import { createId } from '../../store/id.ts'
 import { recomputePrs } from '../maxes/prs.ts'
 import { streakFromDays, todayKey, weekStartKey, weeksBetween } from './dates.ts'
@@ -65,10 +66,14 @@ export function assignProgramDay(state: AppState, dateKey: string, programDayId:
     if (!day) continue
     const instance = program.activeInstance ?? latestInstance(state.programInstances, program.id)
     const weekIndex = instance ? weekIndexFor(instance, dateKey) : undefined
-    plannedSessions = {
-      ...plannedSessions,
-      [dateKey]: plannedFromDay(dateKey, program, day, weekIndex, now, createId('plan')),
+    const nextPlan = plannedFromDay(dateKey, program, day, weekIndex, now, createId('plan'))
+    const previousDayId = state.scheduled[dateKey]
+    const withoutPrevious = { ...plannedSessions }
+    for (const [id, existing] of Object.entries(withoutPrevious)) {
+      if (existing.dateKey !== dateKey && id !== dateKey) continue
+      if (existing.programDayId === previousDayId || id === dateKey) delete withoutPrevious[id]
     }
+    plannedSessions = putPlan(withoutPrevious, nextPlan)
     break
   }
   return {
@@ -81,10 +86,8 @@ export function assignProgramDay(state: AppState, dateKey: string, programDayId:
 
 export function clearDay(state: AppState, dateKey: string): AppState {
   const scheduled = { ...state.scheduled }
-  const plannedSessions = { ...state.plannedSessions }
   delete scheduled[dateKey]
-  delete plannedSessions[dateKey]
-  return { ...state, scheduled, plannedSessions, scheduleUserOwned: true }
+  return { ...state, scheduled, plannedSessions: removePlansOnDate(state.plannedSessions, dateKey), scheduleUserOwned: true }
 }
 
 export function clearCalendar(
@@ -96,7 +99,9 @@ export function clearCalendar(
   let plannedSessions = { ...state.plannedSessions }
   if (options.futureOnly) {
     for (const key of Object.keys(scheduled)) if (key >= today) delete scheduled[key]
-    for (const key of Object.keys(plannedSessions)) if (key >= today) delete plannedSessions[key]
+    for (const [id, plan] of Object.entries(plannedSessions)) {
+      if ((plan.dateKey || id) >= today) delete plannedSessions[id]
+    }
   } else {
     scheduled = {}
     plannedSessions = {}
@@ -133,7 +138,7 @@ export function saveBlankDay(state: AppState, dateKey: string, name = 'Workout')
     session,
     state: {
       ...state,
-      plannedSessions: { ...state.plannedSessions, [dateKey]: session },
+      plannedSessions: putPlan(state.plannedSessions, session),
       scheduleUserOwned: true,
     },
   }
@@ -212,7 +217,11 @@ export function applyCommit(state: AppState, prepared: PreparedCommit, now = new
     const day = days.get(mapping.programDayId)
     if (!day) continue
     scheduled[mapping.dateKey] = day.id
-    plannedSessions[mapping.dateKey] = plannedFromDay(mapping.dateKey, prepared.program, day, mapping.weekIndex, now, id('plan'))
+    const plan = plannedFromDay(mapping.dateKey, prepared.program, day, mapping.weekIndex, now, id('plan'))
+    for (const [planId, existing] of Object.entries(plannedSessions)) {
+      if (existing.dateKey === mapping.dateKey || planId === mapping.dateKey) delete plannedSessions[planId]
+    }
+    plannedSessions[plan.id] = plan
   }
   const known = new Set(state.exercises.map((exercise) => exercise.id))
   const added = prepared.newExercises.filter((exercise) => !known.has(exercise.id))

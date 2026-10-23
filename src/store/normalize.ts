@@ -26,6 +26,7 @@ import type {
   WorkoutSession,
 } from '../types.ts'
 import { SET_TYPES } from '../types.ts'
+import { indexCompletedPlans, indexPlanList, isDateKey, uniqueSessionIds } from './dayPlans.ts'
 
 const SET_TYPE_SET = new Set<string>(SET_TYPES)
 
@@ -453,9 +454,7 @@ export function normalizeState(raw: unknown): AppState {
     programs: Array.isArray(raw.programs)
       ? raw.programs.map(normalizeProgram).filter((item): item is Program => item != null)
       : [],
-    sessions: Array.isArray(raw.sessions)
-      ? raw.sessions.map(normalizeSession).filter((item): item is WorkoutSession => item != null)
-      : [],
+    sessions: readSessions(raw.sessions),
     prs: Array.isArray(raw.prs)
       ? raw.prs.filter(isRecord).map(
           (pr): PersonalRecord => ({
@@ -485,7 +484,7 @@ export function normalizeState(raw: unknown): AppState {
     activeProgramId: typeof raw.activeProgramId === 'string' ? raw.activeProgramId : null,
     commitmentDays: asStringArray(raw.commitmentDays),
     scheduled,
-    plannedSessions: mapRecord(raw.plannedSessions, (_key, value) => normalizePlanned(value)),
+    plannedSessions: readPlans(raw.plannedSessions),
     scheduleUserOwned: raw.scheduleUserOwned == null ? true : !!raw.scheduleUserOwned,
     planBoards: Array.isArray(raw.planBoards)
       ? raw.planBoards.map(normalizeBoard).filter((item): item is PlanBoard => item != null)
@@ -497,10 +496,38 @@ export function normalizeState(raw: unknown): AppState {
     programInstances: Array.isArray(raw.programInstances)
       ? raw.programInstances.map(normalizeInstance).filter((item): item is ProgramInstance => item != null)
       : [],
-    completedPlans: isRecord(raw.completedPlans)
-      ? (raw.completedPlans as AppState['completedPlans'])
-      : undefined,
+    completedPlans: isRecord(raw.completedPlans) ? indexCompletedPlans(raw.completedPlans as AppState['completedPlans']) : undefined,
   }
+}
+
+function readSessions(raw: unknown): WorkoutSession[] {
+  const rows: unknown[] = []
+  if (Array.isArray(raw)) rows.push(...raw)
+  else if (isRecord(raw)) {
+    for (const [key, value] of Object.entries(raw)) {
+      const row = isRecord(value) ? { ...value } : {}
+      if (typeof row.id !== 'string' || !row.id) row.id = key
+      if ((typeof row.dateKey !== 'string' || !row.dateKey) && isDateKey(key)) row.dateKey = key
+      rows.push(row)
+    }
+  }
+  return uniqueSessionIds(rows.map(normalizeSession).filter((item): item is WorkoutSession => item != null))
+}
+
+function readPlans(raw: unknown): Record<string, PlannedSession> {
+  const entries: { key: string; value: unknown }[] = []
+  if (Array.isArray(raw)) raw.forEach((value, index) => entries.push({ key: String(index), value }))
+  else if (isRecord(raw)) {
+    for (const [key, value] of Object.entries(raw)) entries.push({ key, value })
+  }
+  const plans: { key: string; plan: PlannedSession }[] = []
+  for (const { key, value } of entries) {
+    const source = isRecord(value) ? { ...value } : null
+    if (source && (typeof source.dateKey !== 'string' || !source.dateKey) && isDateKey(key)) source.dateKey = key
+    const plan = normalizePlanned(source)
+    if (plan) plans.push({ key, plan })
+  }
+  return indexPlanList(plans)
 }
 
 let fallback = 0

@@ -9,6 +9,7 @@ import { Badge, Button, Card, Chip, EmptyState, IconButton, Input, ScreenHeader,
 import { applyStart } from '../session/context.ts'
 import { ConflictDialog } from '../session/ConflictDialog.tsx'
 import { resolveMax } from '../session/families.ts'
+import { plansOnDate, putPlan, removePlan } from '../../store/dayPlans.ts'
 import { blankPlanned, defaultPrescription, findProgramDay, plannedFromProgramDay } from '../session/logic.ts'
 import { parseKey, shiftKey } from './dates.ts'
 import PrescriptionEditor from './PrescriptionEditor.tsx'
@@ -30,9 +31,10 @@ export function DayEditor() {
   const { state, nav, go, registerLeaveGuard, update, upsertExercise } = useStore()
   const confirm = useConfirm()
   const dateKey = nav.dateKey || todayKey()
-  const saved = state.plannedSessions[dateKey]
+  const dayPlans = plansOnDate(state.plannedSessions, dateKey)
   const scheduledId = state.scheduled[dateKey] ?? ''
-  const savedStamp = saved?.updatedAt ?? ''
+  const savedStamp = dayPlans.map((plan) => `${plan.id}:${plan.updatedAt ?? ''}`).join('|')
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const [draft, setDraft] = useState<PlannedSession | null>(null)
   const [baseline, setBaseline] = useState('')
   const [picker, setPicker] = useState<Picker | null>(null)
@@ -42,8 +44,10 @@ export function DayEditor() {
 
   useEffect(() => {
     const current = state
-    if (current.plannedSessions[dateKey]) {
-      const plan = structuredClone(current.plannedSessions[dateKey])
+    const list = plansOnDate(current.plannedSessions, dateKey)
+    const chosen = list.find((plan) => plan.id === selectedId) ?? list[0]
+    if (chosen) {
+      const plan = structuredClone(chosen)
       setDraft(plan)
       setBaseline(signature(plan))
       return
@@ -57,9 +61,9 @@ export function DayEditor() {
     }
     setDraft(null)
     setBaseline('')
-    // Reload only when the saved day or the scheduled program day changes.
+    // Reload when the saved workouts or the scheduled program day change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateKey, savedStamp, scheduledId])
+  }, [dateKey, savedStamp, scheduledId, selectedId])
 
   const dirty = draft != null && signature(draft) !== baseline
   useEffect(() => {
@@ -79,11 +83,23 @@ export function DayEditor() {
     const next = { ...plan, updatedAt: new Date().toISOString() }
     update((current) => ({
       ...current,
-      plannedSessions: { ...current.plannedSessions, [next.dateKey]: next },
+      plannedSessions: putPlan(current.plannedSessions, next),
       scheduleUserOwned: true,
     }))
+    setSelectedId(next.id)
     setDraft(next)
     setBaseline(signature(next))
+  }
+
+  function addWorkout() {
+    const plan = blankPlanned(dateKey)
+    update((current) => {
+      const kept = draft ? putPlan(current.plannedSessions, { ...draft, updatedAt: draft.updatedAt ?? new Date().toISOString() }) : current.plannedSessions
+      return { ...current, plannedSessions: putPlan(kept, plan), scheduleUserOwned: true }
+    })
+    setSelectedId(plan.id)
+    setDraft(plan)
+    setBaseline(signature(plan))
   }
 
   function begin(plan: PlannedSession, mode: 'return' | 'replace' | 'resume' | 'pause') {
@@ -98,15 +114,21 @@ export function DayEditor() {
   }
 
   async function clearDay() {
-    const ok = await confirm('Clear this day?\n\nRemoves the planned workout and any program scheduled here.')
+    const ok = await confirm(
+      dayPlans.length > 1
+        ? 'Clear this workout?\n\nThe other workouts on this day stay.'
+        : 'Clear this day?\n\nRemoves the planned workout and any program scheduled here. Logged sessions stay.',
+    )
     if (!ok) return
     update((current) => {
-      const plannedSessions = { ...current.plannedSessions }
-      delete plannedSessions[dateKey]
+      if (!draft) return current
+      const plannedSessions = removePlan(current.plannedSessions, draft.id)
+      const remaining = plansOnDate(plannedSessions, dateKey)
       const scheduled = { ...current.scheduled }
-      delete scheduled[dateKey]
+      if (!remaining.some((plan) => plan.programDayId && plan.programDayId === scheduled[dateKey])) delete scheduled[dateKey]
       return { ...current, plannedSessions, scheduled, scheduleUserOwned: true }
     })
+    setSelectedId(null)
     setDraft(null)
     setBaseline('')
   }
@@ -178,6 +200,18 @@ export function DayEditor() {
       <TrainSubNav value="day" />
       {draft ? (
         <>
+          {dayPlans.length > 0 ? (
+            <div className="flex flex-wrap gap-2" data-day-workouts={dayPlans.length}>
+              {dayPlans.map((plan) => (
+                <Chip key={plan.id} active={draft?.id === plan.id} onClick={() => setSelectedId(plan.id)}>
+                  {plan.name || 'Workout'}
+                </Chip>
+              ))}
+              <Button variant="secondary" data-add-workout onClick={addWorkout}>
+                Add workout
+              </Button>
+            </div>
+          ) : null}
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone={dirty ? 'warn' : 'success'}>{dirty ? 'Unsaved' : 'Saved'}</Badge>
             {draft.programName ? <Badge>{draft.programName}</Badge> : null}
@@ -185,7 +219,7 @@ export function DayEditor() {
               Log
             </Button>
             <Button variant="danger" onClick={() => void clearDay()}>
-              Clear day
+              {dayPlans.length > 1 ? 'Clear workout' : 'Clear day'}
             </Button>
           </div>
           <Input aria-label="Workout name" value={draft.name} onChange={(event) => setDraft({ ...draft, name: event.target.value })} />

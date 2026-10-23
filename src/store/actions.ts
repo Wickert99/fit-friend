@@ -1,4 +1,5 @@
 import { deleteLoggedSession } from '../lib/cycles/schedule.ts'
+import { putPlan, removePlansOnDate } from './dayPlans.ts'
 import { streakFromDays } from '../lib/cycles/dates.ts'
 import { recomputePrs } from '../lib/maxes/prs.ts'
 import type {
@@ -110,10 +111,8 @@ export function scheduleDay(state: AppState, dateKey: string, programDayId: stri
 
 export function clearSchedule(state: AppState, dateKey: string): AppState {
   const scheduled = { ...state.scheduled }
-  const plannedSessions = { ...state.plannedSessions }
   delete scheduled[dateKey]
-  delete plannedSessions[dateKey]
-  return { ...state, scheduled, plannedSessions, scheduleUserOwned: true }
+  return { ...state, scheduled, plannedSessions: removePlansOnDate(state.plannedSessions, dateKey), scheduleUserOwned: true }
 }
 
 export function clearAllSchedule(state: AppState, today = new Date()): AppState {
@@ -132,7 +131,7 @@ export function clearAllSchedule(state: AppState, today = new Date()): AppState 
 export function savePlannedSession(state: AppState, session: PlannedSession): AppState {
   return {
     ...state,
-    plannedSessions: { ...state.plannedSessions, [session.dateKey]: session },
+    plannedSessions: putPlan(state.plannedSessions, session),
     scheduleUserOwned: true,
   }
 }

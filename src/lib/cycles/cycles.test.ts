@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
+import { plansOnDate } from '../../store/dayPlans.ts'
 import { emptyState } from '../../store/normalize.ts'
 import {
   applyCommit,
@@ -113,8 +114,8 @@ describe('commit mapping', () => {
     const next = applyCommit({ ...emptyState(), programs: [source] }, prepared, '2026-10-12T08:00:00.000Z', ids())
     assert.equal(next.activeProgramId, 'prog-1')
     assert.equal(next.scheduled['2026-10-12'], 'd-mon')
-    assert.equal(next.plannedSessions['2026-10-14']?.name, 'Bench')
-    assert.equal(next.plannedSessions['2026-10-14']?.exercises[0]?.exerciseId, 'ex-bp')
+    assert.equal(plansOnDate(next.plannedSessions, '2026-10-14')[0]?.name, 'Bench')
+    assert.equal(plansOnDate(next.plannedSessions, '2026-10-14')[0]?.exercises[0]?.exerciseId, 'ex-bp')
     assert.equal(next.programInstances.length, 1)
     assert.equal(next.programInstances[0]?.firstSessionKey, '2026-10-12')
     assert.equal(next.programInstances[0]?.source, 'program')
@@ -167,7 +168,7 @@ describe('calendar edits', () => {
     let state = { ...emptyState(), programs: [source], sessions: [] }
     state = assignProgramDay(state, '2026-10-16', 'd-fri', '2026-10-16T00:00:00.000Z')
     assert.equal(state.scheduled['2026-10-16'], 'd-fri')
-    assert.equal(state.plannedSessions['2026-10-16']?.programName, 'Strength block')
+    assert.equal(plansOnDate(state.plannedSessions, '2026-10-16')[0]?.programName, 'Strength block')
     state = clearCalendar(state, { clearPlanBoards: true })
     assert.deepEqual(state.scheduled, {})
     assert.deepEqual(state.plannedSessions, {})
