@@ -11,6 +11,7 @@ import { formatExactLoad, formatPlateLoad } from '../../lib/setTypes/units.ts'
 import { readMuted, writeMuted } from './browser.ts'
 import { trainingContext } from './context.ts'
 import { FocusMode, type FocusHandle } from './FocusMode.tsx'
+import { WhoopSessionHeartRate } from '../whoop/WhoopSessionHeartRate.tsx'
 import {
   deleteCompletedSession,
   discardSession,
@@ -412,6 +413,7 @@ function CompletedSession({ session }: { session: WorkoutSession }) {
           {sessionCounts(session).done} sets · {formatExactLoad(sessionVolume(session), state.weightUnit)}
         </p>
       </header>
+      <WhoopSessionHeartRate session={session} />
       {session.exercises.map((exercise, index) => (
         <Card key={`${exercise.exerciseId}-${index}`} className="space-y-1">
           <p className="font-semibold text-ink">{names[exercise.exerciseId] || 'Exercise'}</p>

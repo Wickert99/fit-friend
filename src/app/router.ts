@@ -29,6 +29,7 @@ export function parseHash(hash: string, today = todayKey()): NavState {
   const exercise = path.match(/^#\/exercise\/([^/]+)/)
   if (exercise) return { screen: 'exercise-detail', exerciseId: decodeURIComponent(exercise[1]) }
   if (path === '#/program-builder') return { screen: 'program-builder' }
+  if (path === '#/whoop-callback') return { screen: 'friends' }
   const train = path.match(/^#\/(library|programs|coach|maxes)$/)
   if (train) return { screen: 'workout', dateKey: today, workoutTab: train[1] as WorkoutTab }
   if (path === '#/plan/muscles') return { screen: 'plan', planView: 'muscles' }

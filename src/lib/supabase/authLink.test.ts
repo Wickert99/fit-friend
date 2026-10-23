@@ -3,6 +3,7 @@ import { describe, it } from 'node:test'
 import { memoryStorage } from '../../store/storage.ts'
 import {
   authLinkMessage,
+  captureAuthLinkError,
   consumePostAuthNav,
   createInviteCode,
   inviteFromHash,
@@ -41,5 +42,33 @@ describe('auth links and invite codes', () => {
     assert.match(authLinkMessage({ error: 'access_denied', code: 'otp_disabled' }), /turned off/)
     assert.match(authLinkMessage({ error: 'access_denied', description: 'invalid grant' }), /isn't valid/)
     assert.match(authLinkMessage({ error: 'server_error', description: 'mailbox full' }), /mailbox full/)
+  })
+
+  it('leaves a Whoop callback in the hash for the app to exchange', () => {
+    let replaced = false
+    const storage = new Map<string, string>()
+    const win = {
+      location: {
+        hash: '#/whoop-callback?error=access_denied&state=abc',
+        search: '',
+        pathname: '/fit-friend/',
+      },
+      sessionStorage: {
+        setItem: (key: string, value: string) => storage.set(key, value),
+        getItem: (key: string) => storage.get(key) ?? null,
+      },
+      localStorage: {
+        setItem: () => {},
+        getItem: () => null,
+      },
+      history: {
+        replaceState: () => {
+          replaced = true
+        },
+      },
+    }
+    assert.equal(captureAuthLinkError(win as unknown as Window & typeof globalThis), false)
+    assert.equal(replaced, false)
+    assert.equal(storage.size, 0)
   })
 })

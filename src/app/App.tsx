@@ -1,4 +1,5 @@
 import { SyncBridge } from '../features/friends/SyncBridge.tsx'
+import { WhoopCallbackBridge } from '../features/whoop/WhoopCallbackBridge.tsx'
 import { StoreProvider } from '../store/StoreProvider.tsx'
 import { ConfirmProvider } from '../ui/Confirm.tsx'
 import { ToastProvider } from '../ui/Toast.tsx'
@@ -14,6 +15,7 @@ export default function App() {
         <ToastProvider>
           <ConfirmProvider>
             <SyncBridge />
+            <WhoopCallbackBridge />
             <Shell>
               <RouteView />
             </Shell>

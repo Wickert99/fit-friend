@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connecting Whoop…</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <p>Returning to Fit Friend…</p>
+    <script>
+      ;(function () {
+        var params = new URLSearchParams(window.location.search)
+        var next = new URL('./', window.location.href)
+        var hash = new URLSearchParams()
+        ;['code', 'state', 'error', 'error_description'].forEach(function (key) {
+          var value = params.get(key)
+          if (value) hash.set(key, value)
+        })
+        var query = hash.toString()
+        next.hash = '/whoop-callback' + (query ? '?' + query : '')
+        window.location.replace(next.pathname + next.search + next.hash)
+      })()
+    </script>
+  </body>
+</html>
