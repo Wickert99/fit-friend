@@ -19,8 +19,9 @@ import {
   captureAuthLinkError,
   clearAuthLinkError,
   clearPendingInvite,
+  friendInviteShare,
+  inviteCodeToAccept,
   readAuthLinkError,
-  readPendingInvite,
   type AuthLinkError,
 } from '../../lib/supabase/authLink.ts'
 import { ensureSyncEngine, prepareSyncForLocalReset } from '../../lib/sync/engine.ts'
@@ -143,7 +144,9 @@ function FriendsBody() {
   const [editingName, setEditingName] = useState(false)
   const [nameDraft, setNameDraft] = useState('')
   const [inviteCode, setInviteCode] = useState<string | null>(null)
-  const [acceptCode, setAcceptCode] = useState(() => captureInviteFromLocation() || readPendingInvite(localStorage) || '')
+  const [acceptCode, setAcceptCode] = useState(() =>
+    typeof window === 'undefined' ? '' : inviteCodeToAccept(window.location.hash, localStorage),
+  )
   const [threads, setThreads] = useState<ChatThread[]>([])
   const [threadsLoading, setThreadsLoading] = useState(false)
   const [posts, setPosts] = useState<ProgressFeedPost[]>([])
@@ -159,7 +162,12 @@ function FriendsBody() {
   const [shareMessage, setShareMessage] = useState('')
   const [shareSessionId, setShareSessionId] = useState('')
   const origin = useMemo(() => (typeof window === 'undefined' ? '' : window.location.origin), [])
-  const inviteLink = inviteCode && origin ? `${origin}${appBase()}#/friends?invite=${inviteCode}` : null
+  const inviteShare = useMemo(
+    () => (inviteCode && origin ? friendInviteShare(origin, appBase(), inviteCode) : null),
+    [inviteCode, origin],
+  )
+  const appUrl = inviteShare?.appUrl ?? ''
+  const inviteLink = inviteShare?.inviteLink ?? null
   const signedIn = !!auth.user
   const mine = state.programs.filter((program) => program.isMine)
   const finished = state.sessions.filter((session) => session.status === 'completed')
@@ -316,17 +324,16 @@ function FriendsBody() {
   }
 
   async function shareInvite() {
-    if (!inviteLink || !origin || !inviteCode) return
-    const text = `Join me on Fit Friend\nApp: ${origin}\nInvite: ${inviteLink}\nCode: ${inviteCode}`
+    if (!inviteShare || !appUrl || !inviteCode) return
     if (navigator.share) {
       try {
-        await navigator.share({ title: 'Fit Friend', text, url: origin })
+        await navigator.share({ title: 'Fit Friend', text: inviteShare.text, url: inviteShare.url })
         return
       } catch (shareError) {
         if (shareError instanceof DOMException && shareError.name === 'AbortError') return
       }
     }
-    await copy(text)
+    await copy(inviteShare.text)
   }
 
   async function removePost(id: string) {
@@ -610,7 +617,7 @@ function FriendsBody() {
                   New invite code
                 </Button>
               </div>
-              {inviteCode && origin && inviteLink ? (
+              {inviteCode && appUrl && inviteLink ? (
                 <div className="mt-3 space-y-3 rounded-xl bg-charcoal-3 p-3">
                   <div className="flex items-center justify-between gap-2">
                     <p className="font-mono text-lg font-semibold tracking-widest">{inviteCode}</p>
@@ -619,7 +626,7 @@ function FriendsBody() {
                       Copy code
                     </Button>
                   </div>
-                  <LinkRow label="App link" value={origin} onCopy={() => void copy(origin)} />
+                  <LinkRow label="App link" value={appUrl} onCopy={() => void copy(appUrl)} />
                   <LinkRow label="Invite link" value={inviteLink} onCopy={() => void copy(inviteLink)} />
                   <Button className="w-full" variant="secondary" onClick={() => void shareInvite()}>
                     <Share2 className="h-4 w-4" />
