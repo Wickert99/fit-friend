@@ -2,7 +2,7 @@ import type { Session, SupabaseClient, User } from '@supabase/supabase-js'
 import type { FriendInvite, Friendship, SupabaseProfile } from '../../types.ts'
 import { appBase } from '../base.ts'
 import { loadSupabase } from './client.ts'
-import { randomInviteCode } from './authLink.ts'
+import { authEmailRedirectUrl, randomInviteCode } from './authLink.ts'
 
 export interface AccountResult<T> {
   data?: T
@@ -11,7 +11,7 @@ export interface AccountResult<T> {
 
 function originRedirect(): string | undefined {
   if (typeof window === 'undefined') return undefined
-  return new URL(appBase(), window.location.origin).href
+  return authEmailRedirectUrl(window.location.origin, appBase())
 }
 
 export async function signUpWithPassword(

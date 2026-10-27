@@ -13,7 +13,7 @@ import {
   signUpWithPassword,
   updateDisplayName,
 } from '../../lib/supabase/account.ts'
-import { consumePostAuthNav, inviteFromHash, rememberPendingInvite, rememberPostAuthNav } from '../../lib/supabase/authLink.ts'
+import { consumePostAuthNav, rememberPostAuthNav, stashInviteFromHash } from '../../lib/supabase/authLink.ts'
 import { isSupabaseConfigured, loadSupabase } from '../../lib/supabase/client.ts'
 
 export interface AuthApi {
@@ -207,8 +207,5 @@ export function useAuth(): AuthApi {
 
 export function captureInviteFromLocation(): string {
   if (typeof window === 'undefined') return ''
-  const code = inviteFromHash(window.location.hash)
-  if (!code) return ''
-  rememberPendingInvite(localStorage, code)
-  return code
+  return stashInviteFromHash(window.location.hash, localStorage)
 }

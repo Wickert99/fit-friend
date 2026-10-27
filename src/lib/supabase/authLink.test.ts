@@ -2,10 +2,14 @@ import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 import { memoryStorage } from '../../store/storage.ts'
 import {
+  authEmailRedirectUrl,
   authLinkMessage,
   captureAuthLinkError,
+  clearPendingInvite,
   consumePostAuthNav,
   createInviteCode,
+  friendInviteShare,
+  inviteCodeToAccept,
   inviteFromHash,
   normalizeInviteCode,
   readPendingInvite,
@@ -32,6 +36,65 @@ describe('auth links and invite codes', () => {
     assert.equal(consumePostAuthNav(storage, now + 1000), false)
     rememberPostAuthNav(storage, now)
     assert.equal(consumePostAuthNav(storage, now + 86_400_000), false)
+  })
+
+  it('remembers an invite opened while signed out and still has it to accept after sign-in', () => {
+    const storage = memoryStorage()
+    const opened = inviteCodeToAccept('#/friends?invite=zz9q', storage)
+    assert.equal(opened, 'ZZ9Q')
+    assert.equal(readPendingInvite(storage), 'ZZ9Q')
+
+    // The screen strips ?invite= from the hash. A reload must keep the saved code.
+    assert.equal(inviteCodeToAccept('#/friends', storage), 'ZZ9Q')
+
+    // Magic-link return lands on the app and must not drop the pending invite.
+    let replaced: string | null = null
+    const win = {
+      location: {
+        hash: '#access_token=tok&type=magiclink',
+        search: '',
+        pathname: '/fit-friend/',
+      },
+      sessionStorage: storage,
+      localStorage: storage,
+      history: {
+        replaceState: (_state: unknown, _title: string, url?: string | URL | null) => {
+          replaced = url == null ? null : String(url)
+        },
+      },
+    }
+    assert.equal(captureAuthLinkError(win as unknown as Window & typeof globalThis), false)
+    assert.equal(replaced, null)
+    assert.equal(consumePostAuthNav(storage), true)
+    assert.equal(readPendingInvite(storage), 'ZZ9Q')
+    assert.equal(inviteCodeToAccept('#/friends', storage), 'ZZ9Q')
+
+    clearPendingInvite(storage)
+    assert.equal(readPendingInvite(storage), null)
+    assert.equal(inviteCodeToAccept('#/friends', storage), '')
+  })
+
+  it('builds share links on the GitHub Pages base, not the bare host', () => {
+    const origin = 'https://wickert99.github.io'
+    const base = '/fit-friend/'
+    const code = 'AB3K9Q2M'
+    const share = friendInviteShare(origin, base, code)
+    assert.ok(share)
+    assert.equal(share.appUrl, `${origin}${base}`)
+    assert.equal(share.appUrl, 'https://wickert99.github.io/fit-friend/')
+    assert.equal(share.url, share.appUrl)
+    assert.equal(share.inviteLink, `${origin}${base}#/friends?invite=${code}`)
+    assert.equal(share.text, `Join me on Fit Friend\nApp: ${share.appUrl}\nInvite: ${share.inviteLink}\nCode: ${code}`)
+    assert.equal(friendInviteShare('http://127.0.0.1:41731', '/', 'AB3K')?.appUrl, 'http://127.0.0.1:41731/')
+    assert.equal(friendInviteShare('http://127.0.0.1:41731', '/', 'AB3K')?.inviteLink, 'http://127.0.0.1:41731/#/friends?invite=AB3K')
+    assert.equal(friendInviteShare('', '/fit-friend/', 'AB3K'), null)
+  })
+
+  it('sends auth email back to origin plus the app base', () => {
+    const pages = authEmailRedirectUrl('https://wickert99.github.io', '/fit-friend/')
+    assert.equal(pages, 'https://wickert99.github.io' + '/fit-friend/')
+    assert.equal(pages, 'https://wickert99.github.io/fit-friend/')
+    assert.equal(authEmailRedirectUrl('http://127.0.0.1:41731', '/'), 'http://127.0.0.1:41731/')
   })
 
   it('uses the invite alphabet and explains magic-link errors', () => {
@@ -70,5 +133,28 @@ describe('auth links and invite codes', () => {
     assert.equal(captureAuthLinkError(win as unknown as Window & typeof globalThis), false)
     assert.equal(replaced, false)
     assert.equal(storage.size, 0)
+  })
+
+  it('keeps the Pages path when an auth error returns to friends', () => {
+    let nextUrl = ''
+    const storage = memoryStorage()
+    rememberPendingInvite(storage, 'AB3K')
+    const win = {
+      location: {
+        hash: '#error=access_denied&error_code=otp_expired&error_description=expired',
+        search: '',
+        pathname: '/fit-friend/',
+      },
+      sessionStorage: storage,
+      localStorage: storage,
+      history: {
+        replaceState: (_state: unknown, _title: string, url?: string | URL | null) => {
+          nextUrl = url == null ? '' : String(url)
+        },
+      },
+    }
+    assert.equal(captureAuthLinkError(win as unknown as Window & typeof globalThis), true)
+    assert.equal(nextUrl, '/fit-friend/#/friends')
+    assert.equal(readPendingInvite(storage), 'AB3K')
   })
 })

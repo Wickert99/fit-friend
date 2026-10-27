@@ -33,6 +33,47 @@ export function inviteFromHash(hash: string): string | null {
   return normalizeInviteCode(new URLSearchParams(hash.slice(query + 1)).get('invite'))
 }
 
+/** Stores a hash invite and returns the normalized code, or '' when the hash has none. */
+export function stashInviteFromHash(hash: string, storage: AuthLinkStorage): string {
+  const code = inviteFromHash(hash)
+  if (!code) return ''
+  rememberPendingInvite(storage, code)
+  return code
+}
+
+/**
+ * Code to accept now: the invite in the hash, or the one saved while signed out.
+ * A later visit without `?invite=` does not clear the saved code.
+ */
+export function inviteCodeToAccept(hash: string, storage: AuthLinkStorage): string {
+  return stashInviteFromHash(hash, storage) || readPendingInvite(storage) || ''
+}
+
+export interface FriendInviteShare {
+  appUrl: string
+  inviteLink: string
+  text: string
+  url: string
+}
+
+/**
+ * Links shared from Friends.
+ * `appUrl` is origin + base (`https://host/fit-friend/` on GitHub Pages).
+ * The invite link is that same root plus `#/friends?invite=CODE`.
+ */
+export function friendInviteShare(origin: string, base: string, code: string): FriendInviteShare | null {
+  if (!origin || !code) return null
+  const appUrl = `${origin}${base}`
+  const inviteLink = `${appUrl}#/friends?invite=${code}`
+  const text = `Join me on Fit Friend\nApp: ${appUrl}\nInvite: ${inviteLink}\nCode: ${code}`
+  return { appUrl, inviteLink, text, url: appUrl }
+}
+
+/** Supabase email sign-in must return to origin + app base, not the bare host. */
+export function authEmailRedirectUrl(origin: string, base: string): string {
+  return new URL(base, origin).href
+}
+
 export function rememberPendingInvite(storage: AuthLinkStorage, code: string | null): void {
   const normalized = normalizeInviteCode(code)
   if (!normalized) return
