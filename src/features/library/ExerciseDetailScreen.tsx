@@ -30,7 +30,7 @@ export default function ExerciseDetailScreen() {
   if (!exercise) {
     return (
       <div className="mx-auto flex w-full max-w-lg min-w-0 flex-col gap-4 px-4 pt-5 pb-nav">
-        <h1 className="text-lg font-semibold">Exercise</h1>
+        <h1 tabIndex={-1} className="text-lg font-semibold">Exercise</h1>
         <Card>
           <p>Exercise not found.</p>
           <Button className="mt-3" onClick={backToTab}>
@@ -48,7 +48,7 @@ export default function ExerciseDetailScreen() {
         <IconButton label="Back" variant="outline" onClick={backToTab}>
           <ArrowLeft className="h-5 w-5" />
         </IconButton>
-        <h1 className="text-lg font-semibold">{exercise.name}</h1>
+        <h1 tabIndex={-1} className="text-lg font-semibold">{exercise.name}</h1>
       </header>
       <ExerciseCarousel key={`carousel-${exercise.id}`} exercise={exercise} />
       <ExerciseWatch key={`watch-${exercise.id}`} exercise={exercise} />

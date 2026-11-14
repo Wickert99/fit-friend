@@ -13,7 +13,7 @@ export function Card({
         type="button"
         onClick={onClick}
         className={cn(
-          'w-full rounded-2xl border border-charcoal-4 bg-charcoal p-4 text-left shadow-card transition hover:border-lime/35 hover:bg-charcoal-2/60 active:scale-[0.99]',
+          'press-scale w-full rounded-2xl border border-charcoal-4 bg-charcoal p-4 text-left shadow-card transition hover:border-lime/35 hover:bg-charcoal-2/60 active:scale-[0.99]',
           className,
         )}
       >

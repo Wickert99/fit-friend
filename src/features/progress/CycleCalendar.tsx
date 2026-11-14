@@ -1,7 +1,8 @@
 import { CalendarRange, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { eachDayOfInterval, format } from 'date-fns'
-import { Button, Chip, useBodyScrollLock, cn } from '../../ui/index.ts'
+import { AppDialog } from '../../ui/AppDialog.tsx'
+import { Button, Chip, cn } from '../../ui/index.ts'
 import {
   WEEK_OPTS,
   addMonths,
@@ -45,7 +46,7 @@ export function CycleExplorer({ programming }: { programming: ProgrammingContext
         type="button"
         data-cycle-explorer
         data-cycle-open
-        className="flex w-full items-center justify-between gap-3 rounded-2xl border border-charcoal-4 bg-charcoal px-4 py-3.5 text-left shadow-card transition hover:bg-charcoal-2/70 active:scale-[0.99]"
+        className="press-scale flex w-full items-center justify-between gap-3 rounded-2xl border border-charcoal-4 bg-charcoal px-4 py-3.5 text-left shadow-card transition hover:bg-charcoal-2/70 active:scale-[0.99]"
         onClick={() => setOpen(true)}
       >
         <span className="min-w-0">
@@ -91,7 +92,6 @@ export function CycleCalendarSheet({
   const [scale, setScale] = useState<'year' | 'month'>('year')
   const [cursor, setCursor] = useState(() => startOfMonth(new Date()))
   const blocks = useMemo(() => buildCycleBlocks(programming), [programming])
-  useBodyScrollLock(open)
   if (!open) return null
   const title = scale === 'year' ? String(cursor.getFullYear()) : format(cursor, 'MMMM yyyy')
   const visible =
@@ -99,14 +99,7 @@ export function CycleCalendarSheet({
       ? blocksInRange(blocks, dateKey(startOfYear(cursor)), dateKey(endOfYear(cursor)))
       : blocksInRange(blocks, dateKey(startOfMonth(cursor)), dateKey(endOfMonth(cursor)))
   return (
-    <div className="fixed inset-0 z-50 flex items-stretch justify-center bg-ink/45 p-0 sm:items-center sm:p-3" data-cycle-calendar-sheet>
-      <button type="button" className="absolute inset-0 cursor-default" aria-label="Close training cycles" onClick={onClose} />
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="cycles-cal-title"
-        className="safe-fullscreen relative z-10 flex h-[100dvh] w-full max-w-lg flex-col bg-charcoal-2 shadow-raised sm:h-[min(96dvh,900px)] sm:rounded-3xl sm:border sm:border-charcoal-4"
-      >
+    <AppDialog variant="full" labelledBy="cycles-cal-title" onClose={onClose} data-cycle-calendar-sheet="true">
         <div className="flex items-center justify-between gap-2 border-b border-charcoal-4 bg-charcoal px-3 py-3">
           <div className="min-w-0">
             <h2 id="cycles-cal-title" className="flex items-center gap-2 text-lg font-semibold text-ink">
@@ -120,7 +113,7 @@ export function CycleCalendarSheet({
           </Button>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-charcoal-4 bg-charcoal px-3 py-2">
-          <div className="flex gap-1.5" role="tablist" aria-label="Calendar scale">
+          <div className="flex gap-1.5" role="group" aria-label="Calendar scale">
             <Chip active={scale === 'year'} onClick={() => setScale('year')}>
               Year
             </Chip>
@@ -156,8 +149,7 @@ export function CycleCalendarSheet({
             <p className="mt-1.5 text-[11px] text-muted">No blocks in this {scale === 'year' ? 'year' : 'month'}.</p>
           ) : null}
         </div>
-      </div>
-    </div>
+    </AppDialog>
   )
 }
 

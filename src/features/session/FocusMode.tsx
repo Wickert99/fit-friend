@@ -350,7 +350,7 @@ export const FocusMode = forwardRef<FocusHandle, {
       <div className="flex items-start justify-between gap-2">
         <div>
           <p className="text-xs font-semibold tracking-wide text-muted uppercase">Focus</p>
-          <h1 className="text-xl font-semibold text-ink">{exerciseName}</h1>
+          <h1 tabIndex={-1} className="text-xl font-semibold text-ink">{exerciseName}</h1>
           <p className="text-sm text-muted">
             {counts.done}/{counts.planned} sets
             {step ? ` · ${step.detail}` : ''}

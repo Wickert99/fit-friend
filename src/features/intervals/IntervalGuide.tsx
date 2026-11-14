@@ -13,6 +13,7 @@ import {
   formatClock,
   formatZone,
   HR_WATCH_NOTE,
+  intervalStatusText,
   markInRange,
   phaseView,
   pinVisibleRemaining,
@@ -227,13 +228,16 @@ export function IntervalGuide({
         {HR_WATCH_NOTE}
       </p>
       <div className={`rounded-3xl border px-4 py-6 text-center shadow-card ${tone}`}>
-        <p className="text-sm font-semibold tracking-wider text-lime-dim uppercase" data-interval-phase aria-live="polite">
+        <p className="text-sm font-semibold tracking-wider text-lime-dim uppercase" data-interval-phase>
           {view.title}
+        </p>
+        <p className="visually-hidden" aria-live="polite" aria-atomic="true" data-interval-status>
+          {intervalStatusText(view)}
         </p>
         <p className="mt-1 text-sm text-muted">{view.detail}</p>
         <p
           className={`mt-3 font-semibold tabular-nums leading-none tracking-tight ${view.warning ? 'text-warn-ink' : 'text-ink'}`}
-          style={{ fontSize: 'clamp(4.5rem, 18vw, 6.5rem)' }}
+          style={{ fontSize: 'clamp(4.5rem, 1rem + 14vw, 6.5rem)' }}
           data-interval-clock
           data-interval-warning={view.warning ? 'true' : 'false'}
         >
@@ -260,6 +264,7 @@ export function IntervalGuide({
         aria-valuemax={100}
         aria-valuenow={Math.round(view.progress * 100)}
         aria-label="Session progress"
+        aria-valuetext={`${view.title}, ${view.clock} left`}
       >
         <div className="h-full bg-lime-dim" style={{ width: `${Math.round(view.progress * 100)}%` }} />
       </div>

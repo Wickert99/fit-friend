@@ -17,6 +17,7 @@ import {
   maxHrCaption,
   patchProfileHr,
   phaseView,
+  intervalStatusText,
   recommendedRounds,
   resolveMaxHr,
   resultCopy,
@@ -342,6 +343,34 @@ describe('heart-rate interval engine', () => {
     const normalized = normalizeState({ sessions: [morning, evening] })
     assert.equal(normalized.sessions.find((item) => item.id === 's2')?.hrInterval?.rounds, 7)
     assert.equal(normalized.sessions.find((item) => item.id === 's2')?.status, 'paused')
+  })
+
+  it('announces interval phases without the ticking clock', () => {
+    const quiet = intervalStatusText({
+      title: 'Work round 1 of 4',
+      detail: 'Hold the band',
+      zone: '140–149 bpm',
+      warning: false,
+      promptRound: null,
+    })
+    assert.equal(quiet, 'Work round 1 of 4. Hold the band. 140–149 bpm')
+    assert.equal(quiet.includes('0:'), false)
+    const warning = intervalStatusText({
+      title: 'Work round 1 of 4',
+      detail: 'Hold the band',
+      zone: '140–149 bpm',
+      warning: true,
+      promptRound: null,
+    })
+    assert.equal(warning, 'Work round 1 of 4. 10 seconds. 140–149 bpm')
+    const prompt = intervalStatusText({
+      title: 'Rest',
+      detail: 'Easy',
+      zone: '140–149 bpm',
+      warning: true,
+      promptRound: 2,
+    })
+    assert.equal(prompt, 'Rest. Stayed in range for round 2?')
   })
 
   it('parses Bluetooth heart-rate measurements and hides the control when the API is missing', () => {

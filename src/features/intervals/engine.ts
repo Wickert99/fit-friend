@@ -373,6 +373,13 @@ export function phaseView(program: HrIntervalProgram, state: HrIntervalState, no
   }
 }
 
+/** Spoken once when the phase or the 10-second warning changes. Omits the clock, which ticks every second. */
+export function intervalStatusText(view: Pick<PhaseView, 'title' | 'detail' | 'zone' | 'warning' | 'promptRound'>): string {
+  if (view.promptRound != null) return `${view.title}. Stayed in range for round ${view.promptRound}?`
+  if (view.warning) return `${view.title}. 10 seconds. ${view.zone}`
+  return [view.title, view.detail, view.zone].filter(Boolean).join('. ')
+}
+
 function nextLine(phase: IntervalPhase | undefined): string {
   if (!phase) return 'Next: Done'
   if (phase.kind === 'warmup') return `Next: Warm-up \u00b7 ${formatClock(phase.seconds)} easy`

@@ -1,7 +1,7 @@
 import { Dumbbell, ExternalLink, Play, WifiOff, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { Exercise } from '../../types.ts'
-import { useBodyScrollLock } from '../../ui/useBodyScrollLock.ts'
+import { AppDialog } from '../../ui/AppDialog.tsx'
 import { cn } from '../../ui/cn.ts'
 import { exerciseImageAlt, exerciseImageUrls, exerciseVideoUrl, exerciseYoutubeId } from './media.ts'
 import { useOnline } from './useOnline.ts'
@@ -147,16 +147,11 @@ function DemoSheet({
   onClose: () => void
 }) {
   const online = useOnline()
-  const panel = useRef<HTMLDivElement>(null)
   const onCloseRef = useRef(onClose)
   const titleId = `demo-title-${exercise.id}`
-  useBodyScrollLock(open)
+  const popped = useRef(false)
 
-  const close = () => {
-    const state = window.history.state as { ffDemoSheet?: boolean } | null
-    if (state?.ffDemoSheet) window.history.back()
-    else onCloseRef.current()
-  }
+  const close = () => onCloseRef.current()
 
   useEffect(() => {
     onCloseRef.current = onClose
@@ -164,57 +159,42 @@ function DemoSheet({
 
   useEffect(() => {
     if (!open) return
-    const previous = document.activeElement
+    popped.current = false
     window.history.pushState({ ...(window.history.state ?? {}), ffDemoSheet: true }, '')
-    const onPop = () => onCloseRef.current()
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        const state = window.history.state as { ffDemoSheet?: boolean } | null
-        if (state?.ffDemoSheet) window.history.back()
-        else onCloseRef.current()
-      }
+    const onPop = () => {
+      popped.current = true
+      onCloseRef.current()
     }
     window.addEventListener('popstate', onPop)
-    window.addEventListener('keydown', onKey)
-    panel.current?.querySelector<HTMLElement>('[data-demo-close]')?.focus()
     return () => {
       window.removeEventListener('popstate', onPop)
-      window.removeEventListener('keydown', onKey)
-      if (previous instanceof HTMLElement) previous.focus()
+      const state = window.history.state as { ffDemoSheet?: boolean } | null
+      if (!popped.current && state?.ffDemoSheet) {
+        popped.current = true
+        window.history.back()
+      }
     }
   }, [open])
 
   if (!open) return null
   return (
-    <div
-      className="sheet-overlay fixed inset-0 z-[70] flex items-end justify-center bg-ink/50"
-      onClick={(event) => {
-        if (event.target === event.currentTarget) close()
-      }}
-    >
-      <div
-        ref={panel}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        data-demo-sheet="true"
-        className="safe-sheet w-full max-w-lg rounded-t-3xl bg-charcoal p-4 shadow-raised"
-      >
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <h2 id={titleId} className="min-w-0 truncate text-base font-semibold text-ink">
-            {exercise.name} demo
-          </h2>
-          <button
-            type="button"
-            onClick={close}
-            data-demo-close="true"
-            aria-label="Close demo video"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-full border border-charcoal-4 px-4 text-sm font-semibold text-ink"
-          >
-            <X aria-hidden className="h-4 w-4" /> Close
-          </button>
-        </div>
+    <AppDialog variant="sheet" labelledBy={titleId} onClose={close} data-demo-sheet="true">
+      <div className="mb-3 flex items-center justify-between gap-3 px-4 pt-4">
+        <h2 id={titleId} className="min-w-0 truncate text-base font-semibold text-ink">
+          {exercise.name} demo
+        </h2>
+        <button
+          type="button"
+          onClick={close}
+          data-demo-close="true"
+          autoFocus
+          aria-label="Close demo video"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-full border border-charcoal-4 px-4 text-sm font-semibold text-ink"
+        >
+          <X aria-hidden className="h-4 w-4" /> Close
+        </button>
+      </div>
+      <div className="px-4 pb-4">
         <div className="aspect-video w-full overflow-hidden rounded-2xl border border-charcoal-4 bg-charcoal-2">
           {online ? (
             <iframe
@@ -228,7 +208,7 @@ function DemoSheet({
               data-demo-embed="true"
             />
           ) : (
-            <div className="grid h-full place-items-center p-6 text-center" role="status" aria-live="polite" data-demo-offline="true">
+            <div className="grid h-full place-items-center p-6 text-center" role="status" data-demo-offline="true">
               <div>
                 <WifiOff aria-hidden className="mx-auto h-7 w-7 text-muted" />
                 <p className="mt-2 text-sm font-semibold text-ink">Demo videos need a connection</p>
@@ -238,7 +218,7 @@ function DemoSheet({
           )}
         </div>
       </div>
-    </div>
+    </AppDialog>
   )
 }
 

@@ -12,18 +12,17 @@ export function Segmented<T extends string>({
   label: string
 }) {
   return (
-    <div className="flex w-full min-w-0 gap-1 rounded-xl border border-charcoal-4 bg-charcoal-2 p-1" role="tablist" aria-label={label}>
+    <div className="flex w-full min-w-0 gap-1 rounded-xl border border-charcoal-4 bg-charcoal-2 p-1" role="group" aria-label={label}>
       {options.map((option) => {
         const selected = option.id === value
         return (
           <button
             key={option.id}
             type="button"
-            role="tab"
-            aria-selected={selected}
+            aria-current={selected ? 'page' : undefined}
             onClick={() => onChange(option.id)}
             className={cn(
-              'hit-slop-sm min-h-11 min-w-0 flex-1 basis-0 rounded-lg px-1.5 py-2 text-xs leading-tight font-medium whitespace-normal transition',
+              'hit-slop-sm min-h-11 min-w-0 flex-1 basis-0 rounded-lg px-1 py-2 text-xs leading-tight font-medium tracking-tight whitespace-nowrap transition',
               selected ? 'bg-charcoal text-ink shadow-sm' : 'text-muted hover:text-ink',
             )}
           >

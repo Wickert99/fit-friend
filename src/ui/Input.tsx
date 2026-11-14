@@ -4,8 +4,19 @@ import { cn } from './cn.ts'
 const field =
   'w-full min-h-11 rounded-xl border border-taupe-strong bg-charcoal px-3 py-2.5 text-sm text-ink outline-none placeholder:text-muted focus:border-lime-dim focus:ring-2 focus:ring-lime/30'
 
-export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={cn(field, className)} {...props} />
+export function Input({ className, inputMode, enterKeyHint, autoComplete, spellCheck, autoCorrect, ...props }: InputHTMLAttributes<HTMLInputElement>) {
+  const numeric = inputMode === 'numeric' || inputMode === 'decimal'
+  return (
+    <input
+      className={cn(field, className)}
+      inputMode={inputMode}
+      enterKeyHint={enterKeyHint ?? (numeric ? 'done' : undefined)}
+      autoComplete={autoComplete ?? (numeric ? 'off' : undefined)}
+      spellCheck={spellCheck ?? (numeric ? false : undefined)}
+      autoCorrect={autoCorrect ?? (numeric ? 'off' : undefined)}
+      {...props}
+    />
+  )
 }
 
 export function TextArea({ className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) {

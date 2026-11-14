@@ -16,10 +16,29 @@ export function RouteView() {
   return (
     <ErrorBoundary inline resetKey={resetKey} onBack={hideNav ? backToTab : undefined}>
       <Suspense fallback={<RouteSkeleton />}>
+        <RouteFocus key={resetKey} />
         <Screen />
       </Suspense>
     </ErrorBoundary>
   )
+}
+
+let announcedRoute = false
+
+function RouteFocus() {
+  useEffect(() => {
+    const main = document.getElementById('app-main')
+    if (!(main instanceof HTMLElement)) return
+    const heading = main.querySelector('h1')
+    const text = heading instanceof HTMLElement ? heading.textContent?.trim() : ''
+    if (text) document.title = `${text} — Fit Friend`
+    const shouldMoveFocus = announcedRoute
+    announcedRoute = true
+    if (!shouldMoveFocus || document.querySelector('dialog[open]')) return
+    if (heading instanceof HTMLElement) heading.focus({ preventScroll: true })
+    else main.focus({ preventScroll: true })
+  }, [])
+  return null
 }
 
 function screenFor(

@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp, Plus, Trash2 } from 'lucide-react'
-import type { ReactNode } from 'react'
+import { Children, cloneElement, isValidElement, useId, type ReactElement, type ReactNode } from 'react'
 import type { Exercise, Prescription, PrescriptionEditorProps, SetScheme, SetType, WeightUnit } from '../../types.ts'
 import { SET_TYPES } from '../../types.ts'
 import {
@@ -249,7 +249,6 @@ function TypedFields({
         />
         <Field label="Rounds target">
           <Input
-            aria-label="AMRAP rounds"
             inputMode="numeric"
             min={0}
             value={prescription.rounds ?? ''}
@@ -268,7 +267,6 @@ function TypedFields({
       <div className="grid grid-cols-2 gap-2">
         <Field label="Rounds">
           <Input
-            aria-label="EMOM rounds"
             inputMode="numeric"
             min={1}
             value={prescription.rounds ?? prescription.sets}
@@ -279,11 +277,10 @@ function TypedFields({
           />
         </Field>
         <Field label="Reps each round">
-          <Input aria-label="EMOM reps" value={prescription.reps} onChange={(event) => onPatch({ reps: event.target.value })} />
+          <Input value={prescription.reps} onChange={(event) => onPatch({ reps: event.target.value })} />
         </Field>
         <Field label="Interval" className="col-span-2">
           <Select
-            aria-label="EMOM interval"
             value={prescription.emomIntervalSec ?? 60}
             onChange={(event) => onPatch({ emomIntervalSec: Number(event.target.value), restSec: 0 })}
           >
@@ -304,7 +301,6 @@ function TypedFields({
     <div className="grid grid-cols-2 gap-2">
       <Field label="Sets">
         <Input
-          aria-label="For time sets"
           inputMode="numeric"
           min={1}
           value={prescription.sets}
@@ -361,7 +357,6 @@ function SchemeList({
           <div className="grid grid-cols-2 gap-2">
             <Field label="Sets">
               <Input
-                aria-label={`Wave ${index + 1} sets`}
                 inputMode="numeric"
                 min={1}
                 value={scheme.sets}
@@ -371,7 +366,6 @@ function SchemeList({
             {strength ? (
               <Field label={prescription.setType === 'per_leg' ? 'Reps / leg' : prescription.setType === 'each_side' ? 'Reps / side' : 'Reps'}>
                 <Input
-                  aria-label={`Wave ${index + 1} reps`}
                   value={scheme.reps}
                   onChange={(event) => update(index, { reps: event.target.value })}
                 />
@@ -402,7 +396,6 @@ function SchemeList({
               <>
                 <Field label="RPE">
                   <Input
-                    aria-label={`Wave ${index + 1} RPE`}
                     inputMode="decimal"
                     min={1}
                     max={10}
@@ -416,7 +409,6 @@ function SchemeList({
                 </Field>
                 <Field label="RIR">
                   <Input
-                    aria-label={`Wave ${index + 1} RIR`}
                     inputMode="numeric"
                     min={0}
                     max={10}
@@ -477,11 +469,14 @@ function LoadControl({
 }) {
   const percent = readPercent(prescription)
   const mode = percent != null && percent > 0 ? 'percent' : 'load'
+  const loadId = useId()
   const resolved = percent != null && percent > 0 && maxKg != null && maxKg > 0 ? percentToLoadKg(percent, maxKg, weightUnit) : 0
   return (
     <div className="min-w-36 flex-1">
       <div className="mb-1 flex items-center justify-between gap-2">
-        <span className="text-xs text-muted">{mode === 'percent' ? '%1RM' : `Load (${weightUnit})`}</span>
+        <label htmlFor={loadId} className="text-xs text-muted">
+          {mode === 'percent' ? '%1RM' : `Load (${weightUnit})`}
+        </label>
         <button
           type="button"
           className="text-xs font-semibold text-lime-dim"
@@ -498,7 +493,7 @@ function LoadControl({
       </div>
       {mode === 'percent' ? (
         <Input
-          aria-label="Percent of 1RM"
+          id={loadId}
           inputMode="decimal"
           min={1}
           max={100}
@@ -518,7 +513,7 @@ function LoadControl({
         />
       ) : (
         <Input
-          aria-label={`Load in ${weightUnit}`}
+          id={loadId}
           inputMode="decimal"
           min={0}
           value={prescription.targetLoadKg ? roundDisplay(kgToUnit(prescription.targetLoadKg, weightUnit), weightUnit) : ''}
@@ -544,7 +539,7 @@ function LoadControl({
 
 function TypeSelect({ prescription, onType }: { prescription: Prescription; onType: (setType: SetType) => void }) {
   return (
-    <Select aria-label="Set type" value={prescription.setType} onChange={(event) => onType(event.target.value as SetType)}>
+    <Select value={prescription.setType} onChange={(event) => onType(event.target.value as SetType)}>
       {SET_TYPES.map((type) => (
         <option key={type} value={type}>
           {SET_TYPE_LABELS[type]}
@@ -558,7 +553,6 @@ function DurationField({ label, seconds, onChange }: { label: string; seconds: n
   return (
     <Field label={`${label} (sec)`}>
       <Input
-        aria-label={label}
         inputMode="numeric"
         min={0}
         value={seconds || ''}
@@ -574,7 +568,6 @@ function MetresField({ metres, onChange }: { metres: number; onChange: (metres: 
   return (
     <Field label="Metres">
       <Input
-        aria-label="Distance in metres"
         inputMode="numeric"
         min={0}
         value={metres || ''}
@@ -589,7 +582,7 @@ function RestField({ restSec, onChange }: { restSec: number; onChange: (restSec:
   const choices = Array.from(new Set([restSec, ...REST_CHOICES])).sort((a, b) => a - b)
   return (
     <Field label="Rest">
-      <Select aria-label="Rest" value={restSec} onChange={(event) => onChange(Number(event.target.value))}>
+      <Select value={restSec} onChange={(event) => onChange(Number(event.target.value))}>
         {choices.map((seconds) => (
           <option key={seconds} value={seconds}>
             {seconds === 0 ? 'None' : formatDuration(seconds)}
@@ -601,11 +594,21 @@ function RestField({ restSec, onChange }: { restSec: number; onChange: (restSec:
 }
 
 function Field({ label, className, children }: { label: string; className?: string; children: ReactNode }) {
+  const id = useId()
+  const items = Children.toArray(children)
+  const [first, ...rest] = items
+  const control =
+    isValidElement<{ id?: string }>(first) && first.props.id == null
+      ? cloneElement(first as ReactElement<{ id?: string }>, { id })
+      : first
   return (
-    <label className={className ? `block text-xs text-muted ${className}` : 'block text-xs text-muted'}>
-      {label}
-      <div className="mt-1">{children}</div>
-    </label>
+    <div className={className ? `text-xs text-muted ${className}` : 'text-xs text-muted'}>
+      <label htmlFor={id} className="block">
+        {label}
+      </label>
+      <div className="mt-1">{control}</div>
+      {rest}
+    </div>
   )
 }
 

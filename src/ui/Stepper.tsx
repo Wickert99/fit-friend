@@ -40,6 +40,9 @@ export function Stepper({
         <input
           aria-label={label}
           inputMode="decimal"
+          autoComplete="off"
+          enterKeyHint="done"
+          spellCheck={false}
           value={Number.isFinite(value) ? String(value) : ''}
           onChange={(event) => {
             const next = Number(event.target.value)

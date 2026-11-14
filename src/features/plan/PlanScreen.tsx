@@ -178,15 +178,14 @@ export default function PlanScreen() {
             ) : null}
           </div>
           <div data-plan-timeline="true" className="space-y-3">
-            <div data-week-tabs="true" className="flex gap-2 overflow-x-auto" role="tablist" aria-label="Weeks">
+            <div data-week-tabs="true" className="flex gap-2 overflow-x-auto" role="group" aria-label="Weeks">
               {board.weeks.map((item) => {
                 const selected = item.id === week?.id
                 return (
                   <button
                     key={item.id}
                     type="button"
-                    role="tab"
-                    aria-selected={selected}
+                    aria-pressed={selected}
                     className={`min-h-11 shrink-0 rounded-full border px-3 text-sm ${selected ? 'border-lime bg-lime/10 font-semibold' : 'border-charcoal-4 text-muted'}`}
                     onClick={() => setWeekId(item.id)}
                   >
@@ -200,11 +199,17 @@ export default function PlanScreen() {
             </p>
             {week ? (
               <section data-week-card={week.id} className="space-y-3 rounded-2xl border border-charcoal-4 bg-charcoal p-3">
-                <Input
-                  aria-label="Week name"
-                  value={week.label}
-                  onChange={(event) => save(renameWeek(board, week.id, event.target.value))}
-                />
+                <label htmlFor="week-name" className="block text-xs text-muted">
+                  Week name
+                  <Input
+                    id="week-name"
+                    className="mt-1"
+                    autoComplete="off"
+                    enterKeyHint="done"
+                    value={week.label}
+                    onChange={(event) => save(renameWeek(board, week.id, event.target.value))}
+                  />
+                </label>
                 <div className="flex flex-wrap gap-2">
                   <Button
                     size="sm"
