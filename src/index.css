@@ -22,7 +22,8 @@
   --color-charcoal: #fffcf7;
   --color-charcoal-2: #f5efe6;
   --color-charcoal-3: #ebe3d6;
-  --color-charcoal-4: #b8a99a;
+  /* Darkened just enough for 3:1 against the paper surfaces (UI boundaries). */
+  --color-charcoal-4: #8a7f74;
   --color-ink: #2a241c;
   --color-muted: #6b6156;
   --color-lime: #a56b4e;
@@ -53,7 +54,7 @@
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100dvh;
 }
 
 html {
@@ -68,8 +69,8 @@ body {
   background: var(--color-charcoal-2);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 16px;
   line-height: 1.5;
+  accent-color: var(--color-lime-dim);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -95,6 +96,73 @@ textarea {
 :focus-visible {
   outline: 2px solid var(--color-lime-dim);
   outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText;
+  }
+}
+
+/* Screen-reader text. Focusable content (the skip link) opts out while focused. */
+.visually-hidden:where(:not(:focus, :focus-within, :active)) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link:focus {
+  position: fixed;
+  z-index: 200;
+  top: max(0.5rem, var(--safe-top));
+  left: max(0.5rem, var(--safe-left));
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--color-charcoal);
+  color: var(--color-ink);
+  font-weight: 600;
+  box-shadow: var(--shadow-raised);
+}
+
+@media (pointer: coarse) {
+  :where(button, select, textarea, input:not([type='checkbox'], [type='radio'], [type='range'], [type='file'], [type='hidden']), label:has(input[type='checkbox'], input[type='radio'])) {
+    min-block-size: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-pulse {
+    animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press-scale:active {
+    transform: none;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -327,4 +395,95 @@ textarea {
   padding-right: var(--safe-right);
   padding-bottom: var(--safe-bottom);
   padding-left: var(--safe-left);
+}
+
+/* Native modal dialogs. Display is scoped to [open] so a closed dialog stays hidden. */
+dialog.app-dialog {
+  box-sizing: border-box;
+  width: min(32rem, calc(100% - var(--safe-left) - var(--safe-right)));
+  max-width: calc(100% - var(--safe-left) - var(--safe-right));
+  max-height: min(92dvh, calc(100dvh - var(--safe-top) - var(--keyboard-inset) - 0.75rem));
+  margin: auto;
+  margin-bottom: max(var(--keyboard-inset), 0px);
+  padding: 0;
+  border: 1px solid var(--color-charcoal-4);
+  border-radius: 1.5rem;
+  background: var(--color-charcoal);
+  color: inherit;
+  box-shadow: var(--shadow-raised);
+  overscroll-behavior: contain;
+}
+
+dialog.app-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.app-dialog::backdrop {
+  background: rgb(42 36 28 / 0.4);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 639px) {
+  dialog.app-dialog:not(.app-dialog-full) {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    margin-top: auto;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+dialog.app-dialog-sheet[open],
+dialog.app-dialog-full[open] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+dialog.app-dialog-sheet {
+  padding-bottom: var(--safe-bottom);
+}
+
+dialog.app-dialog-card {
+  padding: 1.25rem 1rem max(1.25rem, calc(var(--safe-bottom) + 0.75rem));
+  overflow: auto;
+  border-radius: 1rem 1rem 0 0;
+}
+
+@media (min-width: 640px) {
+  dialog.app-dialog-card {
+    border-radius: 1rem;
+  }
+}
+
+dialog.app-dialog-full {
+  width: min(32rem, 100%);
+  max-width: 32rem;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 0;
+  background: var(--color-charcoal-2);
+  padding-top: var(--safe-top);
+  padding-right: var(--safe-right);
+  padding-bottom: var(--safe-bottom);
+  padding-left: var(--safe-left);
+}
+
+@media (min-width: 640px) {
+  dialog.app-dialog-full {
+    height: min(96dvh, 900px);
+    margin: auto;
+    border: 1px solid var(--color-charcoal-4);
+    border-radius: 1.5rem;
+  }
+}
+
+@media (forced-colors: active) {
+  dialog.app-dialog {
+    border: 1px solid CanvasText;
+  }
 }

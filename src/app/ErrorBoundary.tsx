@@ -65,7 +65,7 @@ export class ErrorBoundary extends Component<Props, State> {
         }
       >
         <div className="max-w-sm">
-          <h1 className="text-xl font-semibold text-[#3b2f26]">Something went wrong</h1>
+          <h1 tabIndex={-1} className="text-xl font-semibold text-[#3b2f26]">Something went wrong</h1>
           <p className="mt-2 text-sm text-[#6b5a4c]">
             {inline
               ? 'This screen hit an unexpected error. Your saved data is still on this device. Other tabs still work, or reload to try again.'

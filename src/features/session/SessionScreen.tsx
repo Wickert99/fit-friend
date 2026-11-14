@@ -4,6 +4,7 @@ import { exerciseAliases, liftFamilies } from '../../store/catalog.ts'
 import { setLiftMax } from '../../store/actions.ts'
 import { useStore } from '../../store/useStore.ts'
 import { isSupabaseConfigured } from '../../lib/supabase/client.ts'
+import { AppDialog } from '../../ui/AppDialog.tsx'
 import { Badge, Button, Card, EmptyState, Page, TextArea, useConfirm, useToast } from '../../ui/index.ts'
 import { publishProgressPost, programNameFor } from '../friends/progressApi.ts'
 import { EstimateMaxOffer, ExerciseMaxEditor } from '../progress/MaxesPanel.tsx'
@@ -241,13 +242,22 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
         />
       )}
       {leave ? (
-        <div className="sheet-overlay fixed inset-0 z-[70] flex items-end justify-center bg-ink/40 px-4 pt-4 sm:items-center" role="dialog" aria-modal="true" aria-labelledby="leave-title">
-          <div className="safe-sheet w-full max-w-lg space-y-3 rounded-3xl border border-charcoal-4 bg-charcoal p-4 shadow-raised">
-            <h2 id="leave-title" className="text-lg font-semibold">
-              Leave focus mode?
-            </h2>
-            <p className="text-sm text-muted">You have edits that are not logged yet.</p>
+        <AppDialog
+          variant="card"
+          labelledBy="leave-title"
+          lightDismiss={false}
+          onClose={() => {
+            leave.resolve(false)
+            setLeave(null)
+          }}
+        >
+          <h2 id="leave-title" className="text-lg font-semibold">
+            Leave focus mode?
+          </h2>
+          <p className="mt-2 text-sm text-muted">You have edits that are not logged yet.</p>
+          <div className="mt-5 flex flex-col gap-2">
             <Button
+              autoFocus
               onClick={() => {
                 leave.resolve(false)
                 setLeave(null)
@@ -281,7 +291,7 @@ function ActiveSession({ session }: { session: WorkoutSession }) {
               Discard edits & leave
             </Button>
           </div>
-        </div>
+        </AppDialog>
       ) : null}
     </Page>
   )
@@ -328,7 +338,7 @@ function Summary({
     <div className="space-y-4" data-summary>
       <IntervalResult session={session} onMark={onMark} />
       <header>
-        <h1 className="text-xl font-semibold text-ink">{session.name}</h1>
+        <h1 tabIndex={-1} className="text-xl font-semibold text-ink">{session.name}</h1>
         <p className="text-sm text-muted">
           {summary.doneSets}/{summary.plannedSets} sets · {summary.pct}% · {formatExactLoad(summary.volumeKg, unit)}
         </p>
@@ -443,7 +453,7 @@ function CompletedSession({ session }: { session: WorkoutSession }) {
         <Badge tone="success">Completed</Badge>
       </div>
       <header>
-        <h1 className="text-xl font-semibold text-ink">{session.name}</h1>
+        <h1 tabIndex={-1} className="text-xl font-semibold text-ink">{session.name}</h1>
         <p className="text-sm text-muted">
           {sessionCounts(session).done} sets · {formatExactLoad(sessionVolume(session), state.weightUnit)}
         </p>

@@ -70,6 +70,11 @@ export function DayEditor() {
     if (!dirty) return
     return registerLeaveGuard(() => window.confirm('You have unsaved changes. Leave without saving?'))
   }, [dirty, registerLeaveGuard])
+  const setsExerciseId = picker?.stage === 'sets' ? picker.exercise.id : ''
+  useEffect(() => {
+    if (picker?.stage !== 'sets') return
+    document.getElementById('exercise-sets')?.querySelector<HTMLElement>('select, input, textarea')?.focus()
+  }, [picker?.stage, setsExerciseId])
 
   const results = useMemo(() => searchExercises(state.exercises, query, 30), [state.exercises, query])
   const knownFocus = new Set<string>([...dayFocusOptions, 'Free write'])
@@ -222,7 +227,17 @@ export function DayEditor() {
               {dayPlans.length > 1 ? 'Clear workout' : 'Clear day'}
             </Button>
           </div>
-          <Input aria-label="Workout name" value={draft.name} onChange={(event) => setDraft({ ...draft, name: event.target.value })} />
+      <label htmlFor="workout-name" className="block text-xs text-muted">
+        Workout name
+        <Input
+          id="workout-name"
+          className="mt-1"
+          autoComplete="off"
+          enterKeyHint="done"
+          value={draft.name}
+          onChange={(event) => setDraft({ ...draft, name: event.target.value })}
+        />
+      </label>
           <div className="h-scroll" aria-label="Focus">
             {FOCUSES.map((focus) => {
               const active = focus === 'Custom focus' ? !knownFocus.has(draft.focus ?? '') : draft.focus === focus
@@ -238,15 +253,29 @@ export function DayEditor() {
             })}
           </div>
           {!knownFocus.has(draft.focus ?? '') ? (
-            <Input aria-label="Custom focus" value={draft.focus ?? ''} onChange={(event) => setDraft({ ...draft, focus: event.target.value })} />
+            <label htmlFor="custom-focus" className="block text-xs text-muted">
+              Custom focus
+              <Input
+                id="custom-focus"
+                className="mt-1"
+                autoComplete="off"
+                enterKeyHint="done"
+                value={draft.focus ?? ''}
+                onChange={(event) => setDraft({ ...draft, focus: event.target.value })}
+              />
+            </label>
           ) : null}
-          <TextArea
-            aria-label="Session pad"
-            className="font-hand min-h-24 text-lg"
-            placeholder="Session pad"
-            value={draft.sessionPad ?? ''}
-            onChange={(event) => setDraft({ ...draft, sessionPad: event.target.value })}
-          />
+          <label htmlFor="session-pad" className="block text-xs text-muted">
+            Session pad
+            <TextArea
+              id="session-pad"
+              className="font-hand mt-1 min-h-24 text-lg"
+              placeholder="Optional notes for the session"
+              autoComplete="off"
+              value={draft.sessionPad ?? ''}
+              onChange={(event) => setDraft({ ...draft, sessionPad: event.target.value })}
+            />
+          </label>
           <SectionLabel>Exercises</SectionLabel>
           {draft.exercises.length === 0 ? (
             <p className="text-sm text-muted">No exercises yet. Add one from the library, or write the session on the pad.</p>
@@ -350,7 +379,7 @@ export function DayEditor() {
         onClose={() => setPicker(null)}
       >
         {picker?.stage === 'sets' ? (
-          <div className="space-y-3">
+          <div className="space-y-3" id="exercise-sets">
             <PrescriptionEditor
               variant="full"
               prescription={picker.prescription}
@@ -363,7 +392,23 @@ export function DayEditor() {
           </div>
         ) : (
           <div className="space-y-3">
-            <Input aria-label="Search exercises" placeholder="Search exercises" value={query} onChange={(event) => setQuery(event.target.value)} />
+            <label htmlFor="exercise-search" className="block text-xs text-muted">
+              Search exercises
+              <Input
+                id="exercise-search"
+                className="mt-1"
+                type="search"
+                enterKeyHint="search"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck={false}
+                placeholder="Name or equipment"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                autoFocus
+              />
+            </label>
             <div className="max-h-64 space-y-1 overflow-y-auto">
               {results.map((exercise) => (
                 <button
@@ -386,7 +431,18 @@ export function DayEditor() {
               ))}
             </div>
             <div className="flex gap-2">
-              <Input aria-label="Custom exercise name" placeholder="Custom exercise" value={customName} onChange={(event) => setCustomName(event.target.value)} />
+              <label htmlFor="custom-exercise" className="min-w-0 flex-1 text-xs text-muted">
+                Custom exercise
+                <Input
+                  id="custom-exercise"
+                  className="mt-1"
+                  autoComplete="off"
+                  enterKeyHint="done"
+                  placeholder="Name"
+                  value={customName}
+                  onChange={(event) => setCustomName(event.target.value)}
+                />
+              </label>
               <Button variant="secondary" onClick={createCustom} disabled={!customName.trim()}>
                 Add custom
               </Button>

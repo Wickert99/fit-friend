@@ -4,7 +4,8 @@ import { getDay } from 'date-fns'
 import { plansOnDate } from '../../store/dayPlans.ts'
 import { useStore } from '../../store/useStore.ts'
 import type { PlanBoard, Program } from '../../types.ts'
-import { Badge, Button, Chip, Input, useBodyScrollLock } from '../../ui/index.ts'
+import { AppDialog } from '../../ui/AppDialog.tsx'
+import { Badge, Button, Chip, Input } from '../../ui/index.ts'
 import {
   applyCommit,
   defaultCommitMode,
@@ -41,7 +42,6 @@ export default function CommitToCalendar({
   const bumped = !(initialStart && initialStart > today) && isLateInWeek(today) ? defaultStartKey(initialStart, today) : null
   const [chosen, setChosen] = useState(() => defaultStartKey(initialStart, todayKey()))
   const [mode, setMode] = useState<CommitMode>(initialMode)
-  useBodyScrollLock(true)
   const clamped = chosen < today ? today : chosen
   const prepared = useMemo(
     () =>
@@ -95,14 +95,7 @@ export default function CommitToCalendar({
   }
 
   return (
-    <div className="sheet-overlay fixed inset-0 z-50 flex items-end justify-center bg-ink/40 p-0 sm:items-center sm:p-4">
-      <button type="button" className="absolute inset-0 cursor-default" aria-label="Close" onClick={onClose} />
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="commit-title"
-        className="sheet-panel relative z-10 flex w-full max-w-lg flex-col rounded-t-3xl border border-charcoal-4 bg-charcoal shadow-raised sm:rounded-3xl"
-      >
+    <AppDialog variant="sheet" labelledBy="commit-title" onClose={onClose}>
         <div className="flex items-center justify-between gap-2 border-b border-charcoal-4 px-4 py-3">
           <div className="min-w-0">
             <h2 id="commit-title" className="flex items-center gap-2 text-lg font-semibold">
@@ -125,6 +118,7 @@ export default function CommitToCalendar({
             <Input
               id="commit-start-date"
               type="date"
+              autoFocus
               value={shown}
               min={today}
               onChange={(event) => setChosen(event.target.value)}
@@ -187,8 +181,7 @@ export default function CommitToCalendar({
             Cancel
           </Button>
         </div>
-      </div>
-    </div>
+    </AppDialog>
   )
 }
 

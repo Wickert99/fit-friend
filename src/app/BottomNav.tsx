@@ -30,10 +30,10 @@ export function BottomNav() {
   return (
     <nav
       className="bottom-nav fixed inset-x-0 bottom-0 z-40 border-t border-charcoal-4 bg-charcoal/95 backdrop-blur-md"
-      aria-label="Main"
+      aria-label="Primary"
       data-bottom-nav="true"
     >
-      <div className="mx-auto flex h-14 max-w-lg items-stretch justify-around px-1 pt-0.5">
+      <div className="mx-auto flex min-h-14 max-w-lg flex-wrap items-stretch justify-around px-1 pt-0.5">
         {TABS.map((tab) => {
           const Icon = tab.icon
           const selected = current === tab.id
@@ -47,7 +47,7 @@ export function BottomNav() {
               onPointerEnter={() => preloadTab(tab.id)}
               onTouchStart={() => preloadTab(tab.id)}
               className={cn(
-                'flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1 text-[11px] font-medium transition',
+                'flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1 text-xs font-medium transition',
                 selected ? 'text-lime-dim' : 'text-muted hover:text-ink',
               )}
             >

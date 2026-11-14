@@ -9,9 +9,12 @@ export function Shell({ children }: { children: ReactNode }) {
   useScrollRestore()
   useKeyboardInset()
   return (
-    <div className="shell min-h-full bg-charcoal-2 text-ink">
+    <div className="shell min-h-dvh bg-charcoal-2 text-ink">
+      <a className="skip-link visually-hidden" href="#app-main">
+        Skip to content
+      </a>
       <div className="safe-top-scrim" aria-hidden />
-      <main className="relative min-h-full min-w-0 overflow-x-clip" data-screen={nav.screen}>
+      <main id="app-main" tabIndex={-1} className="relative min-h-full min-w-0 overflow-x-clip" data-screen={nav.screen}>
         <RecoveryBanner />
         {children}
       </main>

@@ -137,6 +137,7 @@ function FriendsBody() {
   const [resetOpen, setResetOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [displayName, setDisplayName] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -486,7 +487,21 @@ function FriendsBody() {
               }}
             />
           </div>
-          <div className="space-y-3">
+          <form
+            className="space-y-3"
+            aria-label={mode === 'signin' ? 'Sign in' : mode === 'signup' ? 'Create account' : 'Magic link'}
+            onSubmit={(event) => {
+              event.preventDefault()
+              if (busy || !email.trim() || (mode !== 'magic' && password.length < 6)) return
+              void runAuth(
+                mode === 'signin'
+                  ? () => auth.signIn(email, password)
+                  : mode === 'signup'
+                    ? () => auth.signUp(email, password, displayName)
+                    : () => auth.signInMagicLink(email),
+              )
+            }}
+          >
             {mode === 'signup' ? (
               <div>
                 <label htmlFor="auth-display-name" className="mb-1 block text-sm font-medium text-ink">
@@ -498,6 +513,7 @@ function FriendsBody() {
                   value={displayName}
                   onChange={(event) => setDisplayName(event.target.value)}
                   autoComplete="nickname"
+                  enterKeyHint="next"
                 />
               </div>
             ) : null}
@@ -511,11 +527,13 @@ function FriendsBody() {
                 type="email"
                 inputMode="email"
                 autoCapitalize="none"
+                autoCorrect="off"
                 spellCheck={false}
                 placeholder="you@example.com"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 autoComplete={mode === 'signin' ? 'username' : 'email'}
+                enterKeyHint={mode === 'magic' ? 'go' : 'next'}
               />
             </div>
             {mode !== 'magic' ? (
@@ -523,15 +541,22 @@ function FriendsBody() {
                 <label htmlFor="auth-password" className="mb-1 block text-sm font-medium text-ink">
                   Password
                 </label>
-                <Input
-                  id="auth-password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-                  aria-describedby={mode === 'signup' ? 'auth-password-hint' : undefined}
-                />
+                <div className="flex gap-2">
+                  <Input
+                    id="auth-password"
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+                    enterKeyHint="go"
+                    aria-describedby={mode === 'signup' ? 'auth-password-hint' : undefined}
+                    className="min-w-0 flex-1"
+                  />
+                  <Button type="button" variant="secondary" onClick={() => setShowPassword((current) => !current)}>
+                    {showPassword ? 'Hide' : 'Show'}
+                  </Button>
+                </div>
                 {mode === 'signup' ? (
                   <p id="auth-password-hint" className="mt-1 text-xs text-muted">
                     At least 6 characters.
@@ -540,17 +565,9 @@ function FriendsBody() {
               </div>
             ) : null}
             <Button
+              type="submit"
               className="w-full"
               disabled={busy || !email.trim() || (mode !== 'magic' && password.length < 6)}
-              onClick={() => {
-                void runAuth(
-                  mode === 'signin'
-                    ? () => auth.signIn(email, password)
-                    : mode === 'signup'
-                      ? () => auth.signUp(email, password, displayName)
-                      : () => auth.signInMagicLink(email),
-                )
-              }}
             >
               {busy ? 'Please wait…' : mode === 'signin' ? 'Sign in' : mode === 'signup' ? 'Create account' : 'Send magic link'}
             </Button>
@@ -563,7 +580,7 @@ function FriendsBody() {
             <p className="text-xs text-muted">
               Offline / local mode still works without an account. Sign in to share programs with friends.
             </p>
-          </div>
+          </form>
         </Card>
       ) : null}
       {signedIn ? (

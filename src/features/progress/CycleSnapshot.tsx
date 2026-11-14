@@ -36,7 +36,7 @@ export function CycleSnapshot({
       onClick={onOpen}
       className={cn(
         'w-full rounded-2xl border border-charcoal-4 bg-charcoal p-4 text-left shadow-card',
-        onOpen && 'cursor-pointer transition hover:border-lime/35 active:scale-[0.99]',
+        onOpen && 'press-scale cursor-pointer transition hover:border-lime/35 active:scale-[0.99]',
       )}
     >
       <div className="flex items-start justify-between gap-2">

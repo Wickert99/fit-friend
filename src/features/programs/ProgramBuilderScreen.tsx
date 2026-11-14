@@ -94,29 +94,30 @@ export default function ProgramBuilderScreen() {
           </Button>
         }
       />
-      <label className="block text-xs text-muted">
+      <label htmlFor="program-name" className="block text-xs text-muted">
         Name
-        <Input aria-label="Program name" value={draft.name} onChange={(event) => setDraft({ ...draft, name: event.target.value })} />
+        <Input id="program-name" autoComplete="off" enterKeyHint="done" value={draft.name} onChange={(event) => setDraft({ ...draft, name: event.target.value })} />
       </label>
-      <label className="block text-xs text-muted">
+      <label htmlFor="program-description" className="block text-xs text-muted">
         Description
         <TextArea
-          aria-label="Program description"
+          id="program-description"
+          className="mt-1"
           value={draft.description}
           onChange={(event) => setDraft({ ...draft, description: event.target.value })}
         />
       </label>
-      <label className="block text-xs text-muted">
+      <label htmlFor="program-theme" className="block text-xs text-muted">
         Theme
-        <Select aria-label="Theme" value={draft.theme} onChange={(event) => setDraft({ ...draft, theme: event.target.value })}>
+        <Select id="program-theme" className="mt-1" value={draft.theme} onChange={(event) => setDraft({ ...draft, theme: event.target.value })}>
           {['Strength', 'Power', 'Hypertrophy', 'Endurance', 'Mobility'].map((theme) => (
             <option key={theme}>{theme}</option>
           ))}
         </Select>
       </label>
-      <label className="block text-xs text-muted">
+      <label htmlFor="program-sport" className="block text-xs text-muted">
         Sport
-        <Select aria-label="Sport" value={draft.sport} onChange={(event) => setDraft({ ...draft, sport: event.target.value })}>
+        <Select id="program-sport" className="mt-1" value={draft.sport} onChange={(event) => setDraft({ ...draft, sport: event.target.value })}>
           {SPORTS.map((sport) => (
             <option key={sport}>{sport}</option>
           ))}

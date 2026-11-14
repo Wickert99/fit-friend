@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { MessageCircle, Send, X } from 'lucide-react'
 import type { SupabaseProfile } from '../../types.ts'
+import { AppDialog } from '../../ui/AppDialog.tsx'
 import { Button } from '../../ui/Button.tsx'
 import { Input } from '../../ui/Input.tsx'
-import { useBodyScrollLock } from '../../ui/useBodyScrollLock.ts'
 import { loadThread, markThreadRead, mergeMessages, sendChatMessage, subscribeChat } from './chat.ts'
 import { formatWhen } from './format.ts'
 import { Avatar } from '../../ui/Card.tsx'
@@ -29,7 +29,6 @@ export function ChatSheet({
   useEffect(() => {
     onActivityRef.current = onActivity
   }, [onActivity])
-  useBodyScrollLock(true)
 
   const refresh = useCallback(async () => {
     const result = await loadThread(friend.id)
@@ -72,7 +71,9 @@ export function ChatSheet({
   }, [friend.id, refresh])
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' })
+    endRef.current?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    })
   }, [messages.length])
 
   async function send() {
@@ -96,21 +97,13 @@ export function ChatSheet({
   }
 
   const name = friend.display_name || 'Friend'
+  const titleId = useId()
   return (
-    <div
-      className="sheet-overlay fixed inset-0 z-50 flex items-end justify-center bg-ink/40 p-0 sm:items-center sm:p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Chat with ${name}`}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onClose()
-      }}
-    >
-      <div className="sheet-panel flex w-full max-w-lg flex-col rounded-t-2xl border border-charcoal-4 bg-charcoal shadow-card sm:rounded-2xl">
-        <div className="flex shrink-0 items-center gap-3 border-b border-charcoal-4 px-4 py-3">
+    <AppDialog variant="sheet" labelledBy={titleId} onClose={onClose}>
+      <div className="flex shrink-0 items-center gap-3 border-b border-charcoal-4 px-4 py-3">
           <Avatar name={name} color="#b07d5c" />
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-ink">{name}</p>
+            <p id={titleId} className="truncate text-sm font-semibold text-ink">{name}</p>
             <p className="text-xs text-muted">Friend chat</p>
           </div>
           <button
@@ -122,7 +115,7 @@ export function ChatSheet({
             <X className="h-4 w-4" />
           </button>
         </div>
-        <div className="min-h-0 flex-1 space-y-2 overflow-y-auto px-4 py-3" style={{ maxHeight: 'min(55vh, 420px)' }}>
+        <div className="min-h-0 flex-1 space-y-2 overflow-y-auto px-4 py-3" style={{ maxHeight: 'min(55dvh, 420px)' }}>
           {loading ? <p className="text-sm text-muted">Loading messages…</p> : null}
           {!loading && messages.length === 0 ? (
             <div className="flex flex-col items-center gap-2 py-8 text-center">
@@ -149,7 +142,11 @@ export function ChatSheet({
           <div ref={endRef} />
         </div>
         <div className="shrink-0 border-t border-charcoal-4 p-3">
-          {error ? <p className="mb-2 text-xs text-danger">{error}</p> : null}
+          {error ? (
+            <p className="mb-2 text-xs text-danger" role="alert">
+              {error}
+            </p>
+          ) : null}
           <form
             className="flex gap-2"
             onSubmit={(event) => {
@@ -157,21 +154,26 @@ export function ChatSheet({
               void send()
             }}
           >
+            <label htmlFor="chat-message" className="visually-hidden">
+              Message
+            </label>
             <Input
+              id="chat-message"
               placeholder="Message…"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
               maxLength={2000}
               disabled={sending}
               autoComplete="off"
-              aria-label="Message body"
+              autoCorrect="off"
+              enterKeyHint="send"
+              className="min-w-0 flex-1"
             />
             <Button type="submit" disabled={sending || !draft.trim()} aria-label="Send message">
               <Send className="h-4 w-4" />
             </Button>
           </form>
         </div>
-      </div>
-    </div>
+    </AppDialog>
   )
 }

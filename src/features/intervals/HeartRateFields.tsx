@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import type { Profile } from '../../types.ts'
 import { useStore } from '../../store/useStore.ts'
 import { Card, SectionLabel } from '../../ui/Card.tsx'
@@ -45,6 +45,8 @@ export function HeartRateFields({
   const [maxText, setMaxText] = useState(profile.maxHeartRate == null ? '' : String(profile.maxHeartRate))
   useEffect(() => setAgeText(profile.age == null ? '' : String(profile.age)), [profile.age])
   useEffect(() => setMaxText(profile.maxHeartRate == null ? '' : String(profile.maxHeartRate)), [profile.maxHeartRate])
+  const ageId = useId()
+  const maxId = useId()
 
   return (
     <div className="space-y-3">
@@ -60,13 +62,13 @@ export function HeartRateFields({
         <p className="text-xs text-muted">Whoop last reported {profile.whoopMaxHeartRate} bpm. Your number is the one the timer uses.</p>
       ) : null}
       <div className="grid grid-cols-2 gap-3">
-        <label className="block text-xs text-muted">
+        <label htmlFor={ageId} className="block text-xs text-muted">
           Age
           <Input
+            id={ageId}
             className="mt-1"
             inputMode="numeric"
             autoComplete="off"
-            aria-label="Age"
             placeholder="Years"
             value={ageText}
             onChange={(event) => {
@@ -77,13 +79,13 @@ export function HeartRateFields({
             }}
           />
         </label>
-        <label className="block text-xs text-muted">
+        <label htmlFor={maxId} className="block text-xs text-muted">
           Max HR
           <Input
+            id={maxId}
             className="mt-1"
             inputMode="numeric"
             autoComplete="off"
-            aria-label="Max heart rate"
             placeholder="Auto"
             value={maxText}
             onChange={(event) => {

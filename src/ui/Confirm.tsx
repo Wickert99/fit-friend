@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useId, useState, type ReactNode } from 'react'
+import { AppDialog } from './AppDialog.tsx'
 import { Button } from './Button.tsx'
-import { useBodyScrollLock } from './useBodyScrollLock.ts'
 
 export interface ConfirmOptions {
   title: string
@@ -28,7 +28,6 @@ export function ConfirmProvider({ children }: { children: ReactNode }) {
   const titleId = useId()
   const bodyId = useId()
   const [request, setRequest] = useState<(ConfirmOptions & { resolve: (ok: boolean) => void }) | null>(null)
-  useBodyScrollLock(request != null)
 
   const confirm = useCallback<ConfirmFn>((options) => {
     const normalized = typeof options === 'string' ? confirmText(options) : options
@@ -46,38 +45,30 @@ export function ConfirmProvider({ children }: { children: ReactNode }) {
     <ConfirmContext.Provider value={confirm}>
       {children}
       {request ? (
-        <div
-          className="sheet-overlay fixed inset-0 z-[60] flex items-end justify-center bg-ink/40 sm:items-center sm:p-4"
-          onClick={(event) => {
-            if (event.target === event.currentTarget) finish(false)
-          }}
+        <AppDialog
+          variant="card"
+          labelledBy={titleId}
+          describedBy={request.body ? bodyId : undefined}
+          onClose={() => finish(false)}
+          data-confirm-sheet="true"
         >
-          <div
-            role="alertdialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            aria-describedby={request.body ? bodyId : undefined}
-            data-confirm-sheet="true"
-            className="safe-sheet w-full max-w-lg rounded-t-2xl border border-charcoal-4 bg-charcoal px-4 pt-5 shadow-card sm:rounded-2xl"
-          >
-            <h2 id={titleId} className={request.tone === 'danger' ? 'text-lg font-semibold text-danger' : 'text-lg font-semibold text-ink'}>
-              {request.title}
-            </h2>
-            {request.body ? (
-              <p id={bodyId} className="mt-2 text-sm leading-relaxed text-muted">
-                {request.body}
-              </p>
-            ) : null}
-            <div className="mt-5 flex flex-col gap-2">
-              <Button size="lg" variant="secondary" className="w-full" autoFocus onClick={() => finish(false)}>
-                {request.cancelLabel ?? 'Cancel'}
-              </Button>
-              <Button size="lg" variant={request.tone === 'danger' ? 'danger' : 'primary'} className="w-full" onClick={() => finish(true)}>
-                {request.confirmLabel ?? 'Confirm'}
-              </Button>
-            </div>
+          <h2 id={titleId} className={request.tone === 'danger' ? 'text-lg font-semibold text-danger' : 'text-lg font-semibold text-ink'}>
+            {request.title}
+          </h2>
+          {request.body ? (
+            <p id={bodyId} className="mt-2 text-sm leading-relaxed text-muted">
+              {request.body}
+            </p>
+          ) : null}
+          <div className="mt-5 flex flex-col gap-2">
+            <Button size="lg" variant="secondary" className="w-full" autoFocus onClick={() => finish(false)}>
+              {request.cancelLabel ?? 'Cancel'}
+            </Button>
+            <Button size="lg" variant={request.tone === 'danger' ? 'danger' : 'primary'} className="w-full" onClick={() => finish(true)}>
+              {request.confirmLabel ?? 'Confirm'}
+            </Button>
           </div>
-        </div>
+        </AppDialog>
       ) : null}
     </ConfirmContext.Provider>
   )

@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
+import { AppDialog } from '../../ui/AppDialog.tsx'
 import { Button } from '../../ui/Button.tsx'
-import { useBodyScrollLock } from '../../ui/useBodyScrollLock.ts'
 
 export function Prompt({
   open,
@@ -23,38 +23,20 @@ export function Prompt({
   confirmTestId?: string
   children?: ReactNode
 }) {
-  useBodyScrollLock(open)
+  const titleId = useId()
   if (!open) return null
   return (
-    <div
-      className="sheet-overlay fixed inset-0 z-[60] flex items-end justify-center bg-ink/40 sm:items-center sm:p-4"
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onDismiss()
-      }}
-    >
-      <div
-        role="alertdialog"
-        aria-modal="true"
-        aria-label={title}
-        className="safe-sheet w-full max-w-lg rounded-t-2xl border border-charcoal-4 bg-charcoal px-4 pt-5 shadow-card sm:rounded-2xl"
-      >
-        <h2 className={tone === 'danger' ? 'text-lg font-semibold text-danger' : 'text-lg font-semibold text-ink'}>{title}</h2>
-        <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted">{children}</div>
-        <div className="mt-5 flex flex-col gap-2">
-          <Button size="lg" variant="secondary" className="w-full" autoFocus onClick={onDismiss}>
-            {cancelLabel}
-          </Button>
-          <Button
-            size="lg"
-            variant={tone === 'danger' ? 'danger' : 'primary'}
-            className="w-full"
-            data-testid={confirmTestId}
-            onClick={onConfirm}
-          >
-            {confirmLabel}
-          </Button>
-        </div>
+    <AppDialog variant="card" labelledBy={titleId} onClose={onDismiss}>
+      <h2 id={titleId} className={tone === 'danger' ? 'text-lg font-semibold text-danger' : 'text-lg font-semibold text-ink'}>{title}</h2>
+      <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted">{children}</div>
+      <div className="mt-5 flex flex-col gap-2">
+        <Button size="lg" variant="secondary" className="w-full" autoFocus onClick={onDismiss}>
+          {cancelLabel}
+        </Button>
+        <Button size="lg" variant={tone === 'danger' ? 'danger' : 'primary'} className="w-full" data-testid={confirmTestId} onClick={onConfirm}>
+          {confirmLabel}
+        </Button>
       </div>
-    </div>
+    </AppDialog>
   )
 }

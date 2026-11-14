@@ -143,13 +143,12 @@ export function MaxesPanel({ className, highlightFamilyId, compact }: { classNam
           </Select>
         ) : null}
       </div>
-      <div className="flex gap-1 rounded-xl border border-charcoal-4 bg-charcoal-2 p-1" role="tablist" aria-label="Maxes sections" data-maxes-tabs>
+      <div className="flex gap-1 rounded-xl border border-charcoal-4 bg-charcoal-2 p-1" role="group" aria-label="Maxes sections" data-maxes-tabs>
         {SECTIONS.map((item) => (
           <button
             key={item.id}
             type="button"
-            role="tab"
-            aria-selected={section === item.id}
+            aria-pressed={section === item.id}
             data-maxes-tab={item.id}
             className={cn(
               'hit-slop-sm min-h-11 flex-1 rounded-lg px-2 py-2 text-xs font-medium transition',
@@ -165,13 +164,22 @@ export function MaxesPanel({ className, highlightFamilyId, compact }: { classNam
           </button>
         ))}
       </div>
-      <Input
-        value={filter}
-        onChange={(event) => setFilter(event.target.value)}
-        placeholder={section === 'strength' ? 'Filter lifts…' : section === 'run' ? 'Filter distances…' : 'Filter benchmarks…'}
-        className="text-sm"
-        aria-label="Filter maxes"
-      />
+      <label htmlFor="maxes-filter" className="block text-xs text-muted">
+        Filter
+        <Input
+          id="maxes-filter"
+          value={filter}
+          onChange={(event) => setFilter(event.target.value)}
+          placeholder={section === 'strength' ? 'Filter lifts…' : section === 'run' ? 'Filter distances…' : 'Filter benchmarks…'}
+          className="mt-1 text-sm"
+          enterKeyHint="search"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="none"
+          spellCheck={false}
+          type="search"
+        />
+      </label>
       <div className={cn('space-y-2', compact && 'max-h-72 overflow-y-auto')} data-maxes-section={section}>
         {section === 'strength'
           ? lifts.map((family) => {
